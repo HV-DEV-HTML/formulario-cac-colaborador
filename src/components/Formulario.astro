@@ -1,0 +1,4135 @@
+---
+import icon_thanks from '@/assets/icon_thanks.svg'
+---
+<!-- formulario -->
+<style is:inline>
+  section.bgWhiteSpace {
+    padding-top: 0 !important;
+  }
+  
+  @media (max-width: 990px) {
+    section.bgWhiteSpace {
+      padding-top: 50px !important;
+    }
+  }
+  .cChat {
+    display: none !important;
+  }
+
+  @media screen and (min-width: 768px) {
+    #cPal .c09pe .c09peBox.rojo {
+      background-repeat: no-repeat;
+      background-image: url("https://www.claro.com.pe/assets/havas/sorteo-pago-digital/assets/sticky_tablet.png");
+    }
+
+    #cPal .c09pe .c09peBox .c09peBoxWrapper {
+      width: 100%;
+    }
+
+    #cPal .c26pe .c26peTitle {
+      margin-bottom: 32px;
+    }
+
+    #cPal .c26pe .c26peTitle h2 {
+      font-size: 2rem;
+    }
+
+    #cPal .c09pe .c09peBox .c09peBInfBtn .c09peBoxInf p {
+      font-size: 1.1rem;
+    }
+
+    #cPal .c26pe {
+      padding-bottom: 40px;
+    }
+  }
+
+  @media screen and (min-width: 1200px) {
+    #cPal .c09pe .c09peBox.rojo {
+      background-repeat: no-repeat;
+      background-image: url("https://www.claro.com.pe/assets/havas/sorteo-pago-digital/assets/sticky_desktop.png");
+    }
+  }
+
+  .load_ing {
+    display: grid;
+    place-content: center;
+    z-index: 9999;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    animation-name: animationColor;
+    animation-duration: 1.5s;
+    animation-fill-mode: forwards;
+    display: none !important;
+  }
+
+  @keyframes animationColor {
+    from {
+      background-color: rgba(0, 0, 0, 0);
+      -webkit-background-color: rgba(0, 0, 0, 0);
+      -moz-background-color: rgba(0, 0, 0, 0);
+      -ms-background-color: rgba(0, 0, 0, 0);
+      -o-background-color: rgba(0, 0, 0, 0);
+    }
+
+    to {
+      background-color: rgba(0, 0, 0, 0.65);
+      -webkit-background-color: rgba(0, 0, 0, 0.65);
+      -moz-background-color: rgba(0, 0, 0, 0.65);
+      -ms-background-color: rgba(0, 0, 0, 0.65);
+      -o-background-color: rgba(0, 0, 0, 0.65);
+    }
+  }
+
+  .load_ing.over_lay {
+    animation-name: animationColor;
+    animation-duration: 1.5s;
+    animation-fill-mode: forwards;
+  }
+
+  .load_ing img {
+    width: 50px;
+    height: 50px;
+  }
+
+  @import url(https://fonts.googleapis.com/css?family=Anton|Bevan|Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&display=swap);
+
+  @font-face {
+    font-family: "FontAwesome";
+    src: url("https://netdna.bootstrapcdn.com/font-awesome/4.7.0/fonts/fontawesome-webfont.eot?v=4.7.0");
+    src: url("https://netdna.bootstrapcdn.com/font-awesome/4.7.0/fonts/fontawesome-webfont.eot?#iefix&v=4.7.0") format("embedded-opentype"),
+      url("https://netdna.bootstrapcdn.com/font-awesome/4.7.0/fonts/fontawesome-webfont.woff2?v=4.7.0") format("woff2"),
+      url("https://netdna.bootstrapcdn.com/font-awesome/4.7.0/fonts/fontawesome-webfont.woff?v=4.7.0") format("woff"),
+      url("https://netdna.bootstrapcdn.com/font-awesome/4.7.0/fonts/fontawesome-webfont.ttf?v=4.7.0") format("truetype"),
+      url("https://netdna.bootstrapcdn.com/font-awesome/4.7.0/fonts/fontawesome-webfont.svg?v=4.7.0#fontawesomeregular") format("svg");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  .grecaptcha-badge {
+    visibility: collapse !important;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  .d-none {
+    display: none;
+  }
+
+  @-webkit-keyframes animationColor {
+    from {
+      background-color: rgba(0, 0, 0, 0);
+      -webkit-background-color: rgba(0, 0, 0, 0);
+      -moz-background-color: rgba(0, 0, 0, 0);
+      -ms-background-color: rgba(0, 0, 0, 0);
+      -o-background-color: rgba(0, 0, 0, 0);
+    }
+
+    to {
+      background-color: rgba(0, 0, 0, 0.65);
+      -webkit-background-color: rgba(0, 0, 0, 0.65);
+      -moz-background-color: rgba(0, 0, 0, 0.65);
+      -ms-background-color: rgba(0, 0, 0, 0.65);
+      -o-background-color: rgba(0, 0, 0, 0.65);
+    }
+  }
+
+  @keyframes animationColor {
+    from {
+      background-color: rgba(0, 0, 0, 0);
+      -webkit-background-color: rgba(0, 0, 0, 0);
+      -moz-background-color: rgba(0, 0, 0, 0);
+      -ms-background-color: rgba(0, 0, 0, 0);
+      -o-background-color: rgba(0, 0, 0, 0);
+    }
+
+    to {
+      background-color: rgba(0, 0, 0, 0.65);
+      -webkit-background-color: rgba(0, 0, 0, 0.65);
+      -moz-background-color: rgba(0, 0, 0, 0.65);
+      -ms-background-color: rgba(0, 0, 0, 0.65);
+      -o-background-color: rgba(0, 0, 0, 0.65);
+    }
+  }
+
+  [v-cloak]>* {
+    display: none;
+  }
+
+  .load_ing {
+    display: -ms-grid;
+    display: grid;
+    place-content: center;
+    z-index: 9999;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+  }
+
+  .load_ing.over_lay {
+    -webkit-animation-name: animationColor;
+    animation-name: animationColor;
+    -webkit-animation-duration: 1.5s;
+    animation-duration: 1.5s;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+  }
+
+  .load_ing img {
+    width: 50px;
+    height: 50px;
+  }
+
+  #app:not([v-cloak])~.load_ing {
+    display: none;
+  }
+
+  #app~#load_er.over_lay {
+    display: -ms-grid;
+    display: grid;
+  }
+
+  #app .v--modal-overlay {
+    background-color: rgba(0, 0, 0, 0.7);
+  }
+
+  .layout__main {
+    font: normal 400 1em "Roboto";
+    font-size: 16px;
+  }
+
+  .layout__main .home__header .portlet1__align {
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .layout__main .home__header .portlet1 .zone1 {
+    padding-bottom: 60px;
+  }
+
+  .layout__main .home__header .portlet1 .zone1__header {
+    background-color: #ff0000;
+    position: relative;
+  }
+
+  .layout__main .home__header .portlet1 .zone1__header .slick-dots {
+    position: absolute;
+    bottom: -35px;
+  }
+
+  @media screen and (max-width: 480px) {
+    .layout__main .home__header .portlet1 .zone1__header .slick-dots {
+      display: block;
+      bottom: -40px;
+    }
+  }
+
+  .layout__main .home__header .portlet1 .zone1__header .slick-dots li {
+    width: 10px;
+    height: 10px;
+    margin: 0 7px;
+  }
+
+  @media screen and (max-width: 480px) {
+    .layout__main .home__header .portlet1 .zone1__header .slick-dots li {
+      width: 10px;
+      height: 10px;
+    }
+  }
+
+  .layout__main .home__header .portlet1 .zone1__header .slick-dots li button {
+    width: 10px;
+    height: 10px;
+  }
+
+  @media screen and (max-width: 480px) {
+    .layout__main .home__header .portlet1 .zone1__header .slick-dots li button {
+      width: 10px;
+      height: 10px;
+    }
+  }
+
+  .layout__main .home__header .portlet1 .zone1__header .slick-dots li button:before {
+    width: 10px;
+    height: 10px;
+    border: none;
+    background-color: #d8d8d8;
+  }
+
+  @media screen and (max-width: 480px) {
+    .layout__main .home__header .portlet1 .zone1__header .slick-dots li button:before {
+      width: 10px;
+      height: 10px;
+    }
+  }
+
+  .layout__main .home__header .portlet1 .zone1__header .slick-dots li.slick-active button:before {
+    color: #869791;
+    opacity: 1;
+    background: transparent;
+    background: #869791;
+  }
+
+  .layout__main .home__header .portlet1 .zone1__header .banner__image {
+    background-repeat: no-repeat;
+    background-position: center center;
+    width: 100%;
+    height: 480px;
+    position: relative;
+    display: block;
+    margin: 0 auto;
+  }
+
+  .layout__main .home__header .portlet1 .zone1__header .banner__image.banner1 {
+    background-image: url("../assets/banners/home/Banner-Conoce-tu-recibo-Desktop-1920x480-general.jpg");
+  }
+
+  .layout__main .home__header .portlet1 .zone1__header .banner__image.banner2 {
+    background-image: url("../assets/banners/home/Banner-Conoce-tu-recibo-Desktop-1920x480-debito-automatico.jpg");
+  }
+
+  .layout__main .home__header .portlet1 .zone1__header .banner__image.banner3 {
+    background-image: url("../assets/banners/home/Banner_Landing_debito_Desktop_1920x480.jpg");
+  }
+
+  @media screen and (max-width: 1366px) {
+    .layout__main .home__header .portlet1 .zone1__header .banner__image {
+      height: 365px;
+    }
+
+    .layout__main .home__header .portlet1 .zone1__header .banner__image.banner1 {
+      background-image: url("../assets/banners/home/Banner-Conoce-tu-recibo-Laptop-1366x365-general.jpg");
+    }
+
+    .layout__main .home__header .portlet1 .zone1__header .banner__image.banner2 {
+      background-image: url("../assets/banners/home/Banner-Conoce-tu-recibo-Laptop-1366x365-debito-automatico.jpg");
+    }
+
+    .layout__main .home__header .portlet1 .zone1__header .banner__image.banner3 {
+      background-image: url("../assets/banners/home/Banner_Landing_debito_Laptop_1366x365.jpg");
+    }
+  }
+
+  @media screen and (max-width: 1024px) {
+    .layout__main .home__header .portlet1 .zone1__header .banner__image {
+      height: 342px;
+    }
+
+    .layout__main .home__header .portlet1 .zone1__header .banner__image.banner1 {
+      background-image: url("../assets/banners/home/Banner-Conoce-tu-recibo-Tablet-H-1024x342-general.jpg");
+    }
+
+    .layout__main .home__header .portlet1 .zone1__header .banner__image.banner2 {
+      background-image: url("../assets/banners/home/Banner-Conoce-tu-recibo-Tablet-H-1024x342-debito-automatico.jpg");
+    }
+
+    .layout__main .home__header .portlet1 .zone1__header .banner__image.banner3 {
+      background-image: url("../assets/banners/home/Banner_Landing_debito_Tablet_H_1024x342.jpg");
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    .layout__main .home__header .portlet1 .zone1__header .banner__image {
+      height: 384px;
+    }
+
+    .layout__main .home__header .portlet1 .zone1__header .banner__image.banner1 {
+      background-image: url("../assets/banners/home/Banner-Conoce-tu-recibo-Tablet-V-768x384-general.jpg");
+    }
+
+    .layout__main .home__header .portlet1 .zone1__header .banner__image.banner2 {
+      background-image: url("../assets/banners/home/Banner-Conoce-tu-recibo-Tablet-V-768x384-debito-automatico.jpg");
+    }
+
+    .layout__main .home__header .portlet1 .zone1__header .banner__image.banner3 {
+      background-image: url("../assets/banners/home/Banner_Landing_debito_Tablet_V_768x384.jpg");
+    }
+  }
+
+  @media screen and (max-width: 640px) {
+    .layout__main .home__header .portlet1 .zone1__header .banner__image {
+      height: 190px;
+    }
+
+    .layout__main .home__header .portlet1 .zone1__header .banner__image.banner1 {
+      background-image: url("../assets/banners/home/Banner-Conoce-tu-recibo-Movil-H-570x190-general.jpg");
+    }
+
+    .layout__main .home__header .portlet1 .zone1__header .banner__image.banner2 {
+      background-image: url("../assets/banners/home/Banner-Conoce-tu-recibo-Movil-H-570x190-debito-automatico.jpg");
+    }
+
+    .layout__main .home__header .portlet1 .zone1__header .banner__image.banner3 {
+      background-image: url("../assets/banners/home/Banner_Landing_debito_Movil_H_570x190.jpg");
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    .layout__main .home__header .portlet1 .zone1__header .banner__image {
+      height: 400px;
+    }
+
+    .layout__main .home__header .portlet1 .zone1__header .banner__image.banner1 {
+      background-image: url("../assets/banners/home/Banner-Conoce-tu-recibo-Movil-V-430x400-general.jpg");
+    }
+
+    .layout__main .home__header .portlet1 .zone1__header .banner__image.banner2 {
+      background-image: url("../assets/banners/home/Banner-Conoce-tu-recibo-Movil-V-430x400-debito-automatico.jpg");
+    }
+
+    .layout__main .home__header .portlet1 .zone1__header .banner__image.banner3 {
+      background-image: url("../assets/banners/home/Banner_Landing_debito_Movil_V_430x400.jpg");
+    }
+  }
+
+  .layout__main .home__header .portlet1 .zone1__header .banner__image__link {
+    max-width: 1200px;
+    margin: 0 auto;
+    height: 100%;
+    position: relative;
+  }
+
+  @media screen and (max-width: 1366px) {
+    .layout__main .home__header .portlet1 .zone1__header .banner__image__link {
+      max-width: 1240px;
+    }
+  }
+
+  @media screen and (max-width: 1024px) {
+    .layout__main .home__header .portlet1 .zone1__header .banner__image__link {
+      max-width: 980px;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    .layout__main .home__header .portlet1 .zone1__header .banner__image__link {
+      max-width: 715px;
+    }
+  }
+
+  @media screen and (max-width: 640px) {
+    .layout__main .home__header .portlet1 .zone1__header .banner__image__link {
+      max-width: 410px;
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    .layout__main .home__header .portlet1 .zone1__header .banner__image__link {
+      max-width: 280px;
+    }
+  }
+
+  .layout__main .home__header .portlet1 .zone1__header .banner__image__link.disable {
+    visibility: hidden;
+  }
+
+  .layout__main .home__header .portlet1 .zone1__header .banner__image__link a {
+    font: normal 400 1.125em "Roboto";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    margin-bottom: 100px;
+    display: inline-block;
+    vertical-align: top;
+    color: #fff;
+    background: #ee122c;
+    border-radius: 32px;
+    padding: 10px 40px;
+    cursor: pointer;
+  }
+
+  @media screen and (max-width: 768px) {
+    .layout__main .home__header .portlet1 .zone1__header .banner__image__link a {
+      margin-bottom: 40px;
+    }
+  }
+
+  @media screen and (max-width: 640px) {
+    .layout__main .home__header .portlet1 .zone1__header .banner__image__link a {
+      margin-bottom: 10px;
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    .layout__main .home__header .portlet1 .zone1__header .banner__image__link a {
+      margin-bottom: 20px;
+    }
+  }
+
+  .layout__main .internal__header .portlet1__align {
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .layout__main .internal__header .portlet1 .zone1__header {
+    position: relative;
+  }
+
+  .layout__main .internal__header .portlet1 .zone1__header .slick-dots {
+    position: absolute;
+    bottom: -35px;
+  }
+
+  @media screen and (max-width: 480px) {
+    .layout__main .internal__header .portlet1 .zone1__header .slick-dots {
+      display: block;
+      bottom: -40px;
+    }
+  }
+
+  .layout__main .internal__header .portlet1 .zone1__header .slick-dots li {
+    width: 10px;
+    height: 10px;
+    margin: 0 7px;
+  }
+
+  @media screen and (max-width: 480px) {
+    .layout__main .internal__header .portlet1 .zone1__header .slick-dots li {
+      width: 10px;
+      height: 10px;
+    }
+  }
+
+  .layout__main .internal__header .portlet1 .zone1__header .slick-dots li button {
+    width: 10px;
+    height: 10px;
+  }
+
+  @media screen and (max-width: 480px) {
+    .layout__main .internal__header .portlet1 .zone1__header .slick-dots li button {
+      width: 10px;
+      height: 10px;
+    }
+  }
+
+  .layout__main .internal__header .portlet1 .zone1__header .slick-dots li button:before {
+    width: 10px;
+    height: 10px;
+    border: none;
+    background-color: #d8d8d8;
+  }
+
+  @media screen and (max-width: 480px) {
+    .layout__main .internal__header .portlet1 .zone1__header .slick-dots li button:before {
+      width: 10px;
+      height: 10px;
+    }
+  }
+
+  .layout__main .internal__header .portlet1 .zone1__header .slick-dots li.slick-active button:before {
+    color: #869791;
+    opacity: 1;
+    background: transparent;
+    background: #869791;
+  }
+
+  .layout__main .internal__header .portlet1 .zone1__header .banner__image {
+    background-repeat: no-repeat;
+    background-position: center center;
+    height: 480px;
+    width: 100%;
+    position: relative;
+    display: block;
+    margin: 0 auto;
+    /*&.banner1{
+                  background-image: url("../assets/banners/home/Banner_Landing_debito_Desktop_1920x480.jpg");
+              }
+      
+              @include to(laptop) {
+      
+                  &.banner1{
+                      background-image: url("../assets/banners/home/Banner_Landing_debito_Laptop_1366x365.jpg");
+                  }
+      
+                  height: 365px;
+              }
+      
+              @include to(tablet-h) {
+      
+                  &.banner1{
+                      background-image: url("../assets/banners/home/Banner_Landing_debito_Tablet_H_1024x342.jpg");
+                  }
+      
+                  height: 342px;
+              }
+      
+              @include to(tablet) {
+      
+                  &.banner1{
+                      background-image: url("../assets/banners/home/Banner_Landing_debito_Tablet_V_768x384.jpg");
+                  }
+      
+                  height: 384px;
+              }
+      
+              @include to(movil-h) {
+      
+                  &.banner1{
+                      background-image: url("../assets/banners/home/Banner_Landing_debito_Movil_H_570x190.jpg");
+                  }
+      
+                  height: 190px;
+              }
+      
+              @include to(movil) {
+      
+                  &.banner1{
+                      background-image: url("../assets/banners/home/Banner_Landing_debito_Movil_V_430x400.jpg");
+                  }
+      
+                  height: 400px;
+              }*/
+  }
+
+  .layout__main .internal__header .portlet1 .zone1__header .banner__image__link {
+    max-width: 1200px;
+    margin: 0 auto;
+    height: 100%;
+    position: relative;
+  }
+
+  .layout__main .internal__header .portlet1 .zone1__header .banner__image__link.disable {
+    visibility: hidden;
+  }
+
+  .layout__main .internal__header .portlet1 .zone1__header .banner__image__link a {
+    font: normal 400 1.125em "Roboto";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    margin-bottom: 100px;
+    display: inline-block;
+    vertical-align: top;
+    color: #fff;
+    background: #ee122c;
+    border-radius: 32px;
+    padding: 10px 40px;
+    cursor: pointer;
+  }
+
+  .layout__main .internal__header .portlet2__align {
+    width: 100%;
+    max-width: 1238px;
+    margin: 0 auto;
+  }
+
+  @media screen and (max-width: 1024px) {
+    .layout__main .internal__header .portlet2__align {
+      padding: 0 20px;
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    .layout__main .internal__header .portlet2__align {
+      background-color: #f3f3f3;
+      -webkit-box-shadow: 0 3px 7px rgba(0, 0, 0, 0.15);
+      box-shadow: 0 3px 7px rgba(0, 0, 0, 0.15);
+    }
+  }
+
+  .layout__main .internal__header .portlet2 .zone1 {
+    padding: 30px 0;
+  }
+
+  @media screen and (max-width: 480px) {
+    .layout__main .internal__header .portlet2 .zone1 {
+      padding: 15px 0;
+    }
+  }
+
+  .layout__main .internal__header .portlet2 .zone1__header section ul {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+  }
+
+  .layout__main .internal__header .portlet2 .zone1__header section ul li {
+    font: normal 300 1em "Roboto";
+    color: #abaeaf;
+    margin-right: 8px;
+  }
+
+  .layout__main .internal__header .portlet2 .zone1__header section ul li a {
+    color: #3fc3e9;
+  }
+
+  .layout__main .internal__header .portlet2 .zone1__header section ul li a:hover {
+    color: #3fc3e9;
+  }
+
+  .layout__modal {
+    /*display: none;
+              .overlay {
+                @include opacidad(bg, #000000, 0.7,claro);
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                z-index: 9999; 
+              }
+      
+              .box {
+                width: 100%;
+                height: 100%;
+                z-index: 20;
+                display: table;
+      
+                      &__inset {
+                  display: table-cell;
+                  vertical-align: middle;
+                  width: 100%;
+                  position: relative; 
+                 //&--close{
+                  //	position: absolute;
+                  //  top: -10;
+                  //  right: -10;
+                  //  z-index: 2;
+                  //  cursor: pointer;
+                  //}
+                      }
+                  }*/
+  }
+
+  .layout__modal .v--modal {
+    background: transparent;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+  }
+
+  .layout__modal .v--modal-overlay {
+    background: rgba(0, 0, 0, 0.9);
+  }
+
+  .layout__modal .video {
+    padding: 50px;
+  }
+
+  @media screen and (max-width: 768px) {
+    .layout__modal .video {
+      padding: 40px;
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    .layout__modal .video {
+      padding: 20px;
+    }
+  }
+
+  .layout__modal .video__header {
+    position: relative;
+  }
+
+  .layout__modal .video__header button {
+    position: absolute;
+    top: 0px;
+    right: -50px;
+    width: 40px;
+    height: 40px;
+    background-color: #ffffff;
+    border: 0px;
+    font: normal 800 1.25em "Roboto";
+    color: #ef2539;
+    cursor: pointer;
+    -webkit-transition: all 0.2s ease 0s;
+    transition: all 0.2s ease 0s;
+  }
+
+  @media screen and (max-width: 768px) {
+    .layout__modal .video__header button {
+      right: -40px;
+      width: 30px;
+      height: 30px;
+      font: normal 800 1em "Roboto";
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    .layout__modal .video__header button {
+      top: -20px;
+      right: 0px;
+      width: 20px;
+      height: 20px;
+      font: normal 800 0.875em "Roboto";
+    }
+  }
+
+  .layout__modal .video__header button:hover {
+    background-color: #ef2539;
+    color: #ffffff;
+    -webkit-transition: all 0.2s ease 0s;
+    transition: all 0.2s ease 0s;
+  }
+
+  .layout__modal .video__iframe {
+    width: 100%;
+    padding-top: 56.25%;
+    position: relative;
+  }
+
+  .layout__modal .video__iframe iframe {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .layout__modal.active {
+    display: block;
+  }
+
+  /*
+      
+      .carousel__item {
+        min-height: 200px;
+        width: 100%;
+        background-color: #642afb;
+        color: white;
+        font-size: 20px;
+        border-radius: 8px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      
+      .carousel__slide {
+        padding: 10px;
+      }
+      
+      .carousel__prev,
+      .carousel__next {
+        background-color: #fff7;
+      }*/
+  @keyframes animationColor {
+    from {
+      background-color: rgba(0, 0, 0, 0);
+      -webkit-background-color: rgba(0, 0, 0, 0);
+      -moz-background-color: rgba(0, 0, 0, 0);
+      -ms-background-color: rgba(0, 0, 0, 0);
+      -o-background-color: rgba(0, 0, 0, 0);
+    }
+
+    to {
+      background-color: rgba(0, 0, 0, 0.65);
+      -webkit-background-color: rgba(0, 0, 0, 0.65);
+      -moz-background-color: rgba(0, 0, 0, 0.65);
+      -ms-background-color: rgba(0, 0, 0, 0.65);
+      -o-background-color: rgba(0, 0, 0, 0.65);
+    }
+  }
+
+  [v-cloak]>* {
+    display: none;
+  }
+
+  .load_ing {
+    display: -ms-grid;
+    display: grid;
+    place-content: center;
+    z-index: 9999;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+  }
+
+  .load_ing.over_lay {
+    -webkit-animation-name: animationColor;
+    animation-name: animationColor;
+    -webkit-animation-duration: 1.5s;
+    animation-duration: 1.5s;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+  }
+
+  .load_ing img {
+    width: 50px;
+    height: 50px;
+  }
+
+  #app:not([v-cloak])~.load_ing {
+    display: none;
+  }
+
+  #app~#load_er.over_lay {
+    display: -ms-grid;
+    display: grid;
+  }
+
+  #app .v--modal-overlay {
+    background-color: rgba(0, 0, 0, 0.7);
+  }
+
+  .portlet[data-portlet="bannerform"] {
+    width: 100%;
+    height: 700px;
+    /*overflow: hidden;*/
+  }
+
+  @media screen and (max-width: 640px) {
+    .portlet[data-portlet="bannerform"] {
+      height: 660px;
+    }
+  }
+
+  .portlet[data-portlet="bannerform"] .section {
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+
+  .portlet[data-portlet="bannerform"] .section__banner {
+    width: 100%;
+    height: 100%;
+    display: block;
+    border-radius: 20.25px;
+    overflow: hidden;
+    max-width: 1075px;
+  }
+
+  .portlet[data-portlet="bannerform"] .section__banner img {
+    /*width: 100%;
+    height: 100%;
+    -o-object-fit: cover;
+    object-fit: cover;
+    -o-object-position: center;
+    object-position: center;*/
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+    transform: translateX(-34px);
+  }
+
+  @media screen and (max-width: 1400px) {
+    .portlet[data-portlet="bannerform"] .section__banner img {
+      transform: translateX(-64px);
+    }
+  }
+
+  @media screen and (max-width: 1350px) {
+    .portlet[data-portlet="bannerform"] .section__banner img {
+      transform: translateX(-106px);
+    }
+  }
+
+  @media screen and (max-width: 1300px) {
+    .portlet[data-portlet="bannerform"] .section__banner img {
+      transform: translateX(-136px);
+    }
+  }
+
+  @media screen and (max-width: 640px) {
+    .portlet[data-portlet="bannerform"] .section__banner img {
+      -o-object-position: top;
+      object-position: top;
+    }
+  }
+
+  .portlet[data-portlet="bannerform"] .section__modals {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 100000;
+  }
+
+  .portlet[data-portlet="bannerform"] .section__modals.active {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    align-items: center;
+  }
+
+  .portlet[data-portlet="bannerform"] .section__modals__modal {
+    width: 92%;
+    max-width: 800px;
+    margin: 3% auto 0;
+    padding: 0;
+    border: none;
+    border-radius: 20px;
+    background-color: #fff;
+    position: relative;
+    height: -webkit-fit-content;
+    height: -moz-fit-content;
+    height: fit-content;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: start;
+    -ms-flex-align: start;
+    align-items: flex-start;
+    gap: 20px;
+    margin-top: 0;
+  }
+
+  .portlet[data-portlet="bannerform"] .section__modals__modal-close {
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 64 64'%3E%3Cpath d='m16 13a1 1 0 0 0-3 3l16 16-16 16a1 1 0 0 0 3 3l16-16 16 16a1 1 0 0 0 3-3l-16-16 16-16a1 1 0 0 0-3-3l-16 16z' fill='currentColor'%3E%3C/path%3E%3C/svg%3E") center center no-repeat;
+    background-size: 20px 20px;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    margin: 15px;
+    right: 0;
+    top: 0;
+    cursor: pointer;
+  }
+
+  .portlet[data-portlet="bannerform"] .section__modals__modal-group {
+    padding: 40px 40px 0px;
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+  }
+
+  .portlet[data-portlet="bannerform"] .section__modals__modal-group-title {
+    font: normal 700 24px "AMX";
+    line-height: normal;
+    color: #000;
+  }
+
+  @media screen and (max-width: 640px) {
+    .portlet[data-portlet="bannerform"] .section__modals__modal-group-title {
+      font-size: 18px;
+    }
+
+    .portlet[data-portlet="bannerform"] .section__modals__modal-group {
+      text-align: left;
+    }
+  }
+
+  .portlet[data-portlet="bannerform"] .section__modals__modal-main {
+    padding: 0 40px 0px;
+  }
+
+  @media screen and (max-width: 640px) {
+    .portlet[data-portlet="bannerform"] .section__modals__modal-main {
+      max-height: 300px;
+      overflow: hidden;
+      overflow-y: scroll;
+    }
+  }
+
+  .portlet[data-portlet="bannerform"] .section__modals__modal-main-text {
+    font: normal 400 16px "Roboto";
+    line-height: normal;
+    color: #000;
+  }
+
+  @media screen and (max-width: 640px) {
+    .portlet[data-portlet="bannerform"] .section__modals__modal-main-text {
+      font-size: 14px;
+    }
+  }
+
+  .portlet[data-portlet="bannerform"] .section__modals__modal-main-text a {
+    color: #008fa5;
+    text-decoration: none;
+    font-weight: 700;
+  }
+
+  .portlet[data-portlet="bannerform"] .section__modals__modal-footer {
+    padding: 0 0 40px;
+    width: 100%;
+  }
+
+  @media screen and (max-width: 640px) {
+    .portlet[data-portlet="bannerform"] .section__modals__modal-footer {
+      padding-bottom: 20px;
+    }
+  }
+
+  .portlet[data-portlet="bannerform"] .section__modals__modal-footer-close {
+    float: right;
+    width: 130px;
+    margin-right: 40px;
+    cursor: pointer;
+    font: normal 700 16px "Roboto";
+    line-height: 45px;
+    color: #fff;
+    background-color: #da291c;
+    border: none;
+    border-radius: 32px;
+  }
+
+  @media screen and (max-width: 640px) {
+    .portlet[data-portlet="bannerform"] .section__modals__modal-footer-close {
+      width: calc(100% - 80px);
+    }
+  }
+
+  .portlet[data-portlet="bannerform"] .section__align {
+    top: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    max-width: 1400px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: end;
+    -ms-flex-pack: end;
+    justify-content: flex-end;
+  }
+
+  /*
+  @media screen and (max-width: 1599px) {
+    .portlet[data-portlet="bannerform"] .section__align {
+      max-width: 1280px;
+      width: 90%;
+    }
+  }*/
+
+  @media screen and (max-width: 640px) {
+    .portlet[data-portlet="bannerform"] .section__align {
+      max-width: 100%;
+      width: 100%;
+      -webkit-box-align: end;
+      -ms-flex-align: end;
+      align-items: flex-end;
+    }
+  }
+
+  .portlet[data-portlet="bannerform"] .section__align .content .formBC__main .contentInputlista {
+    width: 100%;
+  }
+
+  .portlet[data-portlet="bannerform"] .section__align .content {
+    width: 450px;
+    height: -webkit-fit-content;
+    height: -moz-fit-content;
+    height: fit-content;
+    border-radius: 20px;
+    padding: 40px 0;
+
+    border-radius: 20.25px;
+    box-shadow: 0px 18.63px 41.31px 0px rgba(0, 0, 0, 0.25),
+      0px 75.33px 75.33px 0px rgba(0, 0, 0, 0.17);
+    overflow: hidden;
+    position: relative;
+  }
+
+  .portlet[data-portlet="bannerform"] .section__align .content::before {
+    content: "";
+    /*opacity: 0.8;*/
+    /*background: rgba(48, 48, 48, 0.48);*/
+    background-blend-mode: multiply;
+    position: absolute;
+    top: 0px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    /*backdrop-filter: blur(60.75px);*/
+  }
+
+  /*
+  @media screen and (max-width: 1024px) {
+    .portlet[data-portlet="bannerform"] .section__align .content {
+      padding: 22px 0;
+      width: 484px;
+    }
+  }*/
+  /*
+  @media screen and (max-width: 640px) {
+    .portlet[data-portlet="bannerform"] .section__align .content {
+      max-width: 326px;
+      padding: 15px 0;
+      margin: 0 auto 15px;
+    }
+  }*/
+
+  .portlet[data-portlet="bannerform"] .section__align .content .formBC {
+    margin: 0 auto;
+    width: calc(100% - 94px);
+    gap: 7px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -moz-flex-direction: column;
+    -ms-flex-direction: column;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    flex-direction: column;
+    -moz-justify-content: space-between;
+    -ms-justify-content: space-between;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    -ms-flex-pack: space-between;
+    -moz-align-items: center;
+    -ms-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+  }
+
+  /*
+  @media screen and (max-width: 1024px) {
+    .portlet[data-portlet="bannerform"] .section__align .content .formBC {
+      width: calc(100% - 44px);
+      gap: 16px;
+    }
+  }*/
+
+  @media screen and (max-width: 640px) {
+    .portlet[data-portlet="bannerform"] .section__align .content .formBC {
+      gap: 10px;
+    }
+  }
+
+  .portlet[data-portlet="bannerform"] .section__align .content .formBC__group {
+    text-align: left;
+    width: 100%;
+  }
+
+  .portlet[data-portlet="bannerform"] .section__align .content .pasos {
+    color: #fff;
+    text-align: center;
+    font-family: Roboto;
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+  }
+
+  .paso2 .venta.ocultar,
+  .paso2 .postventa.ocultar {
+    display: none;
+  }
+
+  .portlet[data-portlet="bannerform"] .section__align .content .formBC__group-title {
+    margin-bottom: 20px;
+    color: #fff;
+    text-align: center;
+    font-family: AMX;
+    font-size: 24px;
+    font-weight: 700;
+  }
+
+  /*
+  @media screen and (max-width: 1024px) {
+    .portlet[data-portlet="bannerform"]
+      .section__align
+      .content
+      .formBC__group-title {
+      text-align: center;
+      font-size: 22px;
+      margin-bottom: 13px;
+    }
+  }*/
+
+  .portlet[data-portlet="bannerform"] .section__align .content .formBC__group-text {
+    color: #fff;
+    font-family: "Roboto";
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 5px;
+  }
+
+  /*
+  @media screen and (max-width: 1024px) {
+    .portlet[data-portlet="bannerform"]
+      .section__align
+      .content
+      .formBC__group-text {
+      text-align: center;
+      font-size: 14px;
+    }
+  }*/
+
+  .portlet[data-portlet="bannerform"] .section__align .content .formBC__main {
+    width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+  }
+
+  .portlet[data-portlet="bannerform"] .section__align .content .formBC__main .ocultar {
+    display: none;
+  }
+
+  .portlet[data-portlet="bannerform"] .section__align .content .formBC__main .columna2 {
+    display: flex;
+    gap: 10px;
+  }
+
+  .portlet[data-portlet="bannerform"] .section__align .content .formBC__main .type1 {
+    width: 100%;
+    position: relative;
+  }
+
+  .portlet[data-portlet="bannerform"] .section__align .content .formBC__main .type2 {
+    width: 40%;
+  }
+
+  @media screen and (max-width: 1024px) {
+    .portlet[data-portlet="bannerform"] .section__align .content .formBC__main .type2 {
+      width: 100%;
+    }
+  }
+
+  .portlet[data-portlet="bannerform"] .section__align .content .formBC__main .type3 {
+    width: 58%;
+  }
+
+  @media screen and (max-width: 1024px) {
+    .portlet[data-portlet="bannerform"] .section__align .content .formBC__main .type3 {
+      width: 100%;
+    }
+  }
+
+  .portlet[data-portlet="bannerform"] .section__align .content .formBC__main .type4 {
+    width: 100%;
+  }
+
+  .portlet[data-portlet="bannerform"] .section__align .content .formBC__main dl dd input[type="text"],
+  .portlet[data-portlet="bannerform"] .section__align .content .formBC__main dl dd select {
+    width: 100%;
+    height: 40px;
+    border-radius: 10px;
+    border: 1px solid #91979e;
+    padding-left: 10px;
+  }
+
+  .portlet[data-portlet="bannerform"] .section__align .content .formBC__main dl dd select.ocultar {
+    display: none;
+  }
+
+  .portlet[data-portlet="bannerform"] .section__align .content .formBC__main dl dd input[type="text"]:focus,
+  .portlet[data-portlet="bannerform"] .section__align .content .formBC__main dl dd select:focus {
+    outline: none;
+  }
+
+  .portlet[data-portlet="bannerform"] .section__align .content .formBC__main dl dd input[type="text"].invalid:-webkit-autofill,
+  .portlet[data-portlet="bannerform"] .section__align .content .formBC__main dl dd input[type="text"].invalid:-webkit-autofill:hover,
+  .portlet[data-portlet="bannerform"] .section__align .content .formBC__main dl dd input[type="text"].invalid:-webkit-autofill:focus,
+  .portlet[data-portlet="bannerform"] .section__align .content .formBC__main dl dd input[type="text"].invalid:-webkit-autofill:active,
+  .portlet[data-portlet="bannerform"] .section__align .content .formBC__main dl dd select.invalid:-webkit-autofill,
+  .portlet[data-portlet="bannerform"] .section__align .content .formBC__main dl dd select.invalid:-webkit-autofill:hover,
+  .portlet[data-portlet="bannerform"] .section__align .content .formBC__main dl dd select.invalid:-webkit-autofill:focus,
+  .portlet[data-portlet="bannerform"] .section__align .content .formBC__main dl dd select.invalid:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px #fcf3f3 inset !important;
+  }
+
+  .portlet[data-portlet="bannerform"] .section__align .content .formBC__main dl dd input[type="text"].valid:-webkit-autofill,
+  .portlet[data-portlet="bannerform"] .section__align .content .formBC__main dl dd input[type="text"].valid:-webkit-autofill:hover,
+  .portlet[data-portlet="bannerform"] .section__align .content .formBC__main dl dd input[type="text"].valid:-webkit-autofill:focus,
+  .portlet[data-portlet="bannerform"] .section__align .content .formBC__main dl dd input[type="text"].valid:-webkit-autofill:active,
+  .portlet[data-portlet="bannerform"] .section__align .content .formBC__main dl dd select.valid:-webkit-autofill,
+  .portlet[data-portlet="bannerform"] .section__align .content .formBC__main dl dd select.valid:-webkit-autofill:hover,
+  .portlet[data-portlet="bannerform"] .section__align .content .formBC__main dl dd select.valid:-webkit-autofill:focus,
+  .portlet[data-portlet="bannerform"] .section__align .content .formBC__main dl dd select.valid:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px #f3fffc inset !important;
+  }
+
+  .portlet[data-portlet="bannerform"] .section__align .content .formBC__main dl dd input[type="text"].invalid,
+  .portlet[data-portlet="bannerform"] .section__align .content .formBC__main dl dd select.invalid {
+    border: solid 1px #dc3545;
+    background: #fcf3f3 url("https://www.claro.com.pe/portal/pe-2020/recursos_contenido/claro-home/dec02708-0cba-45ab-ae9a-8891641fd8bf-invalid.png") no-repeat calc(100% - 8px) center;
+    color: #dc3545;
+  }
+
+  .portlet[data-portlet="bannerform"] .section__align .content .formBC__main dl dd input[type="text"].invalid::-webkit-input-placeholder,
+  .portlet[data-portlet="bannerform"] .section__align .content .formBC__main dl dd select.invalid::-webkit-input-placeholder {
+    color: #dc3545;
+    opacity: 1;
+  }
+
+  .portlet[data-portlet="bannerform"] .section__align .content .formBC__main dl dd input[type="text"].invalid::-moz-placeholder,
+  .portlet[data-portlet="bannerform"] .section__align .content .formBC__main dl dd select.invalid::-moz-placeholder {
+    color: #dc3545;
+    opacity: 1;
+  }
+
+  .portlet[data-portlet="bannerform"] .section__align .content .formBC__main dl dd input[type="text"].invalid:-ms-input-placeholder,
+  .portlet[data-portlet="bannerform"] .section__align .content .formBC__main dl dd select.invalid:-ms-input-placeholder {
+    color: #dc3545;
+    opacity: 1;
+  }
+
+  .portlet[data-portlet="bannerform"] .section__align .content .formBC__main dl dd input[type="text"].invalid::-ms-input-placeholder,
+  .portlet[data-portlet="bannerform"] .section__align .content .formBC__main dl dd select.invalid::-ms-input-placeholder {
+    color: #dc3545;
+    opacity: 1;
+  }
+
+  .portlet[data-portlet="bannerform"] .section__align .content .formBC__main dl dd input[type="text"].invalid::placeholder,
+  .portlet[data-portlet="bannerform"] .section__align .content .formBC__main dl dd select.invalid::placeholder {
+    color: #dc3545;
+    opacity: 1;
+  }
+
+  .portlet[data-portlet="bannerform"] .section__align .content .formBC__main dl dd input[type="text"].valid,
+  .portlet[data-portlet="bannerform"] .section__align .content .formBC__main dl dd select.valid {
+    border: solid 1px #28a745;
+    background: #f3fffc url("https://www.claro.com.pe/portal/pe-2020/recursos_contenido/claro-home/7f3c32d9-4bfa-4e6d-ba20-8c223cc2deca-valid.png") no-repeat calc(100% - 8px) center;
+    color: #006b4f;
+  }
+
+  .portlet[data-portlet="bannerform"] .section__align .content .formBC__main dl dd input[type="number"] {
+    -moz-appearance: textfield;
+  }
+
+  .portlet[data-portlet="bannerform"] .section__align .content .formBC__main dl dd input[type="number"]::-webkit-inner-spin-button,
+  .portlet[data-portlet="bannerform"] .section__align .content .formBC__main dl dd input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  .portlet[data-portlet="bannerform"] .section__align .content .formBC__main-input {
+    width: 100%;
+    height: 40px;
+    border-radius: 10px;
+    border: 1px solid #91979e;
+    background: #fff;
+    padding-left: 10px;
+    margin-bottom: 12px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    font: normal 400 15px "Roboto";
+    line-height: normal;
+    color: #000;
+  }
+
+  .portlet[data-portlet="bannerform"] .section__align .content .formBC__main-input[name="numero_o_codigo_de_servicio"][disabled] {
+    display: none !important;
+  }
+
+  .portlet[data-portlet="bannerform"] .section__align .content select.formBC__main-input {
+    color: #000;
+    font-family: Roboto;
+    font-size: 14px;
+    font-weight: 400;
+    margin-bottom: 0;
+  }
+
+  .portlet[data-portlet="bannerform"] .section__align .content .contentSelect {
+    position: relative;
+    margin-bottom: 10px;
+    border-radius: 10px;
+  }
+
+  .portlet[data-portlet="bannerform"] .section__align .content .contentSelect.valores select {
+    pointer-events: none;
+    background-color: #dfdedf;
+    color: #3f3e3e;
+  }
+
+  .portlet[data-portlet="bannerform"] .section__align .content .contentSelect svg {
+    position: absolute;
+    top: 16px;
+    right: 15px;
+    width: 14px;
+    height: 7px;
+    z-index: 1;
+  }
+
+  .portlet[data-portlet="bannerform"] .section__align .content .formBC__main p.tipo {
+    font-family: Roboto;
+    font-size: 16px;
+    font-weight: 700;
+    margin-top: 20px;
+    color: #fff;
+    margin-bottom: 5px;
+  }
+
+  .portlet[data-portlet="bannerform"] .section__align .content .formBC__main .radio {
+    display: flex;
+    gap: 10px;
+    align-items: start;
+    margin-top: 11px;
+  }
+
+  .portlet[data-portlet="bannerform"] .section__align .content .formBC__main .radio input {
+    display: none;
+  }
+
+  .portlet[data-portlet="bannerform"] .section__align .content .formBC__main .radio label {
+    width: 20px;
+    height: 20px;
+    background-color: #fff;
+    border-radius: 50%;
+    flex-shrink: 0;
+    position: relative;
+  }
+
+  .portlet[data-portlet="bannerform"] .section__align .content .formBC__main .radio.active label::before {
+    content: "";
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    width: 12px;
+    height: 12px;
+    background-color: #da291c;
+    border-radius: 50%;
+  }
+
+  .portlet[data-portlet="bannerform"] .section__align .content .formBC__main .radio p {
+    overflow: hidden;
+    color: #fff;
+    text-overflow: ellipsis;
+    font-family: Roboto;
+    font-size: 14px;
+    font-weight: 400;
+  }
+
+  .portlet[data-portlet="bannerform"] .section__align .content .formBC__main-input::-webkit-input-placeholder {
+    color: #75787c;
+  }
+
+  .portlet[data-portlet="bannerform"] .section__align .content .formBC__main-input::-moz-placeholder {
+    color: #75787c;
+  }
+
+  .portlet[data-portlet="bannerform"] .section__align .content .formBC__main-input:-ms-input-placeholder {
+    color: #75787c;
+  }
+
+  .portlet[data-portlet="bannerform"] .section__align .content .formBC__main-input::-ms-input-placeholder {
+    color: #75787c;
+  }
+
+  .portlet[data-portlet="bannerform"] .section__align .content .formBC__main-input::placeholder {
+    color: #75787c;
+  }
+
+  .portlet[data-portlet="bannerform"] .section__align .content .formBC__main-input:focus {
+    outline: none;
+  }
+
+  .portlet[data-portlet="bannerform"] .section__align .content .formBC__main-input::-webkit-calendar-picker-indicator {
+    opacity: 0;
+  }
+
+  @media screen and (max-width: 640px) {
+    .portlet[data-portlet="bannerform"] .section__align .content .formBC__main-input {
+      margin-bottom: 8px;
+    }
+  }
+
+  .portlet[data-portlet="bannerform"] .section__align .content .formBC__main-select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background: transparent url("https://static.claro.com.pe/img/arrow-bottom.svg") no-repeat calc(100% - 10px) center;
+    width: 100%;
+    height: 40px;
+    border-radius: 10px;
+    border: 1px solid #91979e;
+    padding-left: 16px;
+    margin-bottom: 12px;
+    font: normal 400 15px "Roboto";
+    line-height: normal;
+    color: #000;
+  }
+
+  .portlet[data-portlet="bannerform"] .section__align .content .formBC__main-checkbox {
+    margin-top: 15px;
+  }
+
+  @media screen and (max-width: 1024px) {
+    .portlet[data-portlet="bannerform"] .section__align .content .formBC__main-checkbox {
+      margin-top: 11px;
+    }
+  }
+
+  .portlet[data-portlet="bannerform"] .section__align .content .formBC__main-checkbox input[type="checkbox"] {
+    display: none;
+  }
+
+  .portlet[data-portlet="bannerform"] .section__align .content .formBC__main-checkbox input[type="checkbox"]:checked+label b {
+    background-color: #0fbfdf;
+    color: #ffffff;
+    -webkit-transition: all 0.2s ease 0s;
+    transition: all 0.2s ease 0s;
+  }
+
+  .portlet[data-portlet="bannerform"] .section__align .content .formBC__main-checkbox input[type="checkbox"]:checked+label b:before {
+    content: "\f00c";
+    display: inline-block;
+    margin-right: 0px;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-transform: translate(0, 0);
+    transform: translate(0, 0);
+    font-size: 13px;
+    color: #ffffff;
+    position: relative;
+    top: 0px;
+    left: 0px;
+  }
+
+  @media screen and (max-width: 480px) {
+    .portlet[data-portlet="bannerform"] .section__align .content .formBC__main-checkbox input[type="checkbox"]:checked+label b:before {
+      font-size: 12px;
+      top: -1px;
+    }
+  }
+
+  .portlet[data-portlet="bannerform"] .section__align .content .formBC__main-checkbox-label {
+    display: table-cell;
+    vertical-align: top;
+  }
+
+  .portlet[data-portlet="bannerform"] .section__align .content .formBC__main-checkbox-label b {
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+    font: normal 600 13px "Roboto";
+    line-height: 16px;
+    text-align: center;
+    vertical-align: middle;
+    color: #000000;
+    border: solid 1px #fff;
+    cursor: pointer;
+    border-radius: 3px 3px 3px 3px;
+    -webkit-transition: all 0.2s ease 0s;
+    transition: all 0.2s ease 0s;
+  }
+
+  .portlet[data-portlet="bannerform"] .section__align .content .formBC__main-checkbox-label b:hover {
+    background-color: #e1e4e8;
+    color: #000000;
+    -webkit-transition: all 0.2s ease 0s;
+    transition: all 0.2s ease 0s;
+  }
+
+  .portlet[data-portlet="bannerform"] .section__align .content .formBC__main-checkbox-text {
+    display: table-cell;
+    font: normal 400 14px "Roboto";
+    color: #fff;
+    vertical-align: middle;
+    padding-left: 10px;
+  }
+
+  @media screen and (max-width: 640px) {
+    .portlet[data-portlet="bannerform"] .section__align .content .formBC__main-checkbox-text {
+      font-size: 13px;
+    }
+  }
+
+  .portlet[data-portlet="bannerform"] .section__align .content .formBC__main-checkbox-text em {
+    color: #0fbfdf;
+    text-decoration: underline;
+    font-weight: 700;
+    font-style: normal;
+    cursor: pointer;
+  }
+
+  .portlet[data-portlet="bannerform"] .section__align .content .formBC__footer {
+    width: 100%;
+    margin-top: 26px;
+    display: flex;
+    justify-content: end;
+  }
+
+  .portlet[data-portlet="bannerform"] .section__align .content .formBC__footer-action {
+    cursor: not-allowed;
+    border: none;
+    border-radius: 25px;
+    background-color: #6c6c6c;
+    color: #e4e4e4;
+    width: 180px;
+    height: 40px;
+    color: #fff;
+    text-align: center;
+    font: normal 700 15px "Roboto";
+    line-height: normal;
+    padding: 11px 0;
+    box-sizing: border-box;
+  }
+
+  .portlet[data-portlet="bannerform"] .section__align .content button.formBC__footer-action {
+    pointer-events: none;
+  }
+
+  .portlet[data-portlet="bannerform"] .section__align .content .formBC__footer .btnvolver {
+    gap: 10px;
+    align-items: center;
+    color: #fff;
+    text-align: center;
+    font-family: Roboto;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    opacity: 0;
+    pointer-events: none;
+    display: flex;
+  }
+
+  .portlet[data-portlet="bannerform"] .section__align .content .formBC__footer .btnvolver.active {
+    pointer-events: all;
+    opacity: 1;
+  }
+
+  .portlet[data-portlet="bannerform"] .section__align .content .formBC__footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .portlet[data-portlet="bannerform"] .section__align .content .formBC__footer-action.btncontinuar {
+    pointer-events: none;
+  }
+
+  .portlet[data-portlet="bannerform"] .section__align .content .formBC__footer-action.active {
+    cursor: pointer;
+    pointer-events: all;
+  }
+
+  /*
+  @media screen and (max-width: 1024px) {
+    .portlet[data-portlet="bannerform"]
+      .section__align
+      .content
+      .formBC__footer-action {
+      width: 100%;
+      height: 45px;
+    }
+  }*/
+
+  .portlet[data-portlet="bannerform"] .section__align .content .formBC__footer-action.active {
+    background-color: #fff;
+    color: #ee122c;
+    cursor: pointer;
+  }
+
+  #asm-autolist {
+    border-radius: 10px;
+    border: 1px solid #f6f6f6;
+    background: #fff;
+    -webkit-box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.25);
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.25);
+    position: absolute;
+    padding: 6px 10px;
+    width: 100%;
+    top: 82%;
+    left: 0;
+    margin-top: 0;
+    -webkit-box-shadow: 0 2px 0 0 rgba(0, 0, 0, 0.05);
+    box-shadow: 0 2px 0 0 rgba(0, 0, 0, 0.05);
+  }
+
+  #asm-autolist li {
+    list-style: none;
+    padding: 10px 12px;
+    font-size: 18px;
+    line-height: 1.3333333;
+    font: normal 400 14px "Roboto";
+    border-radius: 5px;
+  }
+
+  #asm-autolist li.is-highlighted {
+    background-color: #eef1f4;
+  }
+
+  input[type="text"]::-webkit-calendar-picker-indicator,
+  input[type="email"]::-webkit-calendar-picker-indicator,
+  input[type="number"]::-webkit-calendar-picker-indicator,
+  input[type="search"]::-webkit-calendar-picker-indicator {
+    display: none !important;
+    -moz-appearance: none;
+    /* for Safari, Chrome, Opera */
+    -webkit-appearance: none;
+  }
+
+  /* Library  */
+  .toast-title {
+    font-weight: bold;
+  }
+
+  .toast-message {
+    -ms-word-wrap: break-word;
+    word-wrap: break-word;
+  }
+
+  .toast-message a,
+  .toast-message label {
+    color: #ffffff;
+  }
+
+  .toast-message a:hover {
+    color: #cccccc;
+    text-decoration: none;
+  }
+
+  .toast-close-button {
+    position: relative;
+    right: -0.3em;
+    top: -0.3em;
+    float: right;
+    font-size: 20px;
+    font-weight: bold;
+    color: #ffffff;
+    -webkit-text-shadow: 0 1px 0 #ffffff;
+    text-shadow: 0 1px 0 #ffffff;
+    opacity: 0.8;
+    -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
+    filter: alpha(opacity=80);
+    line-height: 1;
+  }
+
+  .toast-close-button:hover,
+  .toast-close-button:focus {
+    color: #000000;
+    text-decoration: none;
+    cursor: pointer;
+    opacity: 0.4;
+    -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=40);
+    filter: alpha(opacity=40);
+  }
+
+  .rtl .toast-close-button {
+    left: -0.3em;
+    float: left;
+    right: 0.3em;
+  }
+
+  /*Additional properties for button version
+       iOS requires the button element instead of an anchor tag.
+       If you want the anchor version, it requires `href="#"`.*/
+  button.toast-close-button {
+    padding: 0;
+    cursor: pointer;
+    background: transparent;
+    border: 0;
+    -webkit-appearance: none;
+  }
+
+  .toast-top-center {
+    top: 0;
+    right: 0;
+    width: 100%;
+  }
+
+  .toast-bottom-center {
+    bottom: 0;
+    right: 0;
+    width: 100%;
+  }
+
+  .toast-top-full-width {
+    top: 0;
+    right: 0;
+    width: 100%;
+  }
+
+  .toast-bottom-full-width {
+    bottom: 0;
+    right: 0;
+    width: 100%;
+  }
+
+  .toast-top-left {
+    top: 12px;
+    left: 12px;
+  }
+
+  .toast-top-right {
+    top: 12px;
+    right: 12px;
+  }
+
+  .toast-bottom-right {
+    right: 12px;
+    bottom: 12px;
+  }
+
+  .toast-bottom-left {
+    bottom: 12px;
+    left: 12px;
+  }
+
+  #toast-container {
+    position: fixed;
+    z-index: 999999;
+    pointer-events: none;
+    /*overrides*/
+    font: normal 600 0.875em "Roboto";
+  }
+
+  #toast-container * {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+
+  #toast-container>div {
+    position: relative;
+    pointer-events: auto;
+    overflow: hidden;
+    margin: 0 0 6px;
+    padding: 15px 15px 15px 50px;
+    width: 300px;
+    border-radius: 3px 3px 3px 3px;
+    background-position: 15px center;
+    background-repeat: no-repeat;
+    -webkit-box-shadow: 0 0 12px #999999;
+    box-shadow: 0 0 12px #999999;
+    color: #ffffff;
+    opacity: 0.8;
+    -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
+    filter: alpha(opacity=80);
+  }
+
+  #toast-container>div.rtl {
+    direction: rtl;
+    padding: 15px 50px 15px 15px;
+    background-position: right 15px center;
+  }
+
+  #toast-container>div:hover {
+    -webkit-box-shadow: 0 0 12px #000000;
+    box-shadow: 0 0 12px #000000;
+    opacity: 1;
+    -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+    filter: alpha(opacity=100);
+    cursor: pointer;
+  }
+
+  #toast-container>.toast-info {
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAGwSURBVEhLtZa9SgNBEMc9sUxxRcoUKSzSWIhXpFMhhYWFhaBg4yPYiWCXZxBLERsLRS3EQkEfwCKdjWJAwSKCgoKCcudv4O5YLrt7EzgXhiU3/4+b2ckmwVjJSpKkQ6wAi4gwhT+z3wRBcEz0yjSseUTrcRyfsHsXmD0AmbHOC9Ii8VImnuXBPglHpQ5wwSVM7sNnTG7Za4JwDdCjxyAiH3nyA2mtaTJufiDZ5dCaqlItILh1NHatfN5skvjx9Z38m69CgzuXmZgVrPIGE763Jx9qKsRozWYw6xOHdER+nn2KkO+Bb+UV5CBN6WC6QtBgbRVozrahAbmm6HtUsgtPC19tFdxXZYBOfkbmFJ1VaHA1VAHjd0pp70oTZzvR+EVrx2Ygfdsq6eu55BHYR8hlcki+n+kERUFG8BrA0BwjeAv2M8WLQBtcy+SD6fNsmnB3AlBLrgTtVW1c2QN4bVWLATaIS60J2Du5y1TiJgjSBvFVZgTmwCU+dAZFoPxGEEs8nyHC9Bwe2GvEJv2WXZb0vjdyFT4Cxk3e/kIqlOGoVLwwPevpYHT+00T+hWwXDf4AJAOUqWcDhbwAAAAASUVORK5CYII=") !important;
+  }
+
+  #toast-container>.toast-error {
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAHOSURBVEhLrZa/SgNBEMZzh0WKCClSCKaIYOED+AAKeQQLG8HWztLCImBrYadgIdY+gIKNYkBFSwu7CAoqCgkkoGBI/E28PdbLZmeDLgzZzcx83/zZ2SSXC1j9fr+I1Hq93g2yxH4iwM1vkoBWAdxCmpzTxfkN2RcyZNaHFIkSo10+8kgxkXIURV5HGxTmFuc75B2RfQkpxHG8aAgaAFa0tAHqYFfQ7Iwe2yhODk8+J4C7yAoRTWI3w/4klGRgR4lO7Rpn9+gvMyWp+uxFh8+H+ARlgN1nJuJuQAYvNkEnwGFck18Er4q3egEc/oO+mhLdKgRyhdNFiacC0rlOCbhNVz4H9FnAYgDBvU3QIioZlJFLJtsoHYRDfiZoUyIxqCtRpVlANq0EU4dApjrtgezPFad5S19Wgjkc0hNVnuF4HjVA6C7QrSIbylB+oZe3aHgBsqlNqKYH48jXyJKMuAbiyVJ8KzaB3eRc0pg9VwQ4niFryI68qiOi3AbjwdsfnAtk0bCjTLJKr6mrD9g8iq/S/B81hguOMlQTnVyG40wAcjnmgsCNESDrjme7wfftP4P7SP4N3CJZdvzoNyGq2c/HWOXJGsvVg+RA/k2MC/wN6I2YA2Pt8GkAAAAASUVORK5CYII=") !important;
+  }
+
+  #toast-container>.toast-success {
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAADsSURBVEhLY2AYBfQMgf///3P8+/evAIgvA/FsIF+BavYDDWMBGroaSMMBiE8VC7AZDrIFaMFnii3AZTjUgsUUWUDA8OdAH6iQbQEhw4HyGsPEcKBXBIC4ARhex4G4BsjmweU1soIFaGg/WtoFZRIZdEvIMhxkCCjXIVsATV6gFGACs4Rsw0EGgIIH3QJYJgHSARQZDrWAB+jawzgs+Q2UO49D7jnRSRGoEFRILcdmEMWGI0cm0JJ2QpYA1RDvcmzJEWhABhD/pqrL0S0CWuABKgnRki9lLseS7g2AlqwHWQSKH4oKLrILpRGhEQCw2LiRUIa4lwAAAABJRU5ErkJggg==") !important;
+  }
+
+  #toast-container>.toast-warning {
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAGYSURBVEhL5ZSvTsNQFMbXZGICMYGYmJhAQIJAICYQPAACiSDB8AiICQQJT4CqQEwgJvYASAQCiZiYmJhAIBATCARJy+9rTsldd8sKu1M0+dLb057v6/lbq/2rK0mS/TRNj9cWNAKPYIJII7gIxCcQ51cvqID+GIEX8ASG4B1bK5gIZFeQfoJdEXOfgX4QAQg7kH2A65yQ87lyxb27sggkAzAuFhbbg1K2kgCkB1bVwyIR9m2L7PRPIhDUIXgGtyKw575yz3lTNs6X4JXnjV+LKM/m3MydnTbtOKIjtz6VhCBq4vSm3ncdrD2lk0VgUXSVKjVDJXJzijW1RQdsU7F77He8u68koNZTz8Oz5yGa6J3H3lZ0xYgXBK2QymlWWA+RWnYhskLBv2vmE+hBMCtbA7KX5drWyRT/2JsqZ2IvfB9Y4bWDNMFbJRFmC9E74SoS0CqulwjkC0+5bpcV1CZ8NMej4pjy0U+doDQsGyo1hzVJttIjhQ7GnBtRFN1UarUlH8F3xict+HY07rEzoUGPlWcjRFRr4/gChZgc3ZL2d8oAAAAASUVORK5CYII=") !important;
+  }
+
+  #toast-container.toast-top-center>div,
+  #toast-container.toast-bottom-center>div {
+    width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  #toast-container.toast-top-full-width>div,
+  #toast-container.toast-bottom-full-width>div {
+    width: 96%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .toast {
+    background-color: #030303;
+  }
+
+  .toast-success {
+    background-color: #51a351;
+  }
+
+  .toast-error {
+    background-color: #bd362f;
+  }
+
+  .toast-info {
+    background-color: #2f96b4;
+  }
+
+  .toast-warning {
+    background-color: #f89406;
+  }
+
+  .toast-progress {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 4px;
+    background-color: #000000;
+    opacity: 0.4;
+    -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=40);
+    filter: alpha(opacity=40);
+  }
+
+  /*Responsive Design*/
+  @media all and (max-width: 240px) {
+    #toast-container>div {
+      padding: 8px 8px 8px 50px;
+      width: 11em;
+    }
+
+    #toast-container>div.rtl {
+      padding: 8px 50px 8px 8px;
+    }
+
+    #toast-container .toast-close-button {
+      right: -0.2em;
+      top: -0.2em;
+    }
+
+    #toast-container .rtl .toast-close-button {
+      left: -0.2em;
+      right: 0.2em;
+    }
+  }
+
+  @media all and (min-width: 241px) and (max-width: 480px) {
+    #toast-container>div {
+      padding: 8px 8px 8px 50px;
+      width: 18em;
+    }
+
+    #toast-container>div.rtl {
+      padding: 8px 50px 8px 8px;
+    }
+
+    #toast-container .toast-close-button {
+      right: -0.2em;
+      top: -0.2em;
+    }
+
+    #toast-container .rtl .toast-close-button {
+      left: -0.2em;
+      right: 0.2em;
+    }
+  }
+
+  @media all and (min-width: 481px) and (max-width: 768px) {
+    #toast-container>div {
+      padding: 15px 15px 15px 50px;
+      width: 25em;
+    }
+
+    #toast-container>div.rtl {
+      padding: 15px 50px 15px 15px;
+    }
+  }
+
+  .portlet[data-portlet="bannerform"] .section__align .content .formBC__main dl dd input[type="text"].valid,
+  .portlet[data-portlet="bannerform"] .section__align .content .formBC__main dl dd select.valid {
+    border: solid 1px #28a745;
+    background: #f3fffc url(https://www.claro.com.pe/portal/pe-2020/recursos_contenido/claro-home/7f3c32d9-4bfa-4e6d-ba20-8c223cc2deca-valid.png) no-repeat calc(100% - 8px) center;
+    color: #006b4f;
+  }
+
+  .portlet[data-portlet="bannerform"] .section__align .content .formBC__main dl dd.ok svg {
+    display: none;
+  }
+
+  .portlet[data-portlet="bannerform"] .section__align .content .formBC__main dl dd input[type="text"].invalid {
+    border: solid 1px #dc3545;
+    background: #fcf3f3 url(https://www.claro.com.pe/portal/pe-2020/recursos_contenido/claro-home/dec02708-0cba-45ab-ae9a-8891641fd8bf-invalid.png) no-repeat calc(100% - 8px) center;
+    color: #dc3545;
+  }
+
+  .portlet[data-portlet="bannerform"] .section__align .content .formBC__main dl dd input[type="number"].celular.valid {
+    border: solid 1px #28a745;
+    background: #f3fffc url(https://www.claro.com.pe/portal/pe-2020/recursos_contenido/claro-home/7f3c32d9-4bfa-4e6d-ba20-8c223cc2deca-valid.png) no-repeat calc(100% - 8px) center;
+    color: #006b4f;
+  }
+
+  .portlet[data-portlet="bannerform"] .section__align .content .formBC__main dl dd input[type="number"].celular.invalid {
+    border: solid 1px #dc3545;
+    background: #fcf3f3 url(https://www.claro.com.pe/portal/pe-2020/recursos_contenido/claro-home/dec02708-0cba-45ab-ae9a-8891641fd8bf-invalid.png) no-repeat calc(100% - 8px) center;
+    color: #dc3545;
+  }
+
+  @media (max-width: 900px) {
+    .portlet[data-portlet="bannerform"] {
+      height: 860px;
+    }
+
+    section.contentFormulario .container .portlet[data-portlet=bannerform] {
+      height: auto;
+    }
+
+    .portlet[data-portlet="bannerform"] .section__align {
+      align-items: end;
+      justify-content: center;
+      padding-bottom: 60px;
+      box-sizing: border-box;
+    }
+
+    .portlet[data-portlet="bannerform"] .section__align .content {
+      padding: 43px 50px;
+    }
+
+    .portlet[data-portlet="bannerform"] .section__align .content .formBC {
+      width: 100%;
+    }
+
+    .portlet[data-portlet="bannerform"] .section__align .content .formBC__group-title {
+      margin-bottom: 10px;
+    }
+  }
+
+  @media (max-width: 500px) {
+    .portlet[data-portlet="bannerform"] {
+      height: 750px;
+    }
+
+    .portlet[data-portlet="bannerform"] .section__align .content .formBC__group-title {
+      font-size: 22px;
+    }
+
+    .portlet[data-portlet="bannerform"] .section__align .content {
+      padding: 20px;
+      width: 330px;
+      margin: 0 20px;
+    }
+
+    .portlet[data-portlet="bannerform"] .section__align .content .formBC__group-text {
+      font-size: 14px;
+    }
+
+    .portlet[data-portlet="bannerform"] .section__align {
+      padding-bottom: 25px;
+    }
+
+    .portlet[data-portlet="bannerform"] .section__align .content .formBC__group-title {
+      margin-bottom: 0px;
+    }
+  }
+
+  section.contentFormulario h2 {
+    color: #000;
+    text-align: center;
+    font-family: AMX;
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin-bottom: 60px;
+  }
+
+  @media (max-width: 900px) {
+    section.contentFormulario h2 {
+      font-size: 32px;
+      margin-bottom: 34px;
+      margin-top: 10px;
+    }
+  }
+
+  @media (max-width: 500px) {
+    section.contentFormulario h2 {
+      font-size: 24px;
+      margin-bottom: 30px;
+      margin-top: 0;
+    }
+  }
+</style>
+<div class="load_ing" id="load_er">
+  <img
+    src="https://www.claro.com.pe/portal/pe-2020/recursos_contenido/claro-home/7e3e6f3b-2d43-4906-948c-25d3d00aa81e-loadingClaro.gif"
+    alt="" />
+</div>
+<section class="contentFormulario">
+  <div class="container">
+    <div class="layout" id="app">
+      <div class="layout__main">
+        <div class="page1">
+          <h2>Para ayudarte, por favor completa este formulario</h2>
+          <div class="portlet" data-portlet="bannerform">
+            <div class="section" data-section="data-section">
+              <div class="section__modals" id="modaltratamiento">
+                <div class="section__modals__modal">
+                  <div class="section__modals__modal-close"></div>
+                  <hgroup class="section__modals__modal-group">
+                    <h4 class="section__modals__modal-group-title">
+                      Tratamiento de mis datos personales
+                    </h4>
+                  </hgroup>
+                  <div class="section__modals__modal-main">
+                    <p class="section__modals__modal-main-text">
+                      Autorizo a AMERICA MOVIL PERU S.A.C. con domicilio en Av.
+                      Nicolás Arriola N° 480, Santa Catalina, La Victoria,
+                      provincia y departamento de Lima (CLARO), para tratar mis
+                      datos personales y registrarlos en el Banco de Datos
+                      Personales “Clientes” de su titularidad, con la finalidad
+                      de llamarme o enviarme mensajes de texto (SMS), mensajes
+                      electrónicos y/o correos electrónicos con contenido
+                      informativo, publicitario y/o promocional sobre los
+                      productos y/o servicios que he solicitado mediante este
+                      formulario. Declaro conocer que (i) mis datos serán
+                      registrados por el tiempo necesario para cumplir con la
+                      finalidad expuesta, o hasta que decida revocar mi
+                      autorización, (ii) CLARO podrá compartir su información
+                      con terceros encargados del tratamiento de sus datos
+                      personales, (iii) mi autorización resulta facultativa,
+                      pero en caso de negativa, la finalidad expuesta no podrá
+                      realizarse, (iv) podré ejercer los derechos ARCO (Acceso,
+                      Rectificación, Cancelación y Oposición); en los puntos de
+                      atención designados para tal efecto o a través del
+                      siguiente
+                      <a href="https://www.claro.com.pe/legal-y-regulatorio/derechos-arco/" target="_blank" title="">enlace.</a>
+                    </p>
+                    <br />
+                    <p class="section__modals__modal-main-text">
+                      Para consultar el detalle de los encargados de tratamiento
+                      y mayor información, revisa nuestra
+                      <a href="https://www.claro.com.pe/proteccion-datos/" target="_blank" title="">Política de
+                        Privacidad.</a>
+                    </p>
+                  </div>
+                  <div class="section__modals__modal-footer">
+                    <button class="section__modals__modal-footer-close">
+                      Entendido
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="section__modals" id="modalpromociones">
+                <div class="section__modals__modal">
+                  <div class="section__modals__modal-close"></div>
+                  <hgroup class="section__modals__modal-group">
+                    <h4 class="section__modals__modal-group-title">
+                      Solicitud para recibir publicidad de Claro
+                    </h4>
+                  </hgroup>
+                  <div class="section__modals__modal-main">
+                    <p class="section__modals__modal-main-text">
+                      En aplicación del artículo 58 e) de la Ley N° 29571,
+                      solicito , mediante mi consentimiento libre, previo,
+                      informado, expreso e inequívoco, que AMERICA MOVIL PERU
+                      S.A.C. con domicilio en Av. Nicolás Arriola N° 480, Santa
+                      Catalina, La Victoria, provincia y departamento de Lima
+                      (CLARO), me contacte con fines publicitarios por llamadas,
+                      mensajes de texto (SMS), mensajes electrónicos, correos
+                      electrónicos y/o por cualquier otro medio análogo de
+                      comunicación, sobre cualquier producto y/o servicio de
+                      CLARO a la línea telefónica y/o correo electrónico
+                      utilizados para completar este formulario.
+                    </p>
+                    <br />
+                    <p class="section__modals__modal-main-text">
+                      Declaro conocer que (i) mis datos serán registrados en el
+                      Banco de Datos Personales “Clientes” de CLARO para cumplir
+                      con la finalidad expuesta hasta que decida revocar mi
+                      consentimiento, (ii) CLARO podrá compartir mi información
+                      con terceros encargados del tratamiento de sus datos
+                      personales, (iii) mi consentimiento resulta facultativo,
+                      pero en caso de negativa, la finalidad expuesta no podrá
+                      realizarse, (iv) podré ejercer los derechos ARCO (Acceso,
+                      Rectificación, Cancelación y Oposición); en los puntos de
+                      atención designados para tal efecto o a través del
+                      siguiente
+                      <a href="https://www.claro.com.pe/legal-y-regulatorio/derechos-arco/" target="_blank" title="">enlace. </a>Podré consultar el detalle de los encargados de
+                      tratamiento y mayor información, revisando la
+                      <a href="https://www.claro.com.pe/proteccion-datos/" target="_blank" title="">Política de
+                        Privacidad.</a>
+                    </p>
+                  </div>
+                  <div class="section__modals__modal-footer">
+                    <button class="section__modals__modal-footer-close">
+                      Entendido
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <picture class="section__banner">
+                <source media="(max-width: 500px)" srcset="
+                        https://www.claro.com.pe/assets/havas/landing-formulario-cac-colaborador/fondo-cacv2.png
+                      " />
+                <source media="(max-width: 900px)" srcset="
+                        https://www.claro.com.pe/assets/havas/landing-formulario-cac-colaborador/fondo-cacv2.png
+                      " />
+                <source media="(min-width: 640px)" srcset="
+                        https://www.claro.com.pe/assets/havas/landing-formulario-cac-colaborador/assets/fondo-cacv2.png
+                      " />
+                <img
+                  src="https://www.claro.com.pe/assets/havas/landing-formulario-cac-colaborador/assets/fondo-cacv2.png"
+                  alt="Banner Form Claro" width="auto" height="auto" loading="lazy" />
+              </picture>
+              <div class="section__align">
+                <div class="content">
+                  <div class="box_thanks hidden min-h-[380px] xl:min-h-[500px] relative z-10 flex gap-3 flex-col items-center justify-center">
+                    <picture>
+                      <img src={icon_thanks.src} alt="Gracias">
+                    </picture>
+                    <h3 class="text-2xl font-amx-bold text-white">¡Gracias por registrarte!</h3>
+                    <p class="text-white font-amx-medium text-center text-balance">Recibirás un correo de confirmación sobre tu solicitud registrada.</p>
+                  </div>
+                  <form class="formBC"
+                    action="https://crm.claromarketingcloud.pe/Front/Home/registro/?op=iKBK%2B4j4y9W7PdE0CHW%2Fwn74No%2Bi5eWKhczH7fcScIQ%3D"
+                    method="POST">
+                    <hgroup class="formBC__group">
+                      <div class="pasos">
+                        <span class="contador">1</span>/<span>2</span>
+                      </div>
+                      <h1 class="formBC__group-title">
+                        Formulario CAC Colaborador
+                      </h1>
+                    </hgroup>
+                    <div class="formBC__main">
+                      <input type="hidden" name="form_name" value="CAC Colaborador" />
+                      <input type="hidden" name="g-recaptcha-response" id="token-HV" />
+                      <div class="contentInputlista">
+                        <div class="paso1">
+                          <p class="formBC__group-text">Datos personales</p>
+                          <dl class="type1">
+                            <dd>
+                              <input class="formBC__main-input inputgeneral inputname" type="text"
+                                name="nombre_y_apellidos" placeholder="Nombres y apellidos" />
+                            </dd>
+                          </dl>
+                          <div class="columna2">
+                            <dl class="type1">
+                              <dd>
+                                <input class="formBC__main-input codigoC inputgeneral" type="text"
+                                  name="ingreso_codigo" placeholder="Código C (Ejm. C10935)" maxlength="6" />
+                              </dd>
+                            </dl>
+                            <dl class="type1">
+                              <dd>
+                                <input class="formBC__main-input celular inputgeneral" type="number" name="celular"
+                                  placeholder="Número de celular" maxlength="9" />
+                              </dd>
+                            </dl>
+                          </div>
+                          <dl class="type1">
+                            <dd class="contentSelect">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="9" viewBox="0 0 16 9"
+                                fill="none">
+                                <path d="M1 1.00006L8 8.00006L15 1.00006" stroke="black" />
+                              </svg>
+                              <select name="region" id="region" class="formBC__main-input">
+                                <option value="Región">
+                                  Región
+                                </option>
+                                <option value="Norte">Norte</option>
+                                <option value="Centro">Centro</option>
+                                <option value="Sur">Sur</option>
+                                <option value="Lima">Lima</option>
+                              </select>
+                            </dd>
+                          </dl>
+                          <dl class="type1">
+                            <dd class="contentSelect">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="9" viewBox="0 0 16 9"
+                                fill="none">
+                                <path d="M1 1.00006L8 8.00006L15 1.00006" stroke="black" />
+                              </svg>
+                              <select name="como_deseas_que_te_contactemos" id="como_deseas_que_te_contactemos"
+                                class="formBC__main-input inputgeneral">
+                                <option value="¿Cómo deseas que te contactemos?">
+                                  ¿Cómo deseas que te contactemos?
+                                </option>
+                                <option value="Llamada">Llamada</option>
+                                <option value="WhatsApp">WhatsApp</option>
+                              </select>
+                            </dd>
+                          </dl>
+                          <p class="tipo">Tipo de solicitud</p>
+                          <dl class="type1">
+                            <dd>
+                              <div class="radio">
+                                <input type="radio" name="solicitud" id="venta" value="venta" />
+                                <label for="venta"></label>
+                                <p>Deseo adquirir un nuevo servicio (venta)</p>
+                              </div>
+                            </dd>
+                          </dl>
+                          <dl class="type1">
+                            <dd>
+                              <div class="radio">
+                                <input type="radio" name="solicitud" id="postventa" value="postventa" />
+                                <label for="postventa"></label>
+                                <p>
+                                  Tengo una consulta o requerimiento de mi
+                                  servicio actual (post-venta)
+                                </p>
+                              </div>
+                            </dd>
+                          </dl>
+                        </div>
+                        <div class="paso2 ocultar">
+                          <div class="venta">
+                            <p class="formBC__group-text">Solicitud de venta</p>
+                            <dl class="type1">
+                              <dd class="contentSelect">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="9" viewBox="0 0 16 9"
+                                  fill="none">
+                                  <path d="M1 1.00006L8 8.00006L15 1.00006" stroke="black" />
+                                </svg>
+                                <select name="tipo_de_solicitud_1_venta" id="tipo_servicio_venta"
+                                  class="formBC__main-input">
+                                  <option value="Elige el tipo de servicio">
+                                    Elige el tipo de servicio
+                                  </option>
+                                  <option value="Nuevo Servicio Móvil">Nuevo Servicio Móvil</option>
+                                  <option value="Nuevo Servicio Fijo">Nuevo Servicio Fijo</option>
+                                  <option value="Accesorios">Accesorios</option>
+                                  <option value="Camisas / Polos">Camisas / Polos</option>
+                                  <option value="Otros">Otros</option>
+                                </select>
+                              </dd>
+                            </dl>
+                            <dl class="type1">
+                              <dd class="contentSelect">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="9" viewBox="0 0 16 9"
+                                  fill="none">
+                                  <path d="M1 1.00006L8 8.00006L15 1.00006" stroke="black" />
+                                </svg>
+                                <select name="tipo_de_solicitud_2_venta" id="tipo_servicio_venta_categoria"
+                                  class="formBC__main-input" disabled>
+                                  <option value="Selecciona una opción">
+                                    Selecciona una opción
+                                  </option>
+                                </select>
+                              </dd>
+                            </dl>
+                            <dl class="type1">
+                              <dd class="contentSelect">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="9" viewBox="0 0 16 9"
+                                  fill="none">
+                                  <path d="M1 1.00006L8 8.00006L15 1.00006" stroke="black" />
+                                </svg>
+                                <select name="tipo_de_solicitud_3_venta" id="tipo_servicio_venta_subcategoria"
+                                  class="formBC__main-input" disabled>
+                                  <option value="Selecciona una opción">
+                                    Selecciona una opción
+                                  </option>
+                                </select>
+                              </dd>
+                            </dl>
+                            <dl class="type1">
+                              <dd class="contentSelect">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="9" viewBox="0 0 16 9"
+                                  fill="none">
+                                  <path d="M1 1.00006L8 8.00006L15 1.00006" stroke="black" />
+                                </svg>
+                                <select name="tipo_de_solicitud_4_venta" id="tipo_servicio_venta_subsubcategoria"
+                                  class="formBC__main-input">
+                                  <option value="Selecciona una opción">
+                                    Selecciona una opción
+                                  </option>
+                                </select>
+                              </dd>
+                            </dl>
+                            <dl class="type1">
+                              <dd>
+                                <p class="formBC__group-text">Contacto de cliente en consulta</p>
+                                <input class="formBC__main-input codigoCliente" type="text" autocomplete="nope"
+                                  name="numero_o_codigo_de_servicio"
+                                  placeholder="Ingresa el número de cliente en consulta de celular" maxlength="9" />
+                              </dd>
+                            </dl>
+                          </div>
+                          <div class="postventa">
+                            <p class="formBC__group-text">
+                              Solicitud de post venta
+                            </p>
+                            <dl class="type1">
+                              <dd class="contentSelect">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="9" viewBox="0 0 16 9"
+                                  fill="none">
+                                  <path d="M1 1.00006L8 8.00006L15 1.00006" stroke="black" />
+                                </svg>
+                                <select name="consulta_servicio_1_post_venta" id="tipo_servicio_postventa"
+                                  class="formBC__main-input">
+                                  <option value="Elige el tipo de servicio">
+                                    Elige el tipo de servicio
+                                  </option>
+                                  <option value="Servicio Móvil">Servicio Móvil</option>
+                                  <option value="Servicio Fijo">Servicio Fijo</option>
+                                </select>
+                              </dd>
+                            </dl>
+                            <dl class="type1">
+                              <dd class="contentSelect">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="9" viewBox="0 0 16 9"
+                                  fill="none">
+                                  <path d="M1 1.00006L8 8.00006L15 1.00006" stroke="black" />
+                                </svg>
+                                <select name="consulta_servicio_2_post_venta" id="tipo_servicio_postventa_categoria"
+                                  class="formBC__main-input">
+                                  <option value="Selecciona una opción">
+                                    Selecciona una opción
+                                  </option>
+                                </select>
+                              </dd>
+                            </dl>
+                            <dl class="type1">
+                              <dd class="contentSelect">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="9" viewBox="0 0 16 9"
+                                  fill="none">
+                                  <path d="M1 1.00006L8 8.00006L15 1.00006" stroke="black" />
+                                </svg>
+                                <select name="consulta_servicio_3_post_venta" id="tipo_servicio_postventa_categoria2"
+                                  class="formBC__main-input">
+                                  <option value="Selecciona una opción">
+                                    Selecciona una opción
+                                  </option>
+                                </select>
+                              </dd>
+                            </dl>
+                            <dl class="type1">
+                              <dd>
+                                <p class="formBC__group-text">Contacto de cliente en consulta</p>
+                                <input class="formBC__main-input codigoCliente" type="text" autocomplete="nope"
+                                  name="numero_o_codigo_de_servicio"
+                                  placeholder="Ingresa el número de cliente en consulta de celular" maxlength="9" />
+                              </dd>
+                            </dl>
+                          </div>
+                          <p class="tipo" style="display: block">
+                            Detalle de requerimiento (opcional)
+                          </p>
+                          <dl class="type1">
+                            <dd>
+                              <input class="formBC__main-input opcional" type="text" name="comentarios"
+                                placeholder="Ingrese un comentario" autocomplete="nope" />
+                            </dd>
+                          </dl>
+                          <dl class="type4">
+                            <dd>
+                              <div class="formBC__main-checkbox">
+                                <input type="checkbox" id="tratamiento" value="Sí" v-model="v1$.tratamiento.$model"
+                                  @change="v1$.tratamiento.$touch()"
+                                  name="autorizo_el_tratamiento_de_mis_datos_personales" />
+                                <label class="formBC__main-checkbox-label" for="tratamiento">
+                                  <b> </b></label><small class="formBC__main-checkbox-text">
+                                  Autorizo el
+                                  <em class="ctopen modalautorizo">tratamiento de mis datos personales.</em></small>
+                              </div>
+                            </dd>
+                          </dl>
+                          <dl class="type4">
+                            <dd>
+                              <div class="formBC__main-checkbox">
+                                <input type="checkbox" id="promociones" v-model="v1$.promociones.$model"
+                                  @change="v1$.promociones.$touch()" value="Sí"
+                                  name="quiero_recibi_promociones_y_beneficios_de_claro" />
+                                <label class="formBC__main-checkbox-label" for="promociones">
+                                  <b> </b></label><small class="formBC__main-checkbox-text">
+                                  Quiero recibir
+                                  <em class="ctopen modalpromociones">promociones y beneficios</em>
+                                  de Claro.</small>
+                              </div>
+                            </dd>
+                          </dl>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="formBC__footer">
+                      <div class="volver btnvolver">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="9" height="14" viewBox="0 0 9 14" fill="none">
+                          <path d="M8 1L2 7L8 13" stroke="white" stroke-width="1.5" />
+                        </svg>
+                        Volver
+                      </div>
+                      <div class="formBC__footer-action btncontinuar">
+                        Continuar
+                      </div>
+                      <button style="display: none" class="formBC__footer-action" id="btnAction">
+                        Registrar mi solicitud
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="load_ing" id="load_er">
+  <img
+    src="https://www.claro.com.pe/portal/pe-2020/recursos_contenido/claro-home/7e3e6f3b-2d43-4906-948c-25d3d00aa81e-loadingClaro.gif"
+    alt="" />
+</div>
+<script is:inline>
+  $(document).ready(async function () {
+    setTimeout(function () {
+      document.querySelector("form.formBC").reset();
+      const elementsinputs2 = document.querySelectorAll(".contentInputlista input, .contentInputlista select");
+      elementsinputs2.forEach((element) => {
+        element.classList.remove("valid", "invalid");
+      });
+    }, 300);
+    setTimeout(function () {
+      const elementsinputs3 = document.querySelectorAll(".contentInputlista input, .contentInputlista select");
+      elementsinputs3.forEach((element) => {
+        element.classList.remove("valid", "invalid");
+      });
+    }, 500);
+
+    const labels = document.querySelectorAll(
+      ".portlet[data-portlet='bannerform'] .section__align .content .formBC__main .radio label"
+    );
+    labels.forEach((label) => {
+      label.addEventListener("click", () => {
+        labels.forEach((l) => l.parentElement.classList.remove("active"));
+        label.parentElement.classList.add("active");
+      });
+    });
+
+    const inputsText = document.querySelectorAll(
+      'input[type="text"]:not(.opcional)'
+    );
+
+    const paso1 = document.querySelector(".paso1");
+    const paso2 = document.querySelector(".paso2");
+
+    inputsText.forEach((input) => {
+      input.addEventListener("input", () => {
+        const value = input.value;
+
+        // Validación: contiene texto sin números y más de 1 carácter
+        if (/^[a-zA-Z\s]+$/.test(value) && value.length > 1) {
+          input.classList.add("valid");
+          input.classList.remove("invalid");
+        }
+        // Si contiene números o está vacío
+        else {
+          input.classList.add("invalid");
+          input.classList.remove("valid");
+        }
+      });
+    });
+
+    const nombreInput = document.querySelector(
+      ".formBC__main-input.inputgeneral"
+    );
+
+    nombreInput.addEventListener("input", () => {
+      const value = nombreInput.value;
+
+      // Validación: solo letras, espacios, guiones, apóstrofes y tildes
+      if (/^[a-zA-ZáéíóúÁÉÍÓÚñÑüÜ\s'-]+$/.test(value)) {
+        nombreInput.classList.add("valid");
+        nombreInput.classList.remove("invalid");
+      } else {
+        nombreInput.classList.add("invalid");
+        nombreInput.classList.remove("valid");
+      }
+
+      // Elimina cualquier número o carácter no permitido en tiempo real
+      nombreInput.value = value.replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑüÜ\s'-]/g, "");
+    });
+
+    // Validación para el input del código C
+    const codigoCInput = document.querySelector(".codigoC");
+
+    codigoCInput.addEventListener("input", () => {
+      const value = codigoCInput.value;
+
+      // Validación: empieza con 'C' o 'c' y tiene exactamente 5 dígitos después (6 caracteres en total)
+      if (/^[Cc]\d{5}$/.test(value)) {
+        codigoCInput.classList.add("valid");
+        codigoCInput.classList.remove("invalid");
+      } else {
+        codigoCInput.classList.add("invalid");
+        codigoCInput.classList.remove("valid");
+      }
+    });
+
+    // Validación para el número de celular
+    const celularInput = document.querySelector(".celular");
+
+    celularInput.addEventListener("input", () => {
+      celularInput.value = celularInput.value.replace(/\D/g, "").slice(0, 9);
+
+      // Validación: exactamente 9 dígitos
+      if (/^9\d{8}$/.test(celularInput.value)) {
+        celularInput.classList.add("valid");
+        celularInput.classList.remove("invalid");
+      } else {
+        celularInput.classList.add("invalid");
+        celularInput.classList.remove("valid");
+      }
+    });
+
+    // Validación para los selects
+    const selectInputs = document.querySelectorAll("select");
+    selectInputs.forEach((select) => {
+      select.addEventListener("change", () => {
+        const selectedValue = select.value;
+
+        // Validación: Si no es la primera opción, se considera válido
+        if (selectedValue !== select.options[0].value) {
+          select.classList.add("valid");
+          select.classList.remove("invalid");
+          select.parentElement.classList.add("ok");
+        } else {
+          select.classList.add("invalid");
+          select.classList.remove("valid");
+          select.parentElement.classList.add("ok");
+        }
+      });
+    });
+
+    const inputsGeneral = document.querySelectorAll(".inputgeneral");
+    const btnContinuar = document.querySelector(".btncontinuar");
+    const radioButtons = document.querySelectorAll(
+      'input[type="radio"][name="solicitud"]'
+    );
+
+    var valorCaso = "" || "venta";
+
+    const validateInputs = () => {
+      // Verificar si todos los inputs tienen la clase 'valid'
+      const allValid = Array.from(inputsGeneral).every((input) =>
+        input.classList.contains("valid")
+      );
+
+      const isRadioSelected = Array.from(radioButtons).some(
+        (radio) => radio.checked
+      );
+
+      // Actualizar el estado del botón
+      if (allValid && isRadioSelected) {
+        btnContinuar.classList.add("active");
+      } else {
+        btnContinuar.classList.remove("active");
+      }
+    };
+
+    // Escuchar eventos de cambio en todos los inputs generales
+    inputsGeneral.forEach((input) => {
+      input.addEventListener("input", validateInputs); // Para inputs tipo texto y número
+      input.addEventListener("change", validateInputs); // Para selects
+    });
+
+    // Escuchar eventos de cambio en los radio buttons
+    radioButtons.forEach((radio) => {
+      radio.addEventListener("change", () => {
+        validateInputs();
+
+        // Imprimir el valor del radio seleccionado
+        const selectedRadio = document.querySelector('input[name="solicitud"]:checked');
+        if (selectedRadio) {
+          valorCaso = selectedRadio.value;
+        }
+      });
+    });
+
+    // Validación inicial al cargar la página
+    validateInputs();
+
+    var lista_de_inputs;
+
+    btnContinuar.addEventListener("click", () => {
+      document.querySelector(".pasos .contador").innerHTML = "2";
+      paso1.classList.add("ocultar");
+      paso2.classList.remove("ocultar");
+      document.querySelector(
+        ".portlet[data-portlet='bannerform'] .section__align .content .formBC__footer-action.btncontinuar"
+      ).style.display = "none";
+
+      document
+        .querySelector(
+          ".portlet[data-portlet='bannerform'] .section__align .content .btnvolver"
+        )
+        .classList.add("active");
+      document.querySelector(".portlet[data-portlet='bannerform'] .section__align .content button.formBC__footer-action").style.display = "block";
+      if (valorCaso == "venta") {
+        document.querySelector(".paso2 .venta").classList.remove("ocultar");
+        document.querySelector(".paso2 .postventa").classList.add("ocultar");
+
+        const ventaContainer = document.querySelector(".paso2 .postventa");
+        const elementsToDisable = ventaContainer.querySelectorAll(
+          "input, select, textarea, button"
+        );
+        elementsToDisable.forEach((element) => {
+          element.setAttribute("disabled", true);
+        });
+        lista_de_inputs = document.querySelectorAll(
+          ".paso2 .venta input:not([disabled]):not(.opcional), select:not([disabled]):not(.opcional), input[type='radio']:not([disabled]):not(.opcional)"
+        );
+      } else if (valorCaso == "postventa") {
+        document.querySelector(".paso2 .venta").classList.add("ocultar");
+        document.querySelector(".paso2 .postventa").classList.remove("ocultar");
+
+        const ventaContainer2 = document.querySelector(".paso2 .venta");
+        const elementsToDisable2 = ventaContainer2.querySelectorAll(
+          "input, select, textarea, button"
+        );
+        elementsToDisable2.forEach((element) => {
+          element.setAttribute("disabled", true);
+        });
+        lista_de_inputs = document.querySelectorAll(
+          ".paso2 .postventa input:not([disabled]):not(.opcional), select:not([disabled]):not(.opcional), input[type='radio']:not([disabled]):not(.opcional)"
+        );
+      }
+
+      // Actualizar validación de botón después de cambiar de paso
+      setTimeout(updateButtonState, 100);
+    });
+
+    btnVolver = document.querySelector(
+      ".portlet[data-portlet='bannerform'] .section__align .content .formBC__footer .btnvolver"
+    );
+
+    btnVolver.addEventListener("click", () => {
+      document.querySelector(".pasos .contador").innerHTML = "1";
+      paso1.classList.remove("ocultar");
+      paso2.classList.add("ocultar");
+      document.querySelector(
+        ".portlet[data-portlet='bannerform'] .section__align .content .formBC__footer-action.btncontinuar"
+      ).style.display = "block";
+      btnVolver.classList.remove("active");
+      document.querySelector(
+        ".portlet[data-portlet='bannerform'] .section__align .content button.formBC__footer-action"
+      ).style.display = "none";
+
+      const ventaContainer2 = document.querySelector(".paso2 .postventa");
+      const elementsToDisable2 = ventaContainer2.querySelectorAll(
+        "input, select, textarea, button"
+      );
+      elementsToDisable2.forEach((element) => {
+        element.removeAttribute("disabled", true);
+      });
+
+      const ventaContainer = document.querySelector(".paso2 .venta");
+      const elementsToDisable = ventaContainer.querySelectorAll(
+        "input, select, textarea, button"
+      );
+      elementsToDisable.forEach((element) => {
+        element.removeAttribute("disabled", true);
+      });
+    });
+
+    const valoresSelectVenta = [
+      {
+        name: "Nuevo Servicio Móvil",
+        opciones: [
+          {
+            name: "Linea Nueva",
+            subopciones: [
+              {
+                name: "Solo Chip",
+              },
+              {
+                name: "Con Equipo",
+              },
+            ]
+          },
+          {
+            name: "Portabilidad",
+            subopciones: [
+              {
+                name: "Solo Chip",
+              },
+              {
+                name: "Con Equipo",
+              },
+            ]
+          },
+        ],
+      },
+      {
+        name: "Nuevo Servicio Fijo",
+        opciones: [
+          {
+            name: "Nuevo Servicios Fijos Alámbricos",
+            subopciones: [
+              {
+                name: "Alta fija",
+                subsubopciones: [
+                  {
+                    name: 'Adquirir Servicio Fijo',
+                  }
+                ]
+              },
+              {
+                name: "Portabilidad fija",
+              },
+            ],
+          },
+          {
+            name: "Nuevo Servicios Fijos Inalámbricos",
+            subopciones: [
+              {
+                name: "IFI",
+              },
+              {
+                name: "OLO",
+              },
+              {
+                name: "TFI",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        name: "Accesorios",
+        opciones: [
+          {
+            name: "Compra de accesorios",
+          },
+        ],
+      },
+      {
+        name: "Camisas / Polos",
+      },
+      {
+        name: "Otros",
+        opciones: [
+          {
+            name: "Consulta Precios y Stock",
+          },
+        ],
+      },
+    ];
+
+    const valoresSelectPostventa = [
+      {
+        name: "Servicio Móvil",
+        opciones: [
+          {
+            name: "Renovación",
+            subopciones: [
+              {
+                name: "Renovación de equipo y servicio",
+              },
+            ]
+          },
+          {
+            name: "Chip Repuesto",
+            subopciones: [
+              {
+                name: "Reposición de chip",
+              },
+            ]
+          },
+          {
+            name: "Migración de Pre a Postago",
+            subopciones: [
+              {
+                name: "Cambio de plan móvil",
+              },
+            ]
+          },
+          {
+            name: "Migración de Post a Pre",
+          },
+          {
+            name: "Baja de servicio",
+          },
+          {
+            name: "Cambio de plan",
+          },
+          {
+            name: "Facturación",
+            subopciones: [
+              {
+                name: "Consultas de facturación",
+              },
+            ]
+          },
+          {
+            name: "Servicio Técnico",
+          },
+          {
+            name: "Otros",
+          },
+        ],
+      },
+      {
+        name: "Servicio Fijo",
+        opciones: [
+          {
+            name: "Baja de servicio",
+            subopciones: [
+              {
+                name: "Cancelación de servicio fijo",
+              },
+            ]
+          },
+          {
+            name: "Cambio de plan",
+          },
+          {
+            name: "Facturación",
+          },
+          {
+            name: "Servicio Técnico",
+            subopciones: [
+              {
+                name: "Reporte de falla",
+              },
+            ]
+          },
+          {
+            name: "Otros",
+            subopciones: [
+              {
+                name: "Suspensión y reactivación de Servicio",
+              },
+            ]
+          },
+        ],
+      },
+    ];
+
+    /*select venta*/
+    const servicioSelect = document.getElementById("tipo_servicio_venta");
+    const categoriaSelect = document.getElementById("tipo_servicio_venta_categoria");
+    const subcategoriaSelect = document.getElementById("tipo_servicio_venta_subcategoria");
+    const subsubcategoriaSelect = document.getElementById("tipo_servicio_venta_subsubcategoria");
+    const BASE_URL = `https://ticketapi.dev-limprod.com/api`
+
+    // Función para llenar opciones en un select y manejar el atributo disabled
+    const fillSelect = (selectElement, options) => {
+      const defaultOption = selectElement.options[0];
+      selectElement.innerHTML = "";
+      selectElement.appendChild(defaultOption);
+
+      if (options && options.length > 0) {
+        options.forEach((option) => {
+          const opt = document.createElement("option");
+          opt.value = option.id;
+          opt.textContent = option.name;
+          selectElement.appendChild(opt);
+        });
+        selectElement.removeAttribute("disabled");
+        selectElement.parentElement.classList.remove("valores");
+
+        // MOSTRAR el contenedor padre (dl.type1) cuando hay opciones
+        selectElement.closest('dl.type1').classList.remove('ocultar');
+
+      } else {
+        selectElement.setAttribute("disabled", "true");
+        selectElement.classList.remove("valid");
+        selectElement.parentElement.classList.remove("ok");
+        selectElement.parentElement.classList.add("valores");
+
+        // OCULTAR el contenedor padre (dl.type1) cuando NO hay opciones
+        selectElement.closest('dl.type1').classList.add('ocultar');
+      }
+    };
+
+    const fillSelect3 = (selectElement, options) => {
+      const defaultOption = selectElement.options[0];
+      selectElement.innerHTML = "";
+      selectElement.appendChild(defaultOption);
+
+      if (options && options.length > 0) {
+        options.forEach((option) => {
+          const opt = document.createElement("option");
+          opt.value = option.id;
+          opt.textContent = option.name;
+          selectElement.appendChild(opt);
+        });
+        selectElement.removeAttribute("disabled");
+        selectElement.parentElement.classList.remove("valores");
+
+        // MOSTRAR el contenedor padre (dl.type1) cuando hay opciones
+        selectElement.closest('dl.type1').classList.remove('ocultar');
+
+      } else {
+        selectElement.setAttribute("disabled", "true");
+        selectElement.classList.remove("valid");
+        selectElement.parentElement.classList.remove("ok");
+        selectElement.parentElement.classList.add("valores");
+
+        // OCULTAR el contenedor padre (dl.type1) cuando NO hay opciones
+        selectElement.closest('dl.type1').classList.add('ocultar');
+      }
+    };
+
+    const createTicket = async (data) => {
+      try {
+        const response = await fetch(`${BASE_URL}/create-ticket`, {
+          method: 'POST',
+          headers: {
+            'accept': '*/*',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(data)
+        });
+        const ticket = await response.json();
+        return ticket;
+      } catch (error) {
+        console.error("Error al crear ticket:", error);
+        return null;
+      }
+    };
+
+
+    const fetchOptions = async (url) => {
+      try {
+        const response = await fetch(url);
+        const data = await response.json();
+        //order byt id
+        data.sort((a, b) => a.id - b.id);
+        return data;
+      } catch (error) {
+        console.error("Error al obtener opciones:", error);
+        return [];
+      }
+    };
+
+    const getServicesTypes = async (id) => {
+      const options = await fetchOptions(`${BASE_URL}/service-lines/${id}/service-types`);;
+      //filtrar solo si state = true
+      const filteredOptions = options.filter((option) => option.state === true);
+      return filteredOptions;
+    };
+
+    const getServicesOptions = async (id) => {
+      const options = await fetchOptions(`${BASE_URL}/service-types/${id}/service-options`);
+      //filtrar solo si state = true
+      const filteredOptions = options.filter((option) => option.state === true);
+      return filteredOptions;
+    };
+
+    const getServiciosVenta = async () => {
+      const url = `${BASE_URL}/service-lines`;
+      const options = await fetchOptions(url);
+      return options;
+    };
+    const optionsServiciosVenta = await getServiciosVenta();
+    if(optionsServiciosVenta){
+      fillSelect(servicioSelect, optionsServiciosVenta);
+      // document.querySelector(".btncontinuar").click();
+    }
+  
+
+    // Evento para el primer select (Servicio)
+    servicioSelect.addEventListener("change", async () => {
+      const selectedService = Number(servicioSelect.value);
+      console.log({selectedService});
+      const selectedObject = await getServicesTypes(selectedService);
+      console.log({selectedObject});
+      if (selectedObject && selectedObject) {
+        fillSelect(categoriaSelect, selectedObject);
+        fillSelect(subcategoriaSelect, []);
+        fillSelect(subsubcategoriaSelect, []);
+      } else {
+        fillSelect(categoriaSelect, []);
+        fillSelect(subcategoriaSelect, []);
+        fillSelect(subsubcategoriaSelect, []);
+      }
+
+      // Actualizar validación
+      updateButtonState();
+    });
+    // Evento para el segundo select (Categoría)
+    categoriaSelect.addEventListener("change", async () => {
+      const selectedCategory = Number(categoriaSelect.value);
+      console.log({selectedCategory});
+      if (selectedCategory) {
+        const selectedObject = await getServicesOptions(selectedCategory);
+        console.log({selectedObject});
+        if (selectedObject && selectedObject) {
+          fillSelect3(subsubcategoriaSelect, selectedObject);
+        } else {
+          fillSelect3(subsubcategoriaSelect, []);
+        }
+      }
+      // Actualizar validación
+      updateButtonState();
+    });
+
+    // Evento para el tercer select (Subcategoría → Sub-subcategoría)
+    subcategoriaSelect.addEventListener("change", () => {
+      const selectedService = servicioSelect.value;
+      const selectedCategory = categoriaSelect.value;
+      const selectedSubcategory = subcategoriaSelect.value;
+
+      const selectedObject = valoresSelectVenta.find(
+        (item) => item.name === selectedService
+      );
+
+      if (selectedObject && selectedObject.opciones) {
+        const selectedCategoryObject = selectedObject.opciones.find(
+          (option) => option.name === selectedCategory
+        );
+
+        if (selectedCategoryObject && selectedCategoryObject.subopciones) {
+          const selectedSubcategoryObject = selectedCategoryObject.subopciones.find(
+            (option) => option.name === selectedSubcategory
+          );
+
+          if (selectedSubcategoryObject && selectedSubcategoryObject.subsubopciones) {
+            fillSelect3(subsubcategoriaSelect, selectedSubcategoryObject.subsubopciones);
+          } else {
+            fillSelect3(subsubcategoriaSelect, []);
+          }
+        }
+      }
+
+      // Actualizar validación
+      updateButtonState();
+    });
+
+    subsubcategoriaSelect.addEventListener("change", () => {
+      // Actualizar validación
+      updateButtonState();
+    })
+
+    /*select postventa*/
+    const servicioPostventaSelect = document.getElementById(
+      "tipo_servicio_postventa"
+    );
+    const categoriaPostventaSelect = document.getElementById(
+      "tipo_servicio_postventa_categoria"
+    );
+    const categoriaPostventaSelect2 = document.getElementById(
+      "tipo_servicio_postventa_categoria2"
+    );
+
+    // Función para llenar opciones en un select y manejar el atributo disabled
+    const fillSelect2 = (selectElement, options) => {
+      // Mantener la primera opción por defecto
+      const defaultOption = selectElement.options[0];
+      selectElement.innerHTML = "";
+      selectElement.appendChild(defaultOption);
+
+      // Agregar las opciones nuevas
+      if (options && options.length > 0) {
+        options.forEach((option) => {
+          const opt = document.createElement("option");
+          opt.value = option.name;
+          opt.textContent = option.name;
+          selectElement.appendChild(opt);
+        });
+        selectElement.removeAttribute("disabled"); // Habilitar si tiene opciones
+        selectElement.parentElement.classList.remove("valores");
+
+        // MOSTRAR el contenedor padre (dl.type1) cuando hay opciones
+        selectElement.closest('dl.type1').style.display = 'block';
+        selectElement.closest('dl.type1').classList.remove('ocultar');
+      } else {
+        selectElement.setAttribute("disabled", "true"); // Deshabilitar si no tiene opciones
+        selectElement.classList.remove("valid");
+        selectElement.parentElement.classList.remove("ok");
+        selectElement.parentElement.classList.add("valores");
+
+        // OCULTAR el contenedor padre (dl.type1) cuando NO hay opciones
+        selectElement.closest('dl.type1').classList.add('ocultar');
+        selectElement.closest('dl.type1').style.display = 'none';
+      }
+    };
+
+    // Evento para el primer select
+    servicioPostventaSelect.addEventListener("change", () => {
+      const selectedService = servicioPostventaSelect.value;
+      const selectedObject = valoresSelectPostventa.find(
+        (item) => item.name === selectedService
+      );
+
+      // Primero, mostrar todos los contenedores de postventa
+      document.querySelectorAll('.postventa dl.type1').forEach(dl => {
+        dl.classList.remove('ocultar');
+        dl.style.display = 'block';
+      });
+
+      if (selectedObject && selectedObject.opciones) {
+        fillSelect2(categoriaPostventaSelect, selectedObject.opciones);
+      } else {
+        fillSelect2(categoriaPostventaSelect, []); // Limpiar categorías si no hay opciones
+      }
+
+      // Limpiar el siguiente nivel
+      fillSelect2(categoriaPostventaSelect2, []);
+
+      // Actualizar validación
+      updateButtonState();
+    });
+
+    // Evento para el segundo select de postventa (categorías -> subcategorías)
+    categoriaPostventaSelect.addEventListener("change", () => {
+      const selectedService = servicioPostventaSelect.value;
+      const selectedCategory = categoriaPostventaSelect.value;
+
+      const selectedObject = valoresSelectPostventa.find(
+        (item) => item.name === selectedService
+      );
+
+      if (selectedObject && selectedObject.opciones) {
+        const selectedCategoryObject = selectedObject.opciones.find(
+          (option) => option.name === selectedCategory
+        );
+
+        if (selectedCategoryObject && selectedCategoryObject.subopciones) {
+          fillSelect2(categoriaPostventaSelect2, selectedCategoryObject.subopciones);
+        } else {
+          fillSelect2(categoriaPostventaSelect2, []); // Vaciar si no hay subopciones
+        }
+      } else {
+        fillSelect2(categoriaPostventaSelect2, []);
+      }
+
+      // Actualizar validación
+      updateButtonState();
+    });
+
+    function inicializarSelects() {
+      // Inicializar selects de venta
+      fillSelect(categoriaSelect, []);
+      fillSelect(subcategoriaSelect, []);
+      fillSelect3(subsubcategoriaSelect, []);
+
+      // Inicializar selects de postventa
+      fillSelect2(categoriaPostventaSelect, []);
+      fillSelect2(categoriaPostventaSelect2, []);
+    }
+    inicializarSelects();
+
+    btnVolver.addEventListener("click", () => {
+      servicioPostventaSelect.selectedIndex = 0;
+      servicioSelect.selectedIndex = 0;
+      fillSelect(categoriaSelect, []);
+      fillSelect(subcategoriaSelect, []);
+      fillSelect3(subsubcategoriaSelect, []);
+      fillSelect2(categoriaPostventaSelect, []);
+      fillSelect2(categoriaPostventaSelect2, []);
+
+      // Limpiar ambos campos de código de cliente
+      const codigoClienteInputs = document.querySelectorAll(".codigoCliente");
+      codigoClienteInputs.forEach(input => {
+        input.value = "";
+        input.classList.remove("invalid", "valid");
+      });
+
+      [
+        servicioPostventaSelect,
+        categoriaPostventaSelect,
+        categoriaPostventaSelect2,
+        servicioSelect,
+        categoriaSelect,
+        subcategoriaSelect,
+        subsubcategoriaSelect,
+      ].forEach((select) => {
+        select.classList.remove("invalid", "valid");
+      });
+
+      // Mostrar todos los contenedores de selects al volver
+      document.querySelectorAll('.paso2 dl.type1').forEach(dl => {
+        dl.classList.remove('ocultar');
+        dl.style.display = 'block';
+      });
+    });
+
+    const formulario = document.querySelector(".formBC");
+
+    formulario.addEventListener("keydown", (event) => {
+      if (event.key === "Enter") {
+        event.preventDefault(); // Evita el envío al presionar Enter
+      }
+    });
+
+    const modalAutorizo = document.querySelector(".modalautorizo");
+    const modalTratamiento = document.getElementById("modaltratamiento");
+    const closeModalButtons = modalTratamiento.querySelectorAll(
+      "#modaltratamiento .section__modals__modal-close, .section__modals__modal-footer-close"
+    );
+
+    // Abrir el modal al hacer clic en .modalautorizo
+    modalAutorizo.addEventListener("click", () => {
+      modalTratamiento.classList.add("active");
+    });
+
+    // Cerrar el modal al hacer clic en los botones de cierre
+    closeModalButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        modalTratamiento.classList.remove("active");
+      });
+    });
+
+    const modalPromocioness = document.querySelector(".modalpromociones");
+    const modalPromociones = document.getElementById("modalpromociones");
+    const closeModalButtonspromo = modalPromociones.querySelectorAll(
+      "#modalpromociones .section__modals__modal-close, .section__modals__modal-footer-close"
+    );
+
+    // Abrir el modal al hacer clic en .modalautorizo
+    modalPromocioness.addEventListener("click", () => {
+      modalPromociones.classList.add("active");
+    });
+
+    // Cerrar el modal al hacer clic en los botones de cierre
+    closeModalButtonspromo.forEach((button) => {
+      button.addEventListener("click", () => {
+        modalPromociones.classList.remove("active");
+      });
+    });
+
+    // Validación para el código de cliente (ambos campos)
+    const codigoClienteInputs = document.querySelectorAll(".codigoCliente");
+
+    codigoClienteInputs.forEach((input) => {
+      input.addEventListener("input", () => {
+        const value = input.value;
+
+        // Validación: mínimo 9 caracteres
+        if (/^.{9,}$/.test(value)) {
+          input.classList.add("valid");
+          input.classList.remove("invalid");
+        } else {
+          input.classList.add("invalid");
+          input.classList.remove("valid");
+        }
+
+        // Actualizar estado del botón
+        updateButtonState();
+      });
+    });
+
+    const form = document.querySelector(".formBC .contentInputlista");
+    const submitButton = document.querySelector(
+      '.portlet[data-portlet="bannerform"] .section__align .content button.formBC__footer-action'
+    );
+
+    function updateButtonState() {
+      // Determinar qué paso está activo
+      const isPaso2Active = !paso2.classList.contains("ocultar");
+      const isVentaActive = isPaso2Active && valorCaso === "venta";
+      const isPostventaActive = isPaso2Active && valorCaso === "postventa";
+
+      let inputs = [];
+
+      if (isVentaActive) {
+        // Para venta: todos los inputs necesarios
+        inputs = Array.from(
+          document.querySelectorAll(".paso2 .venta input:not([disabled]):not(.opcional), .paso2 .venta select:not([disabled]):not(.opcional)")
+        ).filter(input => input.id !== "promociones");
+      } else if (isPostventaActive) {
+        // Para postventa: todos los inputs necesarios
+        inputs = Array.from(
+          document.querySelectorAll(".paso2 .postventa input:not([disabled]):not(.opcional), .paso2 .postventa select:not([disabled]):not(.opcional)")
+        ).filter(input => input.id !== "promociones");
+      } else {
+        // Si no está en el paso 2, no hacer nada
+        submitButton.classList.remove("active");
+        submitButton.setAttribute("disabled", true);
+        return;
+      }
+
+      // Incluir también el checkbox de tratamiento de datos
+      const tratamientoCheckbox = document.querySelector("input#tratamiento");
+      if (tratamientoCheckbox && !inputs.includes(tratamientoCheckbox)) {
+        inputs.push(tratamientoCheckbox);
+      }
+
+      // Verificar si todos los inputs tienen la clase "valid"
+      const allValid = inputs.every((input) => {
+        // Para checkboxes, verificar si están checked
+        if (input.type === 'checkbox') {
+          return input.checked;
+        }
+        // Para selects, verificar que no sea la opción por defecto
+        if (input.tagName === 'SELECT') {
+          return input.value !== input.options[0].value;
+        }
+        // Para otros inputs, verificar si tienen la clase valid
+        return input.classList.contains("valid");
+      });
+
+      // Si todos los inputs son válidos, habilitar el botón de enviar
+      if (allValid) {
+        submitButton.classList.add("active");
+        submitButton.removeAttribute("disabled");
+      } else {
+        submitButton.classList.remove("active");
+        submitButton.setAttribute("disabled", true);
+      }
+    }
+
+    // Evento específico para el checkbox con ID tratamiento
+    const tratamientoCheckbox = document.querySelector("input#tratamiento");
+    if (tratamientoCheckbox) {
+      tratamientoCheckbox.addEventListener("change", function () {
+        // Si está seleccionado, agregar la clase valid; de lo contrario, eliminarla
+        if (tratamientoCheckbox.checked) {
+          tratamientoCheckbox.classList.add("valid");
+        } else {
+          tratamientoCheckbox.classList.remove("valid");
+        }
+        updateButtonState(); // Actualizar el estado después del cambio
+      });
+    }
+
+    // Observar cambios en los inputs para refrescar la lista
+    form.addEventListener("input", updateButtonState);
+    form.addEventListener("change", updateButtonState);
+    form.addEventListener("click", updateButtonState); // Para manejar cambios en selects y otros elementos interactivos
+
+    // Inicializar el estado del botón al cargar la página
+    updateButtonState();
+
+    // Función para limpiar todos los campos del formulario
+    function limpiarFormulario() {
+      // Resetear el formulario
+      document.querySelector("form.formBC").reset();
+
+      // Limpiar clases de validación
+      const inputs = document.querySelectorAll('.contentInputlista input, .contentInputlista select, .contentInputlista textarea');
+      inputs.forEach(input => {
+        input.classList.remove('invalid');
+        input.classList.remove('valid');
+
+        // Limpiar mensajes de error
+        const errorMsg = input.nextElementSibling;
+        if (errorMsg && errorMsg.classList.contains('error-message')) {
+          errorMsg.remove();
+        }
+      });
+
+      // Resetear selects personalizados si los hay
+      const customSelects = document.querySelectorAll('.custom-select');
+      customSelects.forEach(select => {
+        select.classList.remove('selected');
+        const selected = select.querySelector('.select-selected');
+        if (selected) {
+          selected.textContent = 'Seleccione una opción';
+        }
+      });
+
+      // Resetear checkboxes
+      const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+      checkboxes.forEach(checkbox => {
+        checkbox.checked = false;
+      });
+
+      const radioButtons = document.querySelectorAll(
+        'input[type="radio"][name="solicitud"]'
+      );
+      radioButtons.forEach(radio => {
+        radio.parentElement.classList.remove("active");
+        radio.checked = false;
+      });
+
+      // Volver al primer paso del formulario si está en modo múltiples pasos
+      const pasos = document.querySelectorAll('.paso1, .paso2');
+      if (pasos.length > 0) {
+        document.querySelector('.paso1').classList.remove('ocultar');
+        if (document.querySelector('.paso2')) {
+          document.querySelector('.paso2').classList.add('ocultar');
+        }
+        // Actualizar contador de pasos
+        const contador = document.querySelector('.contador');
+        if (contador) contador.textContent = '1';
+      }
+
+      // Deshabilitar botón de enviar
+      const submitBtn = document.querySelector('button[type="submit"]');
+      if (submitBtn) {
+        submitBtn.disabled = true;
+      }
+    }
+
+    /* end validacion para activar el enviar */
+    const form2 = document.querySelector("form.formBC");
+    const btnAction = document.getElementById("btnAction");
+
+
+    /* enviar formulario */
+    if (btnAction) {
+      btnAction.addEventListener("click",  async function (event) {
+        event.preventDefault();
+        const inputradiolist = document.querySelectorAll("input[name='solicitud']");
+        inputradiolist.forEach((radio) => {
+          radio.setAttribute("disabled", true);
+        });
+
+        btnAction.setAttribute("disabled", true);
+        btnAction.classList.add("active");
+        //form2.submit();
+        const dataForSubmit = {
+          requesterFullName: document.querySelector("input[name='nombre_y_apellidos']").value,
+          requesterEmployeeCode: document.querySelector("input[name='ingreso_codigo']").value,
+          requesterPhone: document.querySelector("input[name='celular']").value,
+          channelId: 1,
+          requestKind: document.querySelector("select[name='como_deseas_que_te_contactemos']").value,
+          serviceLineId: parseInt(document.querySelector("select[name='tipo_de_solicitud_1_venta']").value),
+          consentPersonalData: document.querySelector("#tratamiento").checked ? true : false,
+          serviceTypeId: parseInt(document.querySelector("select[name='tipo_de_solicitud_2_venta']").value) ?? null,
+          serviceOptionId: parseInt(document.querySelector("select[name='tipo_de_solicitud_4_venta']").value) ?? null,
+          comment: document.querySelector("input[name='comentarios']").value,
+          consentPromotions: document.querySelector("#promociones").checked ? true : false,
+          priority: "low",
+          assignedUserId: null,
+          status: "New"
+        };
+        //crear ticket usando la funcion createTicket y mostrar el modal de gracias cuando el ticket se crea correctamente
+        createTicket(dataForSubmit).then((data) => {
+          //catpturar el status
+          const status = data.status;
+          console.log({status});
+          console.log(dataForSubmit)
+          formulario.classList.add("hidden");
+          document.querySelector(".box_thanks").classList.remove("hidden");
+          setTimeout(() => {
+            limpiarFormulario();
+          }, 300);
+        });
+        // grecaptcha.ready(function () {
+        //   grecaptcha.execute("6Ld1_2caAAAAABG4EakA3PwvnyGjP2OLAn20_F9g", { action: "homepage" })
+        //     .then(function (token) {
+        //       document.querySelector("#token-HV").value = token;
+
+        //     });
+        // });
+      });
+    }
+
+    function anclaForm() {
+      const target = document.querySelector('section.contentFormulario');
+      if (target) {
+        const offset = 100; // píxeles más arriba
+        const elementPosition = target.getBoundingClientRect().top + window.pageYOffset;
+        const offsetPosition = elementPosition - offset;
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: "smooth"
+        });
+      }
+    }
+    // Seleccionamos el item
+    const itemCita = document.querySelector('.sliderPresenciales .item[data="agendaCita"]');
+    if (itemCita) {
+      itemCita.addEventListener("click", function () {
+        anclaForm()
+        /*const label = document.querySelector(
+          '.portlet[data-portlet="bannerform"] .section__align .content .formBC__main .radio label[for="postventa"]'
+        );
+        if (label) {
+          label.click();
+        }
+
+        const select = document.querySelector(
+          '.portlet[data-portlet="bannerform"] .section__align .content .formBC__main dl dd select#tipo_servicio_postventa'
+        );
+        if (select) {
+          select.value = "Servicio móvil";
+          select.dispatchEvent(new Event("change"));
+        }
+
+        const select2 = document.querySelector(
+          '.portlet[data-portlet="bannerform"] .section__align .content .formBC__main dl dd select#tipo_servicio_postventa_categoria'
+        );
+        if (select2) {
+          select2.value = "Chip Repuesto";
+          select2.dispatchEvent(new Event("change"));
+        }
+
+        const select3 = document.querySelector(
+          '.portlet[data-portlet="bannerform"] .section__align .content .formBC__main dl dd select#tipo_servicio_postventa_categoria2'
+        );
+        if (select3) {
+          select3.value = "Reposición de chip";
+          select3.dispatchEvent(new Event("change"));
+        }*/
+      })
+    }
+
+
+    const item = document.querySelector('.sliderPresenciales .item[data="reposicionChip"]');
+
+    if (item) {
+      item.addEventListener("click", function () {
+        anclaForm()
+        // 1. Disparar click en el label[for="postventa"]
+        const label = document.querySelector(
+          '.portlet[data-portlet="bannerform"] .section__align .content .formBC__main .radio label[for="postventa"]'
+        );
+        if (label) {
+          label.click();
+        }
+
+        const select = document.querySelector(
+          '.portlet[data-portlet="bannerform"] .section__align .content .formBC__main dl dd select#tipo_servicio_postventa'
+        );
+        if (select) {
+          select.value = "Servicio Móvil";
+          select.dispatchEvent(new Event("change"));
+        }
+
+        const select2 = document.querySelector(
+          '.portlet[data-portlet="bannerform"] .section__align .content .formBC__main dl dd select#tipo_servicio_postventa_categoria'
+        );
+        if (select2) {
+          select2.value = "Chip Repuesto";
+          select2.dispatchEvent(new Event("change"));
+        }
+
+        const select3 = document.querySelector(
+          '.portlet[data-portlet="bannerform"] .section__align .content .formBC__main dl dd select#tipo_servicio_postventa_categoria2'
+        );
+        if (select3) {
+          select3.value = "Reposición de chip";
+          select3.dispatchEvent(new Event("change"));
+          /*const inputnumeroserv = document.querySelector(
+            '.portlet[data-portlet="bannerform"] .section__align .content .formBC__main-input[name="numero_o_codigo_de_servicio"]'
+          );
+          inputnumeroserv.setAttribute("disabled", true);*/
+        }
+      });
+    }
+
+    const item2 = document.querySelector('.sliderPresenciales .item[data="renovacionequipo"]');
+
+    if (item2) {
+      item2.addEventListener("click", function () {
+        anclaForm()
+        const label = document.querySelector(
+          '.portlet[data-portlet="bannerform"] .section__align .content .formBC__main .radio label[for="postventa"]'
+        );
+        if (label) {
+          label.click();
+        }
+
+        const select = document.querySelector(
+          '.portlet[data-portlet="bannerform"] .section__align .content .formBC__main dl dd select#tipo_servicio_postventa'
+        );
+        if (select) {
+          select.value = "Servicio Móvil";
+          select.dispatchEvent(new Event("change"));
+        }
+
+        const select2 = document.querySelector(
+          '.portlet[data-portlet="bannerform"] .section__align .content .formBC__main dl dd select#tipo_servicio_postventa_categoria'
+        );
+        if (select2) {
+          select2.value = "Renovación";
+          select2.dispatchEvent(new Event("change"));
+        }
+
+        const select3 = document.querySelector(
+          '.portlet[data-portlet="bannerform"] .section__align .content .formBC__main dl dd select#tipo_servicio_postventa_categoria2'
+        );
+        if (select3) {
+          select3.value = "Renovación de equipo y servicio";
+          select3.dispatchEvent(new Event("change"));
+          /*const inputnumeroserv = document.querySelector(
+             '.portlet[data-portlet="bannerform"] .section__align .content .formBC__main-input[name="numero_o_codigo_de_servicio"]'
+           );
+           inputnumeroserv.setAttribute("disabled", true);*/
+        }
+      });
+    }
+
+    const item3 = document.querySelector('.sliderPresenciales .item[data="compraaccesorios"]');
+
+    if (item3) {
+      item3.addEventListener("click", function () {
+        anclaForm()
+        const label = document.querySelector(
+          '.portlet[data-portlet="bannerform"] .section__align .content .formBC__main .radio label[for="venta"]'
+        );
+        if (label) {
+          label.click();
+        }
+
+        const select = document.querySelector(
+          '.portlet[data-portlet="bannerform"] .section__align .content .formBC__main dl dd select#tipo_servicio_venta'
+        );
+        if (select) {
+          select.value = "Accesorios";
+          select.dispatchEvent(new Event("change"));
+        }
+
+        const select2 = document.querySelector(
+          '.portlet[data-portlet="bannerform"] .section__align .content .formBC__main dl dd select#tipo_servicio_venta_categoria'
+        );
+        if (select2) {
+          select2.value = "Compra de accesorios";
+          select2.dispatchEvent(new Event("change"));
+
+        }
+
+        /*const inputnumeroserv = document.querySelector(
+          '.portlet[data-portlet="bannerform"] .section__align .content .venta .formBC__main-input[name="numero_o_codigo_de_servicio"]'
+        );
+
+        if (inputnumeroserv) {
+          // quitar el disabled
+          inputnumeroserv.removeAttribute("disabled");
+
+          // quitar la clase ocular
+          inputnumeroserv.classList.remove("ocular");
+
+          // buscar al padre con la clase type1 y quitarle ocultar
+          const padreType1 = inputnumeroserv.closest(".type1");
+          if (padreType1) {
+            padreType1.classList.remove("ocultar");
+            console.log("asdasdasdasdasd")
+          }
+        }*/
+      })
+    }
+
+    const item4 = document.querySelector('.sliderNoPresenciales .item[data="cambioPlan"]');
+    if (item4) {
+      item4.addEventListener("click", function () {
+        anclaForm()
+        const label = document.querySelector(
+          '.portlet[data-portlet="bannerform"] .section__align .content .formBC__main .radio label[for="postventa"]'
+        );
+        if (label) {
+          label.click();
+        }
+
+        const select = document.querySelector(
+          '.portlet[data-portlet="bannerform"] .section__align .content .formBC__main dl dd select#tipo_servicio_postventa'
+        );
+        if (select) {
+          select.value = "Servicio Móvil";
+          select.dispatchEvent(new Event("change"));
+        }
+
+        const select2 = document.querySelector(
+          '.portlet[data-portlet="bannerform"] .section__align .content .formBC__main dl dd select#tipo_servicio_postventa_categoria'
+        );
+        if (select2) {
+          select2.value = "Migración de Pre a Postago";
+          select2.dispatchEvent(new Event("change"));
+        }
+
+        const select3 = document.querySelector(
+          '.portlet[data-portlet="bannerform"] .section__align .content .formBC__main dl dd select#tipo_servicio_postventa_categoria2'
+        );
+        if (select3) {
+          select3.value = "Cambio de plan móvil";
+          select3.dispatchEvent(new Event("change"));
+          /*const inputnumeroserv = document.querySelector(
+            '.portlet[data-portlet="bannerform"] .section__align .content .formBC__main-input[name="numero_o_codigo_de_servicio"]'
+          );
+          inputnumeroserv.setAttribute("disabled", true);*/
+        }
+      });
+    }
+
+    const item5 = document.querySelector('.sliderNoPresenciales .item[data="adquirirServicio"]');
+    if (item5) {
+      item5.addEventListener("click", function () {
+        anclaForm()
+        const label = document.querySelector(
+          '.portlet[data-portlet="bannerform"] .section__align .content .formBC__main .radio label[for="venta"]'
+        );
+        if (label) {
+          label.click();
+        }
+
+        const select = document.querySelector(
+          '.portlet[data-portlet="bannerform"] .section__align .content .formBC__main dl dd select#tipo_servicio_venta'
+        );
+        if (select) {
+          select.value = "Nuevo Servicio Fijo";
+          select.dispatchEvent(new Event("change"));
+        }
+
+        const select2 = document.querySelector(
+          '.portlet[data-portlet="bannerform"] .section__align .content .formBC__main dl dd select#tipo_servicio_venta_categoria'
+        );
+        if (select2) {
+          select2.value = "Nuevo Servicios Fijos Alámbricos";
+          select2.dispatchEvent(new Event("change"));
+        }
+
+        const select3 = document.querySelector(
+          '.portlet[data-portlet="bannerform"] .section__align .content .formBC__main dl dd select#tipo_servicio_venta_subcategoria'
+        );
+        if (select3) {
+          select3.value = "Alta fija";
+          select3.dispatchEvent(new Event("change"));
+        }
+
+        const select4 = document.querySelector(
+          '.portlet[data-portlet="bannerform"] .section__align .content .formBC__main dl dd select#tipo_servicio_venta_subsubcategoria'
+        );
+        if (select4) {
+          select4.value = "Adquirir Servicio Fijo";
+          select4.dispatchEvent(new Event("change"));
+        }
+
+        /* const inputnumeroserv = document.querySelector(
+           '.portlet[data-portlet="bannerform"] .section__align .content .venta .formBC__main-input[name="numero_o_codigo_de_servicio"]'
+         );
+
+         if (inputnumeroserv) {
+           // quitar el disabled
+           inputnumeroserv.removeAttribute("disabled");
+
+           // quitar la clase ocular
+           inputnumeroserv.classList.remove("ocular");
+
+           // buscar al padre con la clase type1 y quitarle ocultar
+           const padreType1 = inputnumeroserv.closest(".type1");
+           if (padreType1) {
+             padreType1.classList.remove("ocultar");
+             console.log("asdasdasdasdasd")
+           }
+         }*/
+      })
+    }
+
+    const item6 = document.querySelector('.sliderNoPresenciales .item[data="cancelarServicio"]');
+    if (item6) {
+      item6.addEventListener("click", function () {
+        anclaForm()
+        const label = document.querySelector(
+          '.portlet[data-portlet="bannerform"] .section__align .content .formBC__main .radio label[for="postventa"]'
+        );
+        if (label) {
+          label.click();
+        }
+
+        const select = document.querySelector(
+          '.portlet[data-portlet="bannerform"] .section__align .content .formBC__main dl dd select#tipo_servicio_postventa'
+        );
+        if (select) {
+          select.value = "Servicio Fijo";
+          select.dispatchEvent(new Event("change"));
+        }
+
+        const select2 = document.querySelector(
+          '.portlet[data-portlet="bannerform"] .section__align .content .formBC__main dl dd select#tipo_servicio_postventa_categoria'
+        );
+        if (select2) {
+          select2.value = "Baja de servicio";
+          select2.dispatchEvent(new Event("change"));
+        }
+
+        const select3 = document.querySelector(
+          '.portlet[data-portlet="bannerform"] .section__align .content .formBC__main dl dd select#tipo_servicio_postventa_categoria2'
+        );
+        if (select3) {
+          select3.value = "Cancelación de servicio fijo";
+          select3.dispatchEvent(new Event("change"));
+        }
+        /*const inputnumeroserv = document.querySelector(
+          '.portlet[data-portlet="bannerform"] .section__align .content .formBC__main-input[name="numero_o_codigo_de_servicio"]'
+        );
+        inputnumeroserv.setAttribute("disabled", true);*/
+      });
+    }
+
+    const item7 = document.querySelector('.sliderNoPresenciales .item[data="consultarFacturacion"]');
+    if (item7) {
+      item7.addEventListener("click", function () {
+        anclaForm()
+        const label = document.querySelector(
+          '.portlet[data-portlet="bannerform"] .section__align .content .formBC__main .radio label[for="postventa"]'
+        );
+        if (label) {
+          label.click();
+        }
+
+        const select = document.querySelector(
+          '.portlet[data-portlet="bannerform"] .section__align .content .formBC__main dl dd select#tipo_servicio_postventa'
+        );
+        if (select) {
+          select.value = "Servicio Móvil";
+          select.dispatchEvent(new Event("change"));
+        }
+
+        const select2 = document.querySelector(
+          '.portlet[data-portlet="bannerform"] .section__align .content .formBC__main dl dd select#tipo_servicio_postventa_categoria'
+        );
+        if (select2) {
+          select2.value = "Facturación";
+          select2.dispatchEvent(new Event("change"));
+        }
+
+        const select3 = document.querySelector(
+          '.portlet[data-portlet="bannerform"] .section__align .content .formBC__main dl dd select#tipo_servicio_postventa_categoria2'
+        );
+        if (select3) {
+          select3.value = "Consultas de facturación";
+          select3.dispatchEvent(new Event("change"));
+        }
+        /*const inputnumeroserv = document.querySelector(
+          '.portlet[data-portlet="bannerform"] .section__align .content .formBC__main-input[name="numero_o_codigo_de_servicio"]'
+        );
+        inputnumeroserv.setAttribute("disabled", true);*/
+      });
+    }
+
+    const item8 = document.querySelector('.sliderNoPresenciales .item[data="reportarFallas"]');
+    if (item8) {
+      item8.addEventListener("click", function () {
+        anclaForm()
+        const label = document.querySelector(
+          '.portlet[data-portlet="bannerform"] .section__align .content .formBC__main .radio label[for="postventa"]'
+        );
+        if (label) {
+          label.click();
+        }
+
+        const select = document.querySelector(
+          '.portlet[data-portlet="bannerform"] .section__align .content .formBC__main dl dd select#tipo_servicio_postventa'
+        );
+        if (select) {
+          select.value = "Servicio Fijo";
+          select.dispatchEvent(new Event("change"));
+        }
+
+        const select2 = document.querySelector(
+          '.portlet[data-portlet="bannerform"] .section__align .content .formBC__main dl dd select#tipo_servicio_postventa_categoria'
+        );
+        if (select2) {
+          select2.value = "Servicio Técnico";
+          select2.dispatchEvent(new Event("change"));
+        }
+
+        const select3 = document.querySelector(
+          '.portlet[data-portlet="bannerform"] .section__align .content .formBC__main dl dd select#tipo_servicio_postventa_categoria2'
+        );
+        if (select3) {
+          select3.value = "Reporte de falla";
+          select3.dispatchEvent(new Event("change"));
+        }
+        /*const inputnumeroserv = document.querySelector(
+          '.portlet[data-portlet="bannerform"] .section__align .content .formBC__main-input[name="numero_o_codigo_de_servicio"]'
+        );
+        inputnumeroserv.setAttribute("disabled", true);*/
+      });
+    }
+
+    const item9 = document.querySelector('.sliderNoPresenciales .item[data="suspensionReactivacion"]');
+    if (item9) {
+      item9.addEventListener("click", function () {
+        anclaForm()
+        const label = document.querySelector(
+          '.portlet[data-portlet="bannerform"] .section__align .content .formBC__main .radio label[for="postventa"]'
+        );
+        if (label) {
+          label.click();
+        }
+
+        const select = document.querySelector(
+          '.portlet[data-portlet="bannerform"] .section__align .content .formBC__main dl dd select#tipo_servicio_postventa'
+        );
+        if (select) {
+          select.value = "Servicio Fijo";
+          select.dispatchEvent(new Event("change"));
+        }
+
+        const select2 = document.querySelector(
+          '.portlet[data-portlet="bannerform"] .section__align .content .formBC__main dl dd select#tipo_servicio_postventa_categoria'
+        );
+        if (select2) {
+          select2.value = "Otros";
+          select2.dispatchEvent(new Event("change"));
+        }
+
+        const select3 = document.querySelector(
+          '.portlet[data-portlet="bannerform"] .section__align .content .formBC__main dl dd select#tipo_servicio_postventa_categoria2'
+        );
+        if (select3) {
+          select3.value = "Suspensión y reactivación de Servicio";
+          select3.dispatchEvent(new Event("change"));
+        }
+      });
+    }
+
+    const item10 = document.querySelector('.sliderNoPresenciales .item[data="consultaPrecios"]');
+    if (item10) {
+      item10.addEventListener("click", function () {
+        anclaForm()
+        const label = document.querySelector(
+          '.portlet[data-portlet="bannerform"] .section__align .content .formBC__main .radio label[for="venta"]'
+        );
+        if (label) {
+          label.click();
+        }
+
+        const select = document.querySelector(
+          '.portlet[data-portlet="bannerform"] .section__align .content .formBC__main dl dd select#tipo_servicio_venta'
+        );
+        if (select) {
+          select.value = "Otros";
+          select.dispatchEvent(new Event("change"));
+        }
+
+        const select2 = document.querySelector(
+          '.portlet[data-portlet="bannerform"] .section__align .content .formBC__main dl dd select#tipo_servicio_venta_categoria'
+        );
+        if (select2) {
+          select2.value = "Consulta Precios y Stock";
+          select2.dispatchEvent(new Event("change"));
+        }
+
+
+      });
+    }
+    const tabs = document.querySelectorAll("section.planesMovil .tabs .tab");
+    const sliders = document.querySelectorAll("section.planesMovil .sliderPlanesMovil");
+
+    tabs.forEach(tab => {
+      tab.addEventListener("click", function () {
+        // quitar active a todos los tabs
+        tabs.forEach(t => t.classList.remove("active"));
+        // activar el tab clicado
+        this.classList.add("active");
+
+        const selected = this.textContent.trim();
+
+        // mostrar slider que coincide con el tab
+        sliders.forEach(slider => {
+          if (slider.getAttribute("cat") === selected) {
+            slider.classList.add("active");
+          } else {
+            slider.classList.remove("active");
+          }
+        });
+      });
+    });
+  });
+</script>
+<script type="text/javascript">
+  function getRecaptcha() {
+    try {
+      grecaptcha.ready(function () {
+        grecaptcha
+          .execute("6Ld1_2caAAAAABG4EakA3PwvnyGjP2OLAn20_F9g", {
+            action: "homepage",
+          })
+          .then(function (token) {
+            console.log('token:---- ', token);
+            document.querySelector("#token-HV").value = token;
+            document.querySelector("#load_er").style.display = "none";
+          });
+      });
+    } catch (error) { }
+  }
+  getRecaptcha();
+</script>
