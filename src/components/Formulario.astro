@@ -2,7 +2,7 @@
 import icon_thanks from '@/assets/icon_thanks.svg'
 ---
 <!-- formulario -->
-<style is:inline>
+<style id="style-formulario" is:inline>
   section.bgWhiteSpace {
     padding-top: 0 !important;
   }
@@ -2287,6 +2287,7 @@ import icon_thanks from '@/assets/icon_thanks.svg'
                     </picture>
                     <h3 class="text-2xl font-amx-bold text-white">¡Gracias por registrarte!</h3>
                     <p class="text-white font-amx-medium text-center text-balance">Recibirás un correo de confirmación sobre tu solicitud registrada.</p>
+                    <button class="btn_reset_form cursor-pointer font-roboto font-bold text-base px-8 py-2 bg-white border border-white text-claro rounded-full transition-all duration-300 ease-in-out hover:bg-claro hover:text-white">Entendido</button>
                   </div>
                   <form class="formBC"
                     action="https://crm.claromarketingcloud.pe/Front/Home/registro/?op=iKBK%2B4j4y9W7PdE0CHW%2Fwn74No%2Bi5eWKhczH7fcScIQ%3D"
@@ -3590,14 +3591,14 @@ import icon_thanks from '@/assets/icon_thanks.svg'
         //crear ticket usando la funcion createTicket y mostrar el modal de gracias cuando el ticket se crea correctamente
         createTicket(dataForSubmit).then((data) => {
           //catpturar el status
-          const status = data.status;
-          console.log({status});
-          console.log(dataForSubmit)
+          const { status: statusHttp } = data;
+          console.log({statusHttp});
+          // console.log(dataForSubmit)
           formulario.classList.add("hidden");
           document.querySelector(".box_thanks").classList.remove("hidden");
-          setTimeout(() => {
-            limpiarFormulario();
-          }, 300);
+          // setTimeout(() => {
+          //   limpiarFormulario();
+          // }, 300);
         });
         // grecaptcha.ready(function () {
         //   grecaptcha.execute("6Ld1_2caAAAAABG4EakA3PwvnyGjP2OLAn20_F9g", { action: "homepage" })
@@ -3606,6 +3607,11 @@ import icon_thanks from '@/assets/icon_thanks.svg'
 
         //     });
         // });
+      });
+      document.querySelector(".btn_reset_form").addEventListener("click", () => {
+        formulario.classList.remove("hidden");
+        document.querySelector(".box_thanks").classList.add("hidden");
+        limpiarFormulario();
       });
     }
 
