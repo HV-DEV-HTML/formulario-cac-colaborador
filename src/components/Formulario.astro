@@ -1429,6 +1429,10 @@ import icon_thanks from '@/assets/icon_thanks.svg'
     font: normal 400 15px "Roboto";
     line-height: normal;
     color: #000;
+    &:disabled {
+      background-color: #dfdedf;
+      color: #3f3e3e;
+    }
   }
 
   .portlet[data-portlet="bannerform"] .section__align .content .formBC__main-input[name="numero_o_codigo_de_servicio"][disabled] {
@@ -2295,19 +2299,14 @@ import icon_thanks from '@/assets/icon_thanks.svg'
                     <div class="formBC__main">
                       <input type="hidden" name="form_name" value="CAC Colaborador" />
                       <input type="hidden" name="g-recaptcha-response" id="token-HV" />
+                      <input type="hidden" name="colaborator_id" id="colaborator_id" />
                       <div class="contentInputlista">
                         <div class="paso1">
                           <p class="formBC__group-text">Datos personales</p>
-                          <dl class="type1">
-                            <dd>
-                              <input class="formBC__main-input inputgeneral inputname" type="text"
-                                name="nombre_y_apellidos" placeholder="Nombres y apellidos" />
-                            </dd>
-                          </dl>
                           <div class="columna2">
                             <dl class="type1">
                               <dd>
-                                <input class="formBC__main-input codigoC inputgeneral" type="text"
+                                <input class="formBC__main-input codigoC" type="text"
                                   name="ingreso_codigo" placeholder="Código C (Ejm. C10935)" maxlength="6" />
                               </dd>
                             </dl>
@@ -2318,6 +2317,12 @@ import icon_thanks from '@/assets/icon_thanks.svg'
                               </dd>
                             </dl>
                           </div>
+                          <dl class="type1">
+                            <dd>
+                              <input class="formBC__main-input inputgeneral inputname" type="text"
+                                name="nombre_y_apellidos" placeholder="Nombres y apellidos" />
+                            </dd>
+                          </dl>
                           <dl class="type1">
                             <dd class="contentSelect">
                               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="9" viewBox="0 0 16 9"
@@ -2614,8 +2619,7 @@ import icon_thanks from '@/assets/icon_thanks.svg'
       });
     });
 
-    const nombreInput = document.querySelector(".formBC__main-input.inputgeneral"
-    );
+    const nombreInput = document.querySelector(".formBC__main-input.inputgeneral.inputname");
 
     nombreInput.addEventListener("input", () => {
       const value = nombreInput.value;
@@ -2635,19 +2639,75 @@ import icon_thanks from '@/assets/icon_thanks.svg'
 
     // Validación para el input del código C
     const codigoCInput = document.querySelector(".codigoC");
+    let codigoCDebounceTimer = null; // Timer para el debounce del código C
+    const colaboratorIdInput = document.querySelector("#colaborator_id");
 
-    codigoCInput.addEventListener("input", () => {
+    codigoCInput.addEventListener("input", async () => {
       const value = codigoCInput.value;
-
       // Validación: empieza con 'C' o 'c' y tiene exactamente 5 dígitos después (6 caracteres en total)
       if (/^[Cc]\d{5}$/.test(value)) {
         codigoCInput.classList.add("valid");
         codigoCInput.classList.remove("invalid");
+        // Debounce: Cancelar búsqueda anterior y programar nueva
+        clearTimeout(codigoCDebounceTimer);
+        codigoCDebounceTimer = setTimeout(async () => {
+          const dataUser = await buscarDatosUsuarioPorCodigoC(value);
+          if (dataUser) {
+            const {fullname, phone, employeeCode, colaboratorId} = dataUser;
+            console.log({fullname, phone, employeeCode, colaboratorId});
+            nombreInput.value = fullname;
+            nombreInput.disabled = true;
+            nombreInput.classList.add("valid");
+            nombreInput.classList.remove("invalid");
+            celularInput.value = phone;
+            celularInput.disabled = true;
+            celularInput.classList.add("valid");
+            celularInput.classList.remove("invalid");
+            colaboratorIdInput.value = colaboratorId;
+            validateInputs();
+          }else{
+            nombreInput.value = "";
+            nombreInput.disabled = false;
+            nombreInput.classList.remove("valid");
+            nombreInput.classList.remove("invalid");
+            celularInput.value = "";
+            celularInput.disabled = false;
+            celularInput.classList.remove("valid");
+            celularInput.classList.remove("invalid");
+            colaboratorIdInput.value = "";
+            validateInputs();
+          }
+        }, 500); // Espera 600ms después del último input
       } else {
         codigoCInput.classList.add("invalid");
         codigoCInput.classList.remove("valid");
+        // Cancelar búsqueda si el valor no es válido
+        clearTimeout(codigoCDebounceTimer);
       }
     });
+
+    // Función para buscar datos del usuario por código C
+    async function buscarDatosUsuarioPorCodigoC(codigoC) {
+      try {
+        console.log(`Buscando datos para el código C: ${codigoC}`);
+        
+        // Aquí va tu endpoint de API
+        const response = await fetch(`${BASE_URL}/get-colaborator-by-code/${codigoC}`);
+        const data = await response.json();
+        
+        // Verificar si el colaborador no fue encontrado
+        if (data?.exists === false) {
+          console.error("Colaborador no encontrado");
+          return null;
+        }
+        // Si se encontró el colaborador, extraer los datos
+        const {fullName, phone, employeeCode, id: colaboratorId} = data;
+        return {fullname: fullName, phone, employeeCode, colaboratorId};
+      } catch (error) {
+        console.error("Error al buscar datos del usuario:", error);
+        console.log({error});
+      }
+    }
 
     // Validación para el número de celular
     const celularInput = document.querySelector(".celular");
@@ -2695,12 +2755,9 @@ import icon_thanks from '@/assets/icon_thanks.svg'
       const allValid = Array.from(inputsGeneral).every((input) =>
         input.classList.contains("valid")
       );
-      console.log({allValid});
-
       const isRadioSelected = Array.from(radioButtons).some(
         (radio) => radio.checked
       );
-
       // Actualizar el estado del botón
       if (allValid && isRadioSelected) {
         btnContinuar.classList.add("active");
@@ -3113,6 +3170,60 @@ import icon_thanks from '@/assets/icon_thanks.svg'
       // document.querySelector(".btncontinuar").click();
     }
   
+    /**
+     * Función para seleccionar valores en cascada en los selects de servicio
+     * @param {string|number} servicioId - ID del servicio a seleccionar
+     * @param {string|number} categoriaId - ID de la categoría a seleccionar (opcional)
+     * @param {string|number} subsubcategoriaId - ID de la subsubcategoría a seleccionar (opcional)
+     */
+    const seleccionarServicioCascada = async (servicioId, categoriaId = null, subsubcategoriaId = null) => {
+      try {
+        // Paso 1: Cambiar servicio y esperar a que se carguen las categorías
+        servicioSelect.value = String(servicioId);
+        servicioSelect.dispatchEvent(new Event("change"));
+        const selectedService = Number(servicioSelect.value);
+        const categorias = await getServicesTypes(selectedService);
+        
+        if (categorias) {
+          fillSelect(categoriaSelect, categorias);
+          fillSelect(subcategoriaSelect, []);
+          fillSelect(subsubcategoriaSelect, []);
+        }
+        
+        // Si no se especifica categoría, terminar aquí
+        if (categoriaId === null) {
+          updateButtonState();
+          return;
+        }
+        
+        // Paso 2: Cambiar categoría y esperar a que se carguen las opciones
+        categoriaSelect.value = String(categoriaId);
+        categoriaSelect.dispatchEvent(new Event("change"));
+        const selectedCategory = Number(categoriaSelect.value);
+        
+        if (selectedCategory) {
+          const opciones = await getServicesOptions(selectedCategory);
+          if (opciones) {
+            fillSelect3(subsubcategoriaSelect, opciones);
+          }
+        }
+        
+        // Si no se especifica subsubcategoría, terminar aquí
+        if (subsubcategoriaId === null) {
+          updateButtonState();
+          return;
+        }
+        
+        // Paso 3: Seleccionar la subsubcategoría final
+        subsubcategoriaSelect.value = String(subsubcategoriaId);
+        subsubcategoriaSelect.dispatchEvent(new Event("change"));
+        
+        // Actualizar estado del botón
+        updateButtonState();
+      } catch (error) {
+        console.error('Error en seleccionarServicioCascada:', error);
+      }
+    };
 
     // Evento para el primer select (Servicio)
     servicioSelect.addEventListener("change", async () => {
@@ -3469,7 +3580,7 @@ import icon_thanks from '@/assets/icon_thanks.svg'
       inputs.forEach(input => {
         input.classList.remove('invalid');
         input.classList.remove('valid');
-
+        input.disabled = false;
         // Limpiar mensajes de error
         const errorMsg = input.nextElementSibling;
         if (errorMsg && errorMsg.classList.contains('error-message')) {
@@ -3551,13 +3662,14 @@ import icon_thanks from '@/assets/icon_thanks.svg'
         }
         //form2.submit();
         const dataForSubmit = {
-          requesterFullName: document.querySelector("input[name='nombre_y_apellidos']").value,
-          requesterEmployeeCode: document.querySelector("input[name='ingreso_codigo']").value,
-          requesterPhone: document.querySelector("input[name='celular']").value,
           channelId: 1,
           requestKind: document.querySelector("select[name='como_deseas_que_te_contactemos']").value,
           serviceLineId: parseInt(serviceLineId),
           consentPersonalData: document.querySelector("#tratamiento").checked ? true : false,
+          colaboratorId: colaboratorIdInput.value || null,
+          requesterFullName: document.querySelector("input[name='nombre_y_apellidos']").value,
+          requesterEmployeeCode: document.querySelector("input[name='ingreso_codigo']").value,
+          requesterPhone: document.querySelector("input[name='celular']").value,
           serviceTypeId: parseInt(serviceTypeId) ?? null,
           serviceOptionId: parseInt(serviceOptionId) ?? null,
           comment: document.querySelector("input[name='comentarios']").value,
@@ -3618,42 +3730,10 @@ import icon_thanks from '@/assets/icon_thanks.svg'
 
     if (item) {
       item.addEventListener("click", function () {
-        anclaForm()
-        // 1. Disparar click en el label[for="postventa"]
-        const label = document.querySelector(
-          '.portlet[data-portlet="bannerform"] .section__align .content .formBC__main .radio label[for="postventa"]'
-        );
-        if (label) {
-          label.click();
-        }
-
-        const select = document.querySelector(
-          '.portlet[data-portlet="bannerform"] .section__align .content .formBC__main dl dd select#tipo_servicio_postventa'
-        );
-        if (select) {
-          select.value = "Servicio Móvil";
-          select.dispatchEvent(new Event("change"));
-        }
-
-        const select2 = document.querySelector(
-          '.portlet[data-portlet="bannerform"] .section__align .content .formBC__main dl dd select#tipo_servicio_postventa_categoria'
-        );
-        if (select2) {
-          select2.value = "Chip Repuesto";
-          select2.dispatchEvent(new Event("change"));
-        }
-
-        const select3 = document.querySelector(
-          '.portlet[data-portlet="bannerform"] .section__align .content .formBC__main dl dd select#tipo_servicio_postventa_categoria2'
-        );
-        if (select3) {
-          select3.value = "Reposición de chip";
-          select3.dispatchEvent(new Event("change"));
-          /*const inputnumeroserv = document.querySelector(
-            '.portlet[data-portlet="bannerform"] .section__align .content .formBC__main-input[name="numero_o_codigo_de_servicio"]'
-          );
-          inputnumeroserv.setAttribute("disabled", true);*/
-        }
+        anclaForm();
+        console.log(item);
+        // Seleccionar: Servicio=1, Categoría=2, Subsubcategoría=12
+        return seleccionarServicioCascada(1, 2, 12);
       });
     }
 
@@ -3662,36 +3742,7 @@ import icon_thanks from '@/assets/icon_thanks.svg'
     if (item2) {
       item2.addEventListener("click", function () {
         anclaForm()
-        const label = document.querySelector(
-          '.portlet[data-portlet="bannerform"] .section__align .content .formBC__main .radio label[for="postventa"]'
-        );
-        if (label) {
-          label.click();
-        }
-
-        const select = document.querySelector(
-          '.portlet[data-portlet="bannerform"] .section__align .content .formBC__main dl dd select#tipo_servicio_postventa'
-        );
-        if (select) {
-          select.value = "Servicio Móvil";
-          select.dispatchEvent(new Event("change"));
-        }
-
-        const select2 = document.querySelector(
-          '.portlet[data-portlet="bannerform"] .section__align .content .formBC__main dl dd select#tipo_servicio_postventa_categoria'
-        );
-        if (select2) {
-          select2.value = "Renovación";
-          select2.dispatchEvent(new Event("change"));
-        }
-
-        const select3 = document.querySelector(
-          '.portlet[data-portlet="bannerform"] .section__align .content .formBC__main dl dd select#tipo_servicio_postventa_categoria2'
-        );
-        if (select3) {
-          select3.value = "Renovación de equipo y servicio";
-          select3.dispatchEvent(new Event("change"));
-        }
+        return seleccionarServicioCascada(1, 1, 11);
       });
     }
 
@@ -3700,29 +3751,8 @@ import icon_thanks from '@/assets/icon_thanks.svg'
     if (item3) {
       item3.addEventListener("click", function () {
         anclaForm()
-        const label = document.querySelector(
-          '.portlet[data-portlet="bannerform"] .section__align .content .formBC__main .radio label[for="venta"]'
-        );
-        if (label) {
-          label.click();
-        }
-
-        const select = document.querySelector(
-          '.portlet[data-portlet="bannerform"] .section__align .content .formBC__main dl dd select#tipo_servicio_venta'
-        );
-        if (select) {
-          select.value = "Accesorios";
-          select.dispatchEvent(new Event("change"));
-        }
-
-        const select2 = document.querySelector(
-          '.portlet[data-portlet="bannerform"] .section__align .content .formBC__main dl dd select#tipo_servicio_venta_categoria'
-        );
-        if (select2) {
-          select2.value = "Compra de accesorios";
-          select2.dispatchEvent(new Event("change"));
-
-        }
+        console.warn("falta datos");
+        return seleccionarServicioCascada(3);
       })
     }
 
@@ -3730,40 +3760,7 @@ import icon_thanks from '@/assets/icon_thanks.svg'
     if (item4) {
       item4.addEventListener("click", function () {
         anclaForm()
-        const label = document.querySelector(
-          '.portlet[data-portlet="bannerform"] .section__align .content .formBC__main .radio label[for="postventa"]'
-        );
-        if (label) {
-          label.click();
-        }
-
-        const select = document.querySelector(
-          '.portlet[data-portlet="bannerform"] .section__align .content .formBC__main dl dd select#tipo_servicio_postventa'
-        );
-        if (select) {
-          select.value = "Servicio Móvil";
-          select.dispatchEvent(new Event("change"));
-        }
-
-        const select2 = document.querySelector(
-          '.portlet[data-portlet="bannerform"] .section__align .content .formBC__main dl dd select#tipo_servicio_postventa_categoria'
-        );
-        if (select2) {
-          select2.value = "Migración de Pre a Postago";
-          select2.dispatchEvent(new Event("change"));
-        }
-
-        const select3 = document.querySelector(
-          '.portlet[data-portlet="bannerform"] .section__align .content .formBC__main dl dd select#tipo_servicio_postventa_categoria2'
-        );
-        if (select3) {
-          select3.value = "Cambio de plan móvil";
-          select3.dispatchEvent(new Event("change"));
-          /*const inputnumeroserv = document.querySelector(
-            '.portlet[data-portlet="bannerform"] .section__align .content .formBC__main-input[name="numero_o_codigo_de_servicio"]'
-          );
-          inputnumeroserv.setAttribute("disabled", true);*/
-        }
+        return seleccionarServicioCascada(1, 3, 13);
       });
     }
 
@@ -3771,44 +3768,7 @@ import icon_thanks from '@/assets/icon_thanks.svg'
     if (item5) {
       item5.addEventListener("click", function () {
         anclaForm()
-        const label = document.querySelector(
-          '.portlet[data-portlet="bannerform"] .section__align .content .formBC__main .radio label[for="venta"]'
-        );
-        if (label) {
-          label.click();
-        }
-
-        const select = document.querySelector(
-          '.portlet[data-portlet="bannerform"] .section__align .content .formBC__main dl dd select#tipo_servicio_venta'
-        );
-        if (select) {
-          select.value = "Nuevo Servicio Fijo";
-          select.dispatchEvent(new Event("change"));
-        }
-
-        const select2 = document.querySelector(
-          '.portlet[data-portlet="bannerform"] .section__align .content .formBC__main dl dd select#tipo_servicio_venta_categoria'
-        );
-        if (select2) {
-          select2.value = "Nuevo Servicios Fijos Alámbricos";
-          select2.dispatchEvent(new Event("change"));
-        }
-
-        const select3 = document.querySelector(
-          '.portlet[data-portlet="bannerform"] .section__align .content .formBC__main dl dd select#tipo_servicio_venta_subcategoria'
-        );
-        if (select3) {
-          select3.value = "Alta fija";
-          select3.dispatchEvent(new Event("change"));
-        }
-
-        const select4 = document.querySelector(
-          '.portlet[data-portlet="bannerform"] .section__align .content .formBC__main dl dd select#tipo_servicio_venta_subsubcategoria'
-        );
-        if (select4) {
-          select4.value = "Adquirir Servicio Fijo";
-          select4.dispatchEvent(new Event("change"));
-        }
+        return seleccionarServicioCascada(21, 20, 20);
       })
     }
 
@@ -3816,40 +3776,7 @@ import icon_thanks from '@/assets/icon_thanks.svg'
     if (item6) {
       item6.addEventListener("click", function () {
         anclaForm()
-        const label = document.querySelector(
-          '.portlet[data-portlet="bannerform"] .section__align .content .formBC__main .radio label[for="postventa"]'
-        );
-        if (label) {
-          label.click();
-        }
-
-        const select = document.querySelector(
-          '.portlet[data-portlet="bannerform"] .section__align .content .formBC__main dl dd select#tipo_servicio_postventa'
-        );
-        if (select) {
-          select.value = "Servicio Fijo";
-          select.dispatchEvent(new Event("change"));
-        }
-
-        const select2 = document.querySelector(
-          '.portlet[data-portlet="bannerform"] .section__align .content .formBC__main dl dd select#tipo_servicio_postventa_categoria'
-        );
-        if (select2) {
-          select2.value = "Baja de servicio";
-          select2.dispatchEvent(new Event("change"));
-        }
-
-        const select3 = document.querySelector(
-          '.portlet[data-portlet="bannerform"] .section__align .content .formBC__main dl dd select#tipo_servicio_postventa_categoria2'
-        );
-        if (select3) {
-          select3.value = "Cancelación de servicio fijo";
-          select3.dispatchEvent(new Event("change"));
-        }
-        /*const inputnumeroserv = document.querySelector(
-          '.portlet[data-portlet="bannerform"] .section__align .content .formBC__main-input[name="numero_o_codigo_de_servicio"]'
-        );
-        inputnumeroserv.setAttribute("disabled", true);*/
+        return seleccionarServicioCascada(2, 9, 15);
       });
     }
 
@@ -3857,40 +3784,7 @@ import icon_thanks from '@/assets/icon_thanks.svg'
     if (item7) {
       item7.addEventListener("click", function () {
         anclaForm()
-        const label = document.querySelector(
-          '.portlet[data-portlet="bannerform"] .section__align .content .formBC__main .radio label[for="postventa"]'
-        );
-        if (label) {
-          label.click();
-        }
-
-        const select = document.querySelector(
-          '.portlet[data-portlet="bannerform"] .section__align .content .formBC__main dl dd select#tipo_servicio_postventa'
-        );
-        if (select) {
-          select.value = "Servicio Móvil";
-          select.dispatchEvent(new Event("change"));
-        }
-
-        const select2 = document.querySelector(
-          '.portlet[data-portlet="bannerform"] .section__align .content .formBC__main dl dd select#tipo_servicio_postventa_categoria'
-        );
-        if (select2) {
-          select2.value = "Facturación";
-          select2.dispatchEvent(new Event("change"));
-        }
-
-        const select3 = document.querySelector(
-          '.portlet[data-portlet="bannerform"] .section__align .content .formBC__main dl dd select#tipo_servicio_postventa_categoria2'
-        );
-        if (select3) {
-          select3.value = "Consultas de facturación";
-          select3.dispatchEvent(new Event("change"));
-        }
-        /*const inputnumeroserv = document.querySelector(
-          '.portlet[data-portlet="bannerform"] .section__align .content .formBC__main-input[name="numero_o_codigo_de_servicio"]'
-        );
-        inputnumeroserv.setAttribute("disabled", true);*/
+        return seleccionarServicioCascada(1, 6, 14);
       });
     }
 
@@ -3898,40 +3792,7 @@ import icon_thanks from '@/assets/icon_thanks.svg'
     if (item8) {
       item8.addEventListener("click", function () {
         anclaForm()
-        const label = document.querySelector(
-          '.portlet[data-portlet="bannerform"] .section__align .content .formBC__main .radio label[for="postventa"]'
-        );
-        if (label) {
-          label.click();
-        }
-
-        const select = document.querySelector(
-          '.portlet[data-portlet="bannerform"] .section__align .content .formBC__main dl dd select#tipo_servicio_postventa'
-        );
-        if (select) {
-          select.value = "Servicio Fijo";
-          select.dispatchEvent(new Event("change"));
-        }
-
-        const select2 = document.querySelector(
-          '.portlet[data-portlet="bannerform"] .section__align .content .formBC__main dl dd select#tipo_servicio_postventa_categoria'
-        );
-        if (select2) {
-          select2.value = "Servicio Técnico";
-          select2.dispatchEvent(new Event("change"));
-        }
-
-        const select3 = document.querySelector(
-          '.portlet[data-portlet="bannerform"] .section__align .content .formBC__main dl dd select#tipo_servicio_postventa_categoria2'
-        );
-        if (select3) {
-          select3.value = "Reporte de falla";
-          select3.dispatchEvent(new Event("change"));
-        }
-        /*const inputnumeroserv = document.querySelector(
-          '.portlet[data-portlet="bannerform"] .section__align .content .formBC__main-input[name="numero_o_codigo_de_servicio"]'
-        );
-        inputnumeroserv.setAttribute("disabled", true);*/
+        return seleccionarServicioCascada(2, 12, 16);
       });
     }
 
@@ -3939,36 +3800,7 @@ import icon_thanks from '@/assets/icon_thanks.svg'
     if (item9) {
       item9.addEventListener("click", function () {
         anclaForm()
-        const label = document.querySelector(
-          '.portlet[data-portlet="bannerform"] .section__align .content .formBC__main .radio label[for="postventa"]'
-        );
-        if (label) {
-          label.click();
-        }
-
-        const select = document.querySelector(
-          '.portlet[data-portlet="bannerform"] .section__align .content .formBC__main dl dd select#tipo_servicio_postventa'
-        );
-        if (select) {
-          select.value = "Servicio Fijo";
-          select.dispatchEvent(new Event("change"));
-        }
-
-        const select2 = document.querySelector(
-          '.portlet[data-portlet="bannerform"] .section__align .content .formBC__main dl dd select#tipo_servicio_postventa_categoria'
-        );
-        if (select2) {
-          select2.value = "Otros";
-          select2.dispatchEvent(new Event("change"));
-        }
-
-        const select3 = document.querySelector(
-          '.portlet[data-portlet="bannerform"] .section__align .content .formBC__main dl dd select#tipo_servicio_postventa_categoria2'
-        );
-        if (select3) {
-          select3.value = "Suspensión y reactivación de Servicio";
-          select3.dispatchEvent(new Event("change"));
-        }
+        return seleccionarServicioCascada(2, 13, 17);
       });
     }
 
@@ -3976,30 +3808,7 @@ import icon_thanks from '@/assets/icon_thanks.svg'
     if (item10) {
       item10.addEventListener("click", function () {
         anclaForm()
-        const label = document.querySelector(
-          '.portlet[data-portlet="bannerform"] .section__align .content .formBC__main .radio label[for="venta"]'
-        );
-        if (label) {
-          label.click();
-        }
-
-        const select = document.querySelector(
-          '.portlet[data-portlet="bannerform"] .section__align .content .formBC__main dl dd select#tipo_servicio_venta'
-        );
-        if (select) {
-          select.value = "Otros";
-          select.dispatchEvent(new Event("change"));
-        }
-
-        const select2 = document.querySelector(
-          '.portlet[data-portlet="bannerform"] .section__align .content .formBC__main dl dd select#tipo_servicio_venta_categoria'
-        );
-        if (select2) {
-          select2.value = "Consulta Precios y Stock";
-          select2.dispatchEvent(new Event("change"));
-        }
-
-
+        return seleccionarServicioCascada(4);
       });
     }
     const tabs = document.querySelectorAll("section.planesMovil .tabs .tab");
