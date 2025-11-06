@@ -2444,7 +2444,7 @@ import icon_thanks from '@/assets/icon_thanks.svg'
                               </dd>
                             </dl>
                           </div>
-                          <div class="postventa">
+                          <!-- <div class="postventa">
                             <p class="formBC__group-text">
                               Solicitud de post venta
                             </p>
@@ -2500,7 +2500,7 @@ import icon_thanks from '@/assets/icon_thanks.svg'
                                   placeholder="Ingresa el número de cliente en consulta de ce..." maxlength="9" />
                               </dd>
                             </dl>
-                          </div>
+                          </div> -->
                           <p class="tipo" style="display: block">
                             Detalle de requerimiento (opcional)
                           </p>
@@ -2802,35 +2802,37 @@ import icon_thanks from '@/assets/icon_thanks.svg'
         )
         .classList.add("active");
       document.querySelector(".portlet[data-portlet='bannerform'] .section__align .content button.formBC__footer-action").style.display = "block";
-      if (valorCaso == "venta") {
-        document.querySelector(".paso2 .venta").classList.remove("ocultar");
-        document.querySelector(".paso2 .postventa").classList.add("ocultar");
+      document.querySelector(".paso2").classList.remove("ocultar");
+      document.querySelector(".paso1").classList.add("ocultar");
+      // if (valorCaso == "venta") {
+      //   document.querySelector(".paso2 .venta").classList.remove("ocultar");
+      //   document.querySelector(".paso2 .postventa").classList.add("ocultar");
 
-        const ventaContainer = document.querySelector(".paso2 .postventa");
-        const elementsToDisable = ventaContainer.querySelectorAll(
-          "input, select, textarea, button"
-        );
-        elementsToDisable.forEach((element) => {
-          element.setAttribute("disabled", true);
-        });
-        lista_de_inputs = document.querySelectorAll(
-          ".paso2 .venta input:not([disabled]):not(.opcional), select:not([disabled]):not(.opcional), input[type='radio']:not([disabled]):not(.opcional)"
-        );
-      } else if (valorCaso == "postventa") {
-        document.querySelector(".paso2 .venta").classList.add("ocultar");
-        document.querySelector(".paso2 .postventa").classList.remove("ocultar");
+      //   const ventaContainer = document.querySelector(".paso2 .postventa");
+      //   const elementsToDisable = ventaContainer.querySelectorAll(
+      //     "input, select, textarea, button"
+      //   );
+      //   elementsToDisable.forEach((element) => {
+      //     element.setAttribute("disabled", true);
+      //   });
+      //   lista_de_inputs = document.querySelectorAll(
+      //     ".paso2 .venta input:not([disabled]):not(.opcional), select:not([disabled]):not(.opcional), input[type='radio']:not([disabled]):not(.opcional)"
+      //   );
+      // } else if (valorCaso == "postventa") {
+      //   // document.querySelector(".paso2 .venta").classList.add("ocultar");
+      //   // document.querySelector(".paso2 .postventa").classList.remove("ocultar");
 
-        const ventaContainer2 = document.querySelector(".paso2 .venta");
-        const elementsToDisable2 = ventaContainer2.querySelectorAll(
-          "input, select, textarea, button"
-        );
-        elementsToDisable2.forEach((element) => {
-          element.setAttribute("disabled", true);
-        });
-        lista_de_inputs = document.querySelectorAll(
-          ".paso2 .postventa input:not([disabled]):not(.opcional), select:not([disabled]):not(.opcional), input[type='radio']:not([disabled]):not(.opcional)"
-        );
-      }
+      //   const ventaContainer2 = document.querySelector(".paso2 .venta");
+      //   const elementsToDisable2 = ventaContainer2.querySelectorAll(
+      //     "input, select, textarea, button"
+      //   );
+      //   elementsToDisable2.forEach((element) => {
+      //     element.setAttribute("disabled", true);
+      //   });
+      //   lista_de_inputs = document.querySelectorAll(
+      //     ".paso2 .postventa input:not([disabled]):not(.opcional), select:not([disabled]):not(.opcional), input[type='radio']:not([disabled]):not(.opcional)"
+      //   );
+      // }
 
       // Actualizar validación de botón después de cambiar de paso
       setTimeout(updateButtonState, 100);
@@ -2951,96 +2953,6 @@ import icon_thanks from '@/assets/icon_thanks.svg'
         opciones: [
           {
             name: "Consulta Precios y Stock",
-          },
-        ],
-      },
-    ];
-
-    const valoresSelectPostventa = [
-      {
-        name: "Servicio Móvil",
-        opciones: [
-          {
-            name: "Renovación",
-            subopciones: [
-              {
-                name: "Renovación de equipo y servicio",
-              },
-            ]
-          },
-          {
-            name: "Chip Repuesto",
-            subopciones: [
-              {
-                name: "Reposición de chip",
-              },
-            ]
-          },
-          {
-            name: "Migración de Pre a Postago",
-            subopciones: [
-              {
-                name: "Cambio de plan móvil",
-              },
-            ]
-          },
-          {
-            name: "Migración de Post a Pre",
-          },
-          {
-            name: "Baja de servicio",
-          },
-          {
-            name: "Cambio de plan",
-          },
-          {
-            name: "Facturación",
-            subopciones: [
-              {
-                name: "Consultas de facturación",
-              },
-            ]
-          },
-          {
-            name: "Servicio Técnico",
-          },
-          {
-            name: "Otros",
-          },
-        ],
-      },
-      {
-        name: "Servicio Fijo",
-        opciones: [
-          {
-            name: "Baja de servicio",
-            subopciones: [
-              {
-                name: "Cancelación de servicio fijo",
-              },
-            ]
-          },
-          {
-            name: "Cambio de plan",
-          },
-          {
-            name: "Facturación",
-          },
-          {
-            name: "Servicio Técnico",
-            subopciones: [
-              {
-                name: "Reporte de falla",
-              },
-            ]
-          },
-          {
-            name: "Otros",
-            subopciones: [
-              {
-                name: "Suspensión y reactivación de Servicio",
-              },
-            ]
           },
         ],
       },
@@ -3176,9 +3088,27 @@ import icon_thanks from '@/assets/icon_thanks.svg'
      * @param {string|number} categoriaId - ID de la categoría a seleccionar (opcional)
      * @param {string|number} subsubcategoriaId - ID de la subsubcategoría a seleccionar (opcional)
      */
-    const seleccionarServicioCascada = async (servicioId, categoriaId = null, subsubcategoriaId = null) => {
+    const seleccionarServicioCascada = async (servicioId, categoriaId = null, subsubcategoriaId = null, type) => {
       try {
-        // Paso 1: Cambiar servicio y esperar a que se carguen las categorías
+        const typeVenta = document.querySelector("#venta");
+        const typePostVenta = document.querySelector("#postventa");
+
+        if(type === "venta"){
+          typeVenta.checked = true;
+          typeVenta.dispatchEvent(new Event("change"));
+          typeVenta.parentElement.classList.add("active");
+          typePostVenta.checked = false;
+          typePostVenta.dispatchEvent(new Event("change"));
+          typePostVenta.parentElement.classList.remove("active");
+        }else{
+          typeVenta.checked = false;
+          typeVenta.dispatchEvent(new Event("change"));
+          typePostVenta.parentElement.classList.remove("active");
+          typePostVenta.checked = true;
+          typePostVenta.dispatchEvent(new Event("change"));
+          typePostVenta.parentElement.classList.add("active");
+        }
+        
         servicioSelect.value = String(servicioId);
         servicioSelect.dispatchEvent(new Event("change"));
         const selectedService = Number(servicioSelect.value);
@@ -3336,73 +3266,54 @@ import icon_thanks from '@/assets/icon_thanks.svg'
       }
     };
 
-    if(optionsServiciosVenta){
-      fillSelect(servicioPostventaSelect, optionsServiciosVenta);
-    }
+    // if(optionsServiciosVenta){
+    //   fillSelect(servicioPostventaSelect, optionsServiciosVenta);
+    // }
 
     // Evento para el primer select
-    servicioPostventaSelect.addEventListener("change", async () => {
-      const selectedService = Number(servicioPostventaSelect.value);
-      const selectedObject = await getServicesTypes(selectedService);
-      console.log({selectedObject});
-      // const selectedObject = valoresSelectPostventa.find(
-      //   (item) => item.name === selectedService
-      // );
+    // servicioPostventaSelect.addEventListener("change", async () => {
+    //   const selectedService = Number(servicioPostventaSelect.value);
+    //   const selectedObject = await getServicesTypes(selectedService);
+    //   console.log({selectedObject});
+    //   // const selectedObject = valoresSelectPostventa.find(
+    //   //   (item) => item.name === selectedService
+    //   // );
 
-      // // Primero, mostrar todos los contenedores de postventa
-      // document.querySelectorAll('.postventa dl.type1').forEach(dl => {
-      //   dl.classList.remove('ocultar');
-      //   dl.style.display = 'block';
-      // });
+    //   // // Primero, mostrar todos los contenedores de postventa
+    //   // document.querySelectorAll('.postventa dl.type1').forEach(dl => {
+    //   //   dl.classList.remove('ocultar');
+    //   //   dl.style.display = 'block';
+    //   // });
 
-      if (selectedObject) {
-        fillSelect2(categoriaPostventaSelect, selectedObject);
-      } else {
-        fillSelect2(categoriaPostventaSelect, []); // Limpiar categorías si no hay opciones
-      }
+    //   if (selectedObject) {
+    //     fillSelect2(categoriaPostventaSelect, selectedObject);
+    //   } else {
+    //     fillSelect2(categoriaPostventaSelect, []); // Limpiar categorías si no hay opciones
+    //   }
 
-      // Limpiar el siguiente nivel
-      fillSelect2(categoriaPostventaSelect2, []);
+    //   // Limpiar el siguiente nivel
+    //   fillSelect2(categoriaPostventaSelect2, []);
 
-      // Actualizar validación
-      updateButtonState();
-    });
+    //   // Actualizar validación
+    //   updateButtonState();
+    // });
 
     // Evento para el segundo select de postventa (categorías -> subcategorías)
-    categoriaPostventaSelect.addEventListener("change", async () => {
-      // const selectedService = servicioPostventaSelect.value;
-      const selectedCategory = Number(categoriaPostventaSelect.value);
-      if (selectedCategory) {
-        const selectedObject = await getServicesOptions(selectedCategory);
-        console.log({selectedObject});   
-        if (selectedObject) {
-          fillSelect2(categoriaPostventaSelect2, selectedObject);
-        } else {
-          fillSelect2(categoriaPostventaSelect2, []); // Vaciar si no hay subopciones
-        }               
-      }
-
-      // const selectedObject = valoresSelectPostventa.find(
-      //   (item) => item.name === selectedService
-      // );
-
-      // if (selectedObject && selectedObject.opciones) {
-      //   const selectedCategoryObject = selectedObject.opciones.find(
-      //     (option) => option.name === selectedCategory
-      //   );
-
-      //   if (selectedCategoryObject && selectedCategoryObject.subopciones) {
-      //     fillSelect2(categoriaPostventaSelect2, selectedCategoryObject.subopciones);
-      //   } else {
-      //     fillSelect2(categoriaPostventaSelect2, []); // Vaciar si no hay subopciones
-      //   }
-      // } else {
-      //   fillSelect2(categoriaPostventaSelect2, []);
-      // }
-
-      // Actualizar validación
-      updateButtonState();
-    });
+    // categoriaPostventaSelect.addEventListener("change", async () => {
+    //   // const selectedService = servicioPostventaSelect.value;
+    //   const selectedCategory = Number(categoriaPostventaSelect.value);
+    //   if (selectedCategory) {
+    //     const selectedObject = await getServicesOptions(selectedCategory);
+    //     console.log({selectedObject});   
+    //     if (selectedObject) {
+    //       fillSelect2(categoriaPostventaSelect2, selectedObject);
+    //     } else {
+    //       fillSelect2(categoriaPostventaSelect2, []); // Vaciar si no hay subopciones
+    //     }               
+    //   }
+    //   // Actualizar validación
+    //   updateButtonState();
+    // });
 
     function inicializarSelects() {
       // Inicializar selects de venta
@@ -3410,9 +3321,9 @@ import icon_thanks from '@/assets/icon_thanks.svg'
       fillSelect(subcategoriaSelect, []);
       fillSelect3(subsubcategoriaSelect, []);
 
-      // Inicializar selects de postventa
-      fillSelect2(categoriaPostventaSelect, []);
-      fillSelect2(categoriaPostventaSelect2, []);
+      // // Inicializar selects de postventa
+      // fillSelect2(categoriaPostventaSelect, []);
+      // fillSelect2(categoriaPostventaSelect2, []);
     }
     inicializarSelects();
 
@@ -3604,9 +3515,7 @@ import icon_thanks from '@/assets/icon_thanks.svg'
         checkbox.checked = false;
       });
 
-      const radioButtons = document.querySelectorAll(
-        'input[type="radio"][name="solicitud"]'
-      );
+      const radioButtons = document.querySelectorAll('input[type="radio"][name="solicitud"]');
       radioButtons.forEach(radio => {
         radio.parentElement.classList.remove("active");
         radio.checked = false;
@@ -3645,28 +3554,28 @@ import icon_thanks from '@/assets/icon_thanks.svg'
         event.preventDefault();
         btnAction.setAttribute("disabled", true);
         btnAction.classList.add("active");
-        let serviceLineId = "";
-        let serviceOptionId = "";
-        let serviceTypeId = "";
-        let serviceCode = "";
-        if (document.querySelector("#venta").checked) {
-          serviceLineId = document.querySelector("select[name='tipo_de_solicitud_1_venta']").value;
-          serviceTypeId = document.querySelector("select[name='tipo_de_solicitud_2_venta']").value;
-          serviceOptionId = document.querySelector("select[name='tipo_de_solicitud_4_venta']").value;
-          serviceCode = document.querySelector(".venta input[name='numero_o_codigo_de_servicio']").value
-        }else{
-          serviceLineId = document.querySelector("select[name='consulta_servicio_1_post_venta']").value;
-          serviceTypeId = document.querySelector("select[name='consulta_servicio_2_post_venta']").value;
-          serviceOptionId = document.querySelector("select[name='consulta_servicio_3_post_venta']").value;
-          serviceCode = document.querySelector(".postventa input[name='numero_o_codigo_de_servicio']").value
-        }
+        let serviceLineId = document.querySelector("select[name='tipo_de_solicitud_1_venta']").value;
+        let serviceTypeId = document.querySelector("select[name='tipo_de_solicitud_2_venta']").value;
+        let serviceOptionId = document.querySelector("select[name='tipo_de_solicitud_4_venta']").value;
+        let serviceCode = document.querySelector(".venta input[name='numero_o_codigo_de_servicio']").value;
+        // if (document.querySelector("#venta").checked) {
+        //   serviceLineId = document.querySelector("select[name='tipo_de_solicitud_1_venta']").value;
+        //   serviceTypeId = document.querySelector("select[name='tipo_de_solicitud_2_venta']").value;
+        //   serviceOptionId = document.querySelector("select[name='tipo_de_solicitud_4_venta']").value;
+        //   serviceCode = document.querySelector(".venta input[name='numero_o_codigo_de_servicio']").value
+        // }else{
+        //   serviceLineId = document.querySelector("select[name='consulta_servicio_1_post_venta']").value;
+        //   serviceTypeId = document.querySelector("select[name='consulta_servicio_2_post_venta']").value;
+        //   serviceOptionId = document.querySelector("select[name='consulta_servicio_3_post_venta']").value;
+        //   serviceCode = document.querySelector(".postventa input[name='numero_o_codigo_de_servicio']").value
+        // }
         //form2.submit();
         const dataForSubmit = {
           channelId: 1,
           requestKind: document.querySelector("select[name='como_deseas_que_te_contactemos']").value,
           serviceLineId: parseInt(serviceLineId),
           consentPersonalData: document.querySelector("#tratamiento").checked ? true : false,
-          colaboratorId: colaboratorIdInput.value || null,
+          colaboratorId: Number(colaboratorIdInput.value) || null,
           requesterFullName: document.querySelector("input[name='nombre_y_apellidos']").value,
           requesterEmployeeCode: document.querySelector("input[name='ingreso_codigo']").value,
           requesterPhone: document.querySelector("input[name='celular']").value,
@@ -3733,7 +3642,7 @@ import icon_thanks from '@/assets/icon_thanks.svg'
         anclaForm();
         console.log(item);
         // Seleccionar: Servicio=1, Categoría=2, Subsubcategoría=12
-        return seleccionarServicioCascada(1, 2, 12);
+        return seleccionarServicioCascada(1, 2, null, "postventa");
       });
     }
 
@@ -3742,7 +3651,7 @@ import icon_thanks from '@/assets/icon_thanks.svg'
     if (item2) {
       item2.addEventListener("click", function () {
         anclaForm()
-        return seleccionarServicioCascada(1, 1, 11);
+        return seleccionarServicioCascada(1, 1, 11, "postventa");
       });
     }
 
@@ -3752,7 +3661,7 @@ import icon_thanks from '@/assets/icon_thanks.svg'
       item3.addEventListener("click", function () {
         anclaForm()
         console.warn("falta datos");
-        return seleccionarServicioCascada(3);
+        return seleccionarServicioCascada(3, null, null, "venta");
       })
     }
 
@@ -3760,7 +3669,7 @@ import icon_thanks from '@/assets/icon_thanks.svg'
     if (item4) {
       item4.addEventListener("click", function () {
         anclaForm()
-        return seleccionarServicioCascada(1, 3, 13);
+        return seleccionarServicioCascada(1, 3, 13, "postventa");
       });
     }
 
@@ -3768,7 +3677,7 @@ import icon_thanks from '@/assets/icon_thanks.svg'
     if (item5) {
       item5.addEventListener("click", function () {
         anclaForm()
-        return seleccionarServicioCascada(21, 16, 5);
+        return seleccionarServicioCascada(21, 16, 5, "venta");
       })
     }
 
@@ -3776,7 +3685,7 @@ import icon_thanks from '@/assets/icon_thanks.svg'
     if (item6) {
       item6.addEventListener("click", function () {
         anclaForm()
-        return seleccionarServicioCascada(2, 9, 15);
+        return seleccionarServicioCascada(2, 9, 15, "postventa");
       });
     }
 
@@ -3784,7 +3693,7 @@ import icon_thanks from '@/assets/icon_thanks.svg'
     if (item7) {
       item7.addEventListener("click", function () {
         anclaForm()
-        return seleccionarServicioCascada(1, 6, 14);
+        return seleccionarServicioCascada(1, 6, 14, "postventa");
       });
     }
 
@@ -3792,7 +3701,7 @@ import icon_thanks from '@/assets/icon_thanks.svg'
     if (item8) {
       item8.addEventListener("click", function () {
         anclaForm()
-        return seleccionarServicioCascada(2, 12, 16);
+        return seleccionarServicioCascada(2, 12, 16, "postventa");
       });
     }
 
@@ -3800,7 +3709,7 @@ import icon_thanks from '@/assets/icon_thanks.svg'
     if (item9) {
       item9.addEventListener("click", function () {
         anclaForm()
-        return seleccionarServicioCascada(2, 13, 17);
+        return seleccionarServicioCascada(2, 13, 17, "postventa");
       });
     }
 
@@ -3808,7 +3717,7 @@ import icon_thanks from '@/assets/icon_thanks.svg'
     if (item10) {
       item10.addEventListener("click", function () {
         anclaForm()
-        return seleccionarServicioCascada(4);
+        return seleccionarServicioCascada(4, null, null, "venta");
       });
     }
     const tabs = document.querySelectorAll("section.planesMovil .tabs .tab");
