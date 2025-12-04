@@ -3082,6 +3082,40 @@ import icon_thanks from "@/assets/icon_thanks.svg";
                           </dl>
                           <p class="tipo">Tipo de solicitud</p>
                           <dl class="type1">
+                            <dd class="contentSelect">
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="16"
+                                height="9"
+                                viewBox="0 0 16 9"
+                                fill="none"
+                              >
+                                <path
+                                  d="M1 1.00006L8 8.00006L15 1.00006"
+                                  stroke="black"></path>
+                              </svg>
+                              <select
+                                name="solicitud"
+                                id="solicitud"
+                                class="formBC__main-input inputgeneral"
+                              >
+                                <option
+                                  value="¿Cómo deseas que te contactemos?"
+                                >
+                                  Seleccione una opción
+                                </option>
+                                <option value="Venta"
+                                  >Deseo adquirir un nuevo servicio (venta)</option
+                                >
+                                <option value="Post-venta">
+                                  Tengo una consulta o requerimiento de mi
+                                  servicio actual (post-venta)
+                                </option>
+                              </select>
+                            </dd>
+                          </dl>
+                          <!-- 
+                          <dl class="type1">
                             <dd>
                               <div class="radio">
                                 <input
@@ -3111,11 +3145,13 @@ import icon_thanks from "@/assets/icon_thanks.svg";
                                 </p>
                               </div>
                             </dd>
-                          </dl>
+                          </dl> -->
                         </div>
                         <div class="paso2 ocultar">
                           <div class="venta">
-                            <p class="formBC__group-text">Solicitud de venta</p>
+                            <p class="formBC__group-text textoCondi">
+                              Solicitud de venta
+                            </p>
                             <dl class="type1">
                               <dd class="contentSelect">
                                 <svg
@@ -3442,6 +3478,8 @@ import icon_thanks from "@/assets/icon_thanks.svg";
 
     const paso1 = document.querySelector(".paso1");
     const paso2 = document.querySelector(".paso2");
+    const paso2Venta = document.querySelector(".paso2 .venta");
+    const paso2postventa = document.querySelector(".paso2 .postventa");
 
     inputsText.forEach((input) => {
       input.addEventListener("input", () => {
@@ -3591,9 +3629,10 @@ import icon_thanks from "@/assets/icon_thanks.svg";
 
     const inputsGeneral = document.querySelectorAll(".inputgeneral");
     const btnContinuar = document.querySelector(".btncontinuar");
-    const radioButtons = document.querySelectorAll(
+    const selectSolicitud = document.querySelector('select[name="solicitud"]');
+    /* const radioButtons = document.querySelectorAll(
       'input[type="radio"][name="solicitud"]'
-    );
+    );*/
 
     var valorCaso = "" || "venta";
 
@@ -3602,11 +3641,13 @@ import icon_thanks from "@/assets/icon_thanks.svg";
       const allValid = Array.from(inputsGeneral).every((input) =>
         input.classList.contains("valid")
       );
+
+      /*
       const isRadioSelected = Array.from(radioButtons).some(
         (radio) => radio.checked
-      );
+      );*/
       // Actualizar el estado del botón
-      if (allValid && isRadioSelected) {
+      if (allValid) {
         btnContinuar.classList.add("active");
       } else {
         btnContinuar.classList.remove("active");
@@ -3615,12 +3656,24 @@ import icon_thanks from "@/assets/icon_thanks.svg";
 
     // Escuchar eventos de cambio en todos los inputs generales
     inputsGeneral.forEach((input) => {
-      input.addEventListener("input", validateInputs); // Para inputs tipo texto y número
+      //input.addEventListener("input", validateInputs); // Para inputs tipo texto y número
       input.addEventListener("change", validateInputs); // Para selects
     });
 
     // Escuchar eventos de cambio en los radio buttons
-    radioButtons.forEach((radio) => {
+    selectSolicitud.addEventListener("change", () => {
+      validateInputs();
+
+      // Imprimir el valor del radio seleccionado
+      const selectedRadio = document.querySelector(
+        'input[name="solicitud"]:checked'
+      );
+      if (selectedRadio) {
+        valorCaso = selectedRadio.value;
+      }
+    });
+
+    /*radioButtons.forEach((radio) => {
       radio.addEventListener("change", () => {
         validateInputs();
 
@@ -3632,7 +3685,7 @@ import icon_thanks from "@/assets/icon_thanks.svg";
           valorCaso = selectedRadio.value;
         }
       });
-    });
+    });*/
 
     // Validación inicial al cargar la página
     validateInputs();
@@ -3646,6 +3699,18 @@ import icon_thanks from "@/assets/icon_thanks.svg";
       document.querySelector(
         ".portlet[data-portlet='bannerform'] .section__align .content .formBC__footer-action.btncontinuar"
       ).style.display = "none";
+
+      const selectSolicitud = document.getElementById("solicitud");
+      const textoCondi = document.querySelector(
+        '.portlet[data-portlet="bannerform"] .section__align .content .formBC__group-text.textoCondi'
+      );
+      const valor = selectSolicitud.value;
+
+      if (valor === "Venta") {
+        textoCondi.textContent = "Solicitud de venta";
+      } else if (valor === "Post-venta") {
+        textoCondi.textContent = "Solicitud de post venta";
+      }
 
       document
         .querySelector(
