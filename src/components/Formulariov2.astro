@@ -3080,7 +3080,41 @@ import icon_thanks from "@/assets/icon_thanks.svg";
                               </select>
                             </dd>
                           </dl>
-                          <p class="tipo">Tipo de solicitud</p>
+                          <p class="tipo">Que deseas hacer</p>
+                          <dl class="type1">
+                            <dd class="contentSelect">
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="16"
+                                height="9"
+                                viewBox="0 0 16 9"
+                                fill="none"
+                              >
+                                <path
+                                  d="M1 1.00006L8 8.00006L15 1.00006"
+                                  stroke="black"></path>
+                              </svg>
+                              <select
+                                name="solicitud"
+                                id="solicitud"
+                                class="formBC__main-input inputgeneral"
+                              >
+                                <option
+                                  value="¿Cómo deseas que te contactemos?"
+                                >
+                                  Elige el tipo de solicitud
+                                </option>
+                                <!-- 
+                                <option value="Venta"
+                                  >Adquirir un nuevo servicio</option
+                                >
+                                <option value="Post-venta">
+                                  Consultar sobre mi servicio actual
+                                </option> -->
+                              </select>
+                            </dd>
+                          </dl>
+                          <!-- 
                           <dl class="type1">
                             <dd>
                               <div class="radio">
@@ -3111,11 +3145,13 @@ import icon_thanks from "@/assets/icon_thanks.svg";
                                 </p>
                               </div>
                             </dd>
-                          </dl>
+                          </dl> -->
                         </div>
                         <div class="paso2 ocultar">
                           <div class="venta">
-                            <p class="formBC__group-text">Solicitud de venta</p>
+                            <p class="formBC__group-text textoCondi">
+                              Solicitud de venta
+                            </p>
                             <dl class="type1">
                               <dd class="contentSelect">
                                 <svg
@@ -3220,6 +3256,22 @@ import icon_thanks from "@/assets/icon_thanks.svg";
                                   <option value="">Selecciona una opción</option
                                   >
                                 </select>
+                              </dd>
+                            </dl>
+                            <dl
+                              class="type1 inputCasual"
+                              style="display: none;"
+                            >
+                              <dd>
+                                <input
+                                  class="formBC__main-input"
+                                  type="number"
+                                  id="cantidad"
+                                  autocomplete="nope"
+                                  name="cantidad"
+                                  placeholder="Cantidad"
+                                  disabled
+                                />
                               </dd>
                             </dl>
                             <dl class="type1">
@@ -3408,6 +3460,51 @@ import icon_thanks from "@/assets/icon_thanks.svg";
 </div>
 <script is:inline>
   $(document).ready(async function () {
+    const BASE_URL2 = `https://ticketapi.dev-limprod.com/api`;
+
+    // Función para obtener grupos de solicitud - DEBE DEFINIRSE ANTES DE USARSE
+    const getServiceRequestGroups = async () => {
+      try {
+        const response = await fetch(`${BASE_URL2}/service-request-groups`);
+        const data = await response.json();
+        // Filtrar solo los que tienen state = true
+        const filteredData = data.filter((item) => item.state === true);
+        return filteredData;
+      } catch (error) {
+        console.error("Error al obtener grupos de solicitud:", error);
+        return [];
+      }
+    };
+    // Cargar opciones del select de solicitud
+    const serviceRequestGroups = await getServiceRequestGroups();
+    const solicitudSelect = document.getElementById("solicitud");
+
+    if (serviceRequestGroups.length > 0) {
+      // Eliminar la opción por defecto si existe
+      const defaultOption = solicitudSelect.querySelector(
+        'option[value="¿Cómo deseas que te contactemos?"]'
+      );
+      if (defaultOption) {
+        solicitudSelect.innerHTML = ""; // Limpiar todas las opciones
+      }
+
+      // Agregar nueva opción por defecto
+      const firstOption = document.createElement("option");
+      firstOption.value = "";
+      firstOption.textContent = "Elige el tipo de solicitud";
+      solicitudSelect.appendChild(firstOption);
+
+      // Agregar opciones de la API
+      serviceRequestGroups.forEach((group) => {
+        const option = document.createElement("option");
+        option.value = group.name; // Usar el nombre como valor
+        option.textContent = group.name;
+        // Establecer data-id para mantener el ID original
+        option.setAttribute("data-id", group.id);
+        solicitudSelect.appendChild(option);
+      });
+    }
+
     setTimeout(function () {
       document.querySelector("form.formBC").reset();
       const elementsinputs2 = document.querySelectorAll(
@@ -3442,6 +3539,8 @@ import icon_thanks from "@/assets/icon_thanks.svg";
 
     const paso1 = document.querySelector(".paso1");
     const paso2 = document.querySelector(".paso2");
+    const paso2Venta = document.querySelector(".paso2 .venta");
+    const paso2postventa = document.querySelector(".paso2 .postventa");
 
     inputsText.forEach((input) => {
       input.addEventListener("input", () => {
@@ -3570,6 +3669,32 @@ import icon_thanks from "@/assets/icon_thanks.svg";
       }
     });
 
+    // Validación para el input de cantidad
+    const cantidadInput = document.querySelector(
+      '.inputCasual input[name="cantidad"]'
+    );
+
+    if (cantidadInput) {
+      cantidadInput.addEventListener("input", function () {
+        let value = this.value;
+        // Permitir solo números
+        value = value.replace(/\D/g, "");
+        this.value = value;
+
+        // Validar que sea mayor a 0
+        if (value > 0) {
+          this.classList.add("valid");
+          this.classList.remove("invalid");
+        } else {
+          this.classList.add("invalid");
+          this.classList.remove("valid");
+        }
+
+        // Actualizar estado del botón
+        updateButtonState();
+      });
+    }
+
     // Validación para los selects
     const selectInputs = document.querySelectorAll("select");
     selectInputs.forEach((select) => {
@@ -3591,47 +3716,61 @@ import icon_thanks from "@/assets/icon_thanks.svg";
 
     const inputsGeneral = document.querySelectorAll(".inputgeneral");
     const btnContinuar = document.querySelector(".btncontinuar");
-    const radioButtons = document.querySelectorAll(
-      'input[type="radio"][name="solicitud"]'
-    );
+    const selectSolicitud = document.getElementById("solicitud");
 
-    var valorCaso = "" || "venta";
+    // Variable para almacenar el valor seleccionado
+    var valorCaso = "";
 
+    // Modificar la función validateInputs para que funcione con el nuevo select
     const validateInputs = () => {
       // Verificar si todos los inputs tienen la clase 'valid'
       const allValid = Array.from(inputsGeneral).every((input) =>
         input.classList.contains("valid")
       );
-      const isRadioSelected = Array.from(radioButtons).some(
-        (radio) => radio.checked
-      );
+
+      // Verificar si se ha seleccionado una opción en el select de solicitud
+      const isSolicitudSelected = selectSolicitud.value !== "";
+
       // Actualizar el estado del botón
-      if (allValid && isRadioSelected) {
+      if (allValid && isSolicitudSelected) {
         btnContinuar.classList.add("active");
       } else {
         btnContinuar.classList.remove("active");
       }
     };
 
-    // Escuchar eventos de cambio en todos los inputs generales
-    inputsGeneral.forEach((input) => {
-      input.addEventListener("input", validateInputs); // Para inputs tipo texto y número
-      input.addEventListener("change", validateInputs); // Para selects
+    // Modificar el evento change del selectSolicitud
+    selectSolicitud.addEventListener("change", () => {
+      const selectedOption =
+        selectSolicitud.options[selectSolicitud.selectedIndex];
+      const selectedText = selectedOption.textContent;
+
+      // Determinar valorCaso basado en el texto seleccionado
+      if (selectedText === "Adquirir un nuevo servicio") {
+        valorCaso = "venta";
+      } else if (selectedText === "Consultar sobre mi servicio actual") {
+        valorCaso = "postventa";
+      } else {
+        valorCaso = "";
+      }
+
+      // Validar el select
+      if (selectSolicitud.value !== "") {
+        selectSolicitud.classList.add("valid");
+        selectSolicitud.classList.remove("invalid");
+        selectSolicitud.parentElement.classList.add("ok");
+      } else {
+        selectSolicitud.classList.add("invalid");
+        selectSolicitud.classList.remove("valid");
+        selectSolicitud.parentElement.classList.add("ok");
+      }
+
+      validateInputs();
     });
 
-    // Escuchar eventos de cambio en los radio buttons
-    radioButtons.forEach((radio) => {
-      radio.addEventListener("change", () => {
-        validateInputs();
-
-        // Imprimir el valor del radio seleccionado
-        const selectedRadio = document.querySelector(
-          'input[name="solicitud"]:checked'
-        );
-        if (selectedRadio) {
-          valorCaso = selectedRadio.value;
-        }
-      });
+    // Escuchar eventos de cambio en todos los inputs generales
+    inputsGeneral.forEach((input) => {
+      input.addEventListener("change", validateInputs);
     });
 
     // Validación inicial al cargar la página
@@ -3646,6 +3785,31 @@ import icon_thanks from "@/assets/icon_thanks.svg";
       document.querySelector(
         ".portlet[data-portlet='bannerform'] .section__align .content .formBC__footer-action.btncontinuar"
       ).style.display = "none";
+
+      const selectSolicitud = document.getElementById("solicitud");
+      const textoCondi = document.querySelector(
+        '.portlet[data-portlet="bannerform"] .section__align .content .formBC__group-text.textoCondi'
+      );
+      const valor = selectSolicitud.value;
+
+      // Determinar el texto basado en la opción seleccionada
+      if (valor === "Adquirir un nuevo servicio") {
+        textoCondi.textContent = "Solicitud de venta";
+        // Mostrar sección de venta
+        document.querySelector(".paso2 .venta").classList.remove("ocultar");
+        if (document.querySelector(".paso2 .postventa")) {
+          document.querySelector(".paso2 .postventa").classList.add("ocultar");
+        }
+      } else if (valor === "Consultar sobre mi servicio actual") {
+        textoCondi.textContent = "Solicitud de post venta";
+        // Mostrar sección de postventa
+        if (document.querySelector(".paso2 .postventa")) {
+          document
+            .querySelector(".paso2 .postventa")
+            .classList.remove("ocultar");
+        }
+        document.querySelector(".paso2 .venta").classList.add("ocultar");
+      }
 
       document
         .querySelector(
@@ -3721,6 +3885,16 @@ import icon_thanks from "@/assets/icon_thanks.svg";
         }
         element.removeAttribute("style");
       });
+
+      // Resetear el input de cantidad
+      const cantidadInput = document.querySelector(
+        '.inputCasual input[name="cantidad"]'
+      );
+      const dlCantidad = document.querySelector(".inputCasual");
+      dlCantidad.style.display = "none";
+      cantidadInput.setAttribute("disabled", "true");
+      cantidadInput.value = "";
+      cantidadInput.classList.remove("valid", "invalid");
 
       const ventaContainer = document.querySelector(".paso2 .venta");
       const elementsToDisable = ventaContainer.querySelectorAll(
@@ -4032,6 +4206,31 @@ import icon_thanks from "@/assets/icon_thanks.svg";
 
     // Evento para el primer select (Servicio)
     servicioSelect.addEventListener("change", async () => {
+      const selectedOptionText =
+        servicioSelect.options[servicioSelect.selectedIndex].text;
+      const cantidadInput = document.querySelector(
+        '.inputCasual input[name="cantidad"]'
+      );
+      const dlCantidad = document.querySelector(".inputCasual");
+
+      // Mostrar/ocultar el input de cantidad
+      if (
+        selectedOptionText.includes("Camisa") ||
+        selectedOptionText.includes("Polo")
+      ) {
+        dlCantidad.style.display = "block";
+        cantidadInput.removeAttribute("disabled");
+        cantidadInput.setAttribute("required", "true");
+        cantidadInput.value = ""; // Limpiar valor previo
+        cantidadInput.classList.remove("valid", "invalid"); // Resetear validación
+      } else {
+        dlCantidad.style.display = "none";
+        cantidadInput.setAttribute("disabled", "true");
+        cantidadInput.removeAttribute("required");
+        cantidadInput.value = "";
+        cantidadInput.classList.remove("valid", "invalid");
+      }
+
       const selectedService = Number(servicioSelect.value);
       console.log({ selectedService });
       const selectedObject = await getServicesTypes(selectedService);
@@ -4310,6 +4509,18 @@ import icon_thanks from "@/assets/icon_thanks.svg";
             ".paso2 .venta input:not([disabled]):not(.opcional), .paso2 .venta select:not([disabled]):not(.opcional)"
           )
         ).filter((input) => input.id !== "promociones");
+        // Si el input de cantidad está visible, incluirlo en la validación
+        const cantidadInput = document.querySelector(
+          '.inputCasual input[name="cantidad"]'
+        );
+        const dlCantidad = document.querySelector(".inputCasual");
+
+        if (cantidadInput && dlCantidad.style.display !== "none") {
+          // Verificar si ya está en la lista para no duplicar
+          if (!inputs.includes(cantidadInput)) {
+            inputs.push(cantidadInput);
+          }
+        }
       } else if (isPostventaActive) {
         // Para postventa: todos los inputs necesarios
         inputs = Array.from(
@@ -4476,6 +4687,21 @@ import icon_thanks from "@/assets/icon_thanks.svg";
         //   serviceCode = document.querySelector(".postventa input[name='numero_o_codigo_de_servicio']").value
         // }
         //form2.submit();
+        // Obtener cantidad solo si el input está visible
+        let cantidad = null;
+        const cantidadInput = document.querySelector(
+          '.inputCasual input[name="cantidad"]'
+        );
+        const dlCantidad = document.querySelector(".inputCasual");
+
+        if (
+          cantidadInput &&
+          dlCantidad.style.display !== "none" &&
+          cantidadInput.value
+        ) {
+          cantidad = cantidadInput.value;
+        }
+
         const dataForSubmit = {
           channelId: 1,
           requestKind: document.querySelector(
@@ -4504,20 +4730,18 @@ import icon_thanks from "@/assets/icon_thanks.svg";
           status: "New",
           region: document.querySelector("select[name='region']").value,
           serviceCode: serviceCode,
+          // Agregar cantidad solo si tiene valor
+          ...(cantidad && { cantidad: parseInt(cantidad) }),
         };
-        console.log(
-          "Datos a enviar a la API:",
-          JSON.stringify(dataForSubmit, null, 2)
-        );
         //crear ticket usando la funcion createTicket y mostrar el modal de gracias cuando el ticket se crea correctamente
-        /*createTicket(dataForSubmit).then((data) => {
+        createTicket(dataForSubmit).then((data) => {
           //catpturar el status
           const { status: statusHttp } = data;
           console.log({ statusHttp });
           // console.log(dataForSubmit)
           formulario.classList.add("hidden");
           document.querySelector(".box_thanks").classList.remove("hidden");
-        });*/
+        });
         // grecaptcha.ready(function () {
         //   grecaptcha.execute("6Ld1_2caAAAAABG4EakA3PwvnyGjP2OLAn20_F9g", { action: "homepage" })
         //     .then(function (token) {
