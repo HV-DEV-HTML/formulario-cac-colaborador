@@ -3618,7 +3618,7 @@
         </div>
         <div class="plan">Max ilimitado 79.90</div>
         <div class="precio">S/ 39.95</div>
-        <div class="bajada">Precio mensual regular S/ 279.90</div>
+        <div class="bajada">Precio mensual regular S/ 79.90</div>
         <div class="redes">
           <p>Todo ilimitado</p>
           <span>Gigas, minutos y SMS</span>
@@ -4897,15 +4897,17 @@
   </div>
   <div class="container containerSlider">
     <div class="sliderCards sliderPlanesHogar sliderPlanesHogardos">
-      <div class="item">
+      <div class="item" style="justify-content: center !important;">
         <div>
           <div class="plan">
-            Universal+
+            Claro Video
+            <!-- 
             <br />
-            <span>Canales: 05</span>
+            <span>Canales: 05</span> -->
           </div>
+          <!-- 
           <div class="precio">S/ 15</div>
-          <div class="bajada">Precio regular: <span>S/ 30</span></div>
+          <div class="bajada">Precio regular: <span>S/ 30</span></div> -->
         </div>
 
         <button class="btnaction">Contratar</button>
@@ -5379,13 +5381,13 @@
     });
 
     const tabs = document.querySelectorAll(
-      "section.tramites .tabsTramites .tab"
+      "section.tramites .tabsTramites .tab",
     );
     const sliderPresenciales = document.querySelector(
-      "section.tramites .sliderPresenciales"
+      "section.tramites .sliderPresenciales",
     );
     const sliderNoPresenciales = document.querySelector(
-      "section.tramites .sliderNoPresenciales"
+      "section.tramites .sliderNoPresenciales",
     );
 
     // función para actualizar según tab activo
@@ -5410,7 +5412,7 @@
 
     // inicializar con el tab que ya tiene "active"
     const tabInicial = document.querySelector(
-      "section.tramites .tabsTramites .tab.active"
+      "section.tramites .tabsTramites .tab.active",
     );
     if (tabInicial) {
       actualizarSliders(tabInicial);
@@ -5644,13 +5646,13 @@
       });
 
     const buttonPaquetesTV = document.querySelectorAll(
-      "section.planesHogar .sliderPlanesHogar .item button.btnaction"
+      "section.planesHogar .sliderPlanesHogar .item button.btnaction",
     );
     if (buttonPaquetesTV) {
       buttonPaquetesTV.forEach((element) => {
         element.addEventListener("click", function () {
           const label = document.querySelector(
-            '.portlet[data-portlet="bannerform"] .section__align .content .formBC__main .radio label[for="venta"]'
+            '.portlet[data-portlet="bannerform"] .section__align .content .formBC__main .radio label[for="venta"]',
           );
           if (label) {
             label.click();
@@ -5672,13 +5674,13 @@
     }
 
     const buttonPaquetesmovil = document.querySelectorAll(
-      "section.planesMovil .sliderPlanesMovil .item button.btnaction"
+      "section.planesMovil .sliderPlanesMovil .item button.btnaction",
     );
     if (buttonPaquetesmovil) {
       buttonPaquetesmovil.forEach((element) => {
         element.addEventListener("click", function () {
           const label = document.querySelector(
-            '.portlet[data-portlet="bannerform"] .section__align .content .formBC__main .radio label[for="venta"]'
+            '.portlet[data-portlet="bannerform"] .section__align .content .formBC__main .radio label[for="venta"]',
           );
           if (label) {
             label.click();

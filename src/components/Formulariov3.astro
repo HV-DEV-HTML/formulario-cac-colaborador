@@ -3075,8 +3075,10 @@ import icon_thanks from "@/assets/icon_thanks.svg";
                                 >
                                   ¿Cómo deseas que te contactemos?
                                 </option>
+                                <!-- 
                                 <option value="Llamada">Llamada</option>
                                 <option value="WhatsApp">WhatsApp</option>
+                                 -->
                               </select>
                             </dd>
                           </dl>
@@ -3476,6 +3478,26 @@ import icon_thanks from "@/assets/icon_thanks.svg";
         return [];
       }
     };
+    const select = document.getElementById("como_deseas_que_te_contactemos");
+
+    fetch(`${BASE_URL2}/channels`)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Error al obtener los canales");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        data.forEach((channel) => {
+          const option = document.createElement("option");
+          option.value = channel.name;
+          option.textContent = channel.name;
+          select.appendChild(option);
+        });
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
     // Cargar opciones del select de solicitud
     const serviceRequestGroups = await getServiceRequestGroups();
     // Evento para cargar servicios cuando se selecciona una opción en el select de solicitud
@@ -4859,6 +4881,14 @@ import icon_thanks from "@/assets/icon_thanks.svg";
           formulario.classList.remove("hidden");
           document.querySelector(".box_thanks").classList.add("hidden");
           limpiarFormulario();
+          const btnVolverInicio = document.querySelector(".btnvolver");
+          btnVolverInicio.classList.remove("active");
+          const allSelects = document.querySelectorAll(
+            "form.formBC .contentSelect",
+          );
+          allSelects.forEach((contentSelect) => {
+            contentSelect.classList.remove("ok");
+          });
         });
     }
 
