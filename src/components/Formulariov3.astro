@@ -2917,27 +2917,24 @@ import icon_thanks from "@/assets/icon_thanks.svg";
                   </div>
                 </div>
               </div>
-              <picture class="section__banner">
-                <source
+              <picture class="section__banner"
+                ><source
                   media="(max-width: 500px)"
-                  srcset="https://www.claro.com.pe/assets/havas/landing-formulario-cac-colaborador/fondo-cacv2.png"
-                />
-                <source
+                  srcset="https://www.claro.com.pe/assets/havas/landing-formulario-cac-colaborador/fondo-cacv2.webp"
+                /><source
                   media="(max-width: 900px)"
-                  srcset="https://www.claro.com.pe/assets/havas/landing-formulario-cac-colaborador/fondo-cacv2.png"
-                />
-                <source
+                  srcset="https://www.claro.com.pe/assets/havas/landing-formulario-cac-colaborador/fondo-cacv2.webp"
+                /><source
                   media="(min-width: 640px)"
-                  srcset="https://www.claro.com.pe/assets/havas/landing-formulario-cac-colaborador/assets/fondo-cacv2.png"
-                />
-                <img
-                  src="https://www.claro.com.pe/assets/havas/landing-formulario-cac-colaborador/assets/fondo-cacv2.png"
+                  srcset="https://www.claro.com.pe/assets/havas/landing-formulario-cac-colaborador/assets/fondo-cacv2.webp"
+                /><img
+                  src="https://www.claro.com.pe/assets/havas/landing-formulario-cac-colaborador/assets/fondo-cacv2.webp"
                   alt="Banner Form Claro"
                   width="auto"
                   height="auto"
                   loading="lazy"
-                />
-              </picture>
+                /></picture
+              >
               <div class="section__align">
                 <div class="content">
                   <div
@@ -3465,7 +3462,7 @@ import icon_thanks from "@/assets/icon_thanks.svg";
 </div>
 <script is:inline>
   $(document).ready(async function () {
-    const BASE_URL2 = `https://ticketapi.dev-limprod.com/api`;
+    const BASE_URL2 = `https://api_tickets_cac.claromarketingcloud.pe/api`;
     const getServiceRequestGroups = async () => {
       try {
         const response = await fetch(`${BASE_URL2}/service-request-groups`);
@@ -4106,7 +4103,7 @@ import icon_thanks from "@/assets/icon_thanks.svg";
     const subsubcategoriaSelect = document.getElementById(
       "tipo_servicio_venta_subsubcategoria",
     );
-    const BASE_URL = `https://ticketapi.dev-limprod.com/api`;
+    const BASE_URL = `https://api_tickets_cac.claromarketingcloud.pe/api`;
 
     // Función para llenar opciones en un select y manejar el atributo disabled
     const fillSelect = (selectElement, options) => {
