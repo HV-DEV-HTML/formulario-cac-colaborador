@@ -3659,7 +3659,7 @@ import icon_thanks from "@/assets/icon_thanks.svg";
             nombreInput.classList.add("valid");
             nombreInput.classList.remove("invalid");
             celularInput.value = phone;
-            celularInput.disabled = true;
+            //celularInput.disabled = true;
             celularInput.classList.add("valid");
             celularInput.classList.remove("invalid");
             colaboratorIdInput.value = colaboratorId;
@@ -4577,23 +4577,38 @@ import icon_thanks from "@/assets/icon_thanks.svg";
 
     // Validación para el código de cliente (ambos campos)
     const codigoClienteInputs = document.querySelectorAll(".codigoCliente");
+    const tipoServicioSelect = document.querySelector("#tipo_servicio_venta");
 
     codigoClienteInputs.forEach((input) => {
       input.addEventListener("input", () => {
         let value = input.value;
 
-        // Permitir solo números
+        // Solo números
         value = value.replace(/\D/g, "");
 
-        // Limitar a 9 caracteres
+        // Máximo 9 caracteres
         if (value.length > 9) {
           value = value.slice(0, 9);
         }
 
         input.value = value;
 
-        // Validación: exactamente 9 caracteres y debe comenzar con 9
-        if (/^9\d{8}$/.test(value)) {
+        // Texto de la opción seleccionada
+        const tipoServicioTexto =
+          tipoServicioSelect.options[tipoServicioSelect.selectedIndex].text;
+
+        let isValid = false;
+
+        if (tipoServicioTexto.includes("Móvil")) {
+          // Móvil: 9 dígitos y comienza con 9
+          isValid = /^9\d{8}$/.test(value);
+        } else if (tipoServicioTexto.includes("Fijo")) {
+          // Fijo: 9 dígitos y comienza con 0
+          isValid = /^0\d{8}$/.test(value);
+        }
+
+        // Aplicar clases
+        if (isValid) {
           input.classList.add("valid");
           input.classList.remove("invalid");
         } else {
@@ -4601,9 +4616,18 @@ import icon_thanks from "@/assets/icon_thanks.svg";
           input.classList.remove("valid");
         }
 
-        // Actualizar estado del botón
         updateButtonState();
       });
+    });
+
+    // Resetear input cuando cambia el select
+    tipoServicioSelect.addEventListener("change", () => {
+      codigoClienteInputs.forEach((input) => {
+        input.value = "";
+        input.classList.remove("valid", "invalid");
+      });
+
+      updateButtonState();
     });
 
     const form = document.querySelector(".formBC .contentInputlista");
