@@ -3283,7 +3283,7 @@ import icon_thanks from "@/assets/icon_thanks.svg";
                                   type="text"
                                   autocomplete="nope"
                                   name="numero_o_codigo_de_servicio"
-                                  placeholder="Ingresa el número de cliente en consulta de ce..."
+                                  placeholder="Ingresa el número de cliente en consulta"
                                   maxlength="9"
                                 />
                               </dd>
@@ -4622,9 +4622,19 @@ import icon_thanks from "@/assets/icon_thanks.svg";
 
     // Resetear input cuando cambia el select
     tipoServicioSelect.addEventListener("change", () => {
+      const tipoServicioTexto =
+        tipoServicioSelect.options[tipoServicioSelect.selectedIndex].text;
+
       codigoClienteInputs.forEach((input) => {
-        input.value = "";
         input.classList.remove("valid", "invalid");
+
+        if (tipoServicioTexto.includes("Fijo")) {
+          input.value = "01";
+          // Forzar validación
+          input.dispatchEvent(new Event("input"));
+        } else {
+          input.value = "";
+        }
       });
 
       updateButtonState();
