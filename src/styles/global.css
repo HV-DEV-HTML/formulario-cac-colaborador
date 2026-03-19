@@ -30,3 +30,8 @@
   --swiper-navigation-color: #DE187D;
   --swiper-pagination-color: #DA291C;
 }
+
+@font-face {
+    font-family: 'claroicons';
+    src: url(https://www.claro.com.pe/portal/pe/recursos_tema_evo/assets/fonts/claroicons.ttf) format('truetype');
+}
