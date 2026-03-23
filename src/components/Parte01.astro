@@ -1,8 +1,6 @@
 ---
-
-import MaxIlimitado from './Planes/MaxIlimitado.astro';
-import MaxTab from './Planes/Max.astro';
-
+import MaxIlimitado from "./Planes/MaxIlimitado.astro";
+import MaxTab from "./Planes/Max.astro";
 ---
 
 <style is:inline>
@@ -853,6 +851,9 @@ import MaxTab from './Planes/Max.astro';
     padding: 0px 11px;
   }
 
+  section.planesHogar .sliderPlanesHogar .cardSlide {
+    padding: 0 14px;
+  }
   section.planesMovil .sliderPlanesMovil {
     height: 0;
     margin: 0;
@@ -1047,9 +1048,25 @@ import MaxTab from './Planes/Max.astro';
 
   section.planesHogar .sliderPlanesHogar .item {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     flex-direction: column;
     height: auto;
+    padding-left: 4px;
+    padding-right: 4px;
+  }
+
+  section.planesHogar .sliderPlanesHogar.sliderPlanesHogardos .item {
+    height: 261px;
+  }
+  @media (min-width: 768px) {
+    section.planesHogar .sliderPlanesHogar.sliderPlanesHogardos .item {
+      height: 229px;
+    }
+  }
+  @media (min-width: 1400px) {
+    section.planesHogar .sliderPlanesHogar.sliderPlanesHogardos .item {
+      height: 229px;
+    }
   }
 
   section.planesHogar .sliderPlanesHogar .slick-track {
@@ -2056,686 +2073,522 @@ import MaxTab from './Planes/Max.astro';
   </div>
 </section>
 <section class="planesMovil" category="Movil">
-    <div class="container">
-      <h2>Planes móviles Max y Max Ilimitado</h2>
-      <div class="tabs">
-        <div class="tab active">Max ilimitado</div>
-        <div class="tab">Max</div>
-      </div>
+  <div class="container">
+    <h2>Planes móviles Max y Max Ilimitado</h2>
+    <div class="tabs">
+      <div class="tab active">Max ilimitado</div>
+      <div class="tab">Max</div>
     </div>
-    <div class="container containerSlider">
-      <MaxIlimitado />
-      <MaxTab />
-    </div>
-  </section>
+  </div>
+  <div class="container containerSlider">
+    <MaxIlimitado />
+    <MaxTab />
+  </div>
+</section>
 <section class="planesHogar" category="Hogar">
   <div class="container">
     <h2>Planes Hogar 3 Play con 50% dscto.</h2>
   </div>
   <div class="container containerSlider">
     <div class="sliderCards sliderPlanesHogar sliderPlanesHogaruno">
-      <div class="item">
-        <div class="etiqueta">OFERTA ONLINE</div>
-        <div class="antetitulo">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-          >
-            <path
-              d="M10.2547 3H6C4.34315 3 3 4.34315 3 6V14.4C3 16.0569 4.34315 17.4 6 17.4H18C19.6569 17.4 21 16.0569 21 14.4V13.521"
-              stroke="#283342"
-              stroke-width="2"></path>
-            <path
-              d="M9 20.4C9.22327 20.2593 11.9318 18 11.9318 18L15 20.4"
-              stroke="#283342"
-              stroke-width="2"
-              stroke-linecap="round"></path>
-            <path
-              d="M12.0117 5.9743C12.0117 5.9743 13.8145 3.59998 17.0163 3.59998C20.2181 3.59998 21.7352 5.9743 21.7352 5.9743"
-              stroke="#283342"
-              stroke-width="2"
-              stroke-linecap="round"></path>
-            <path
-              d="M14.4492 8.30369C14.4492 8.30369 15.6163 7.04309 17.0816 7.04309C18.5468 7.04309 19.5069 8.26577 19.5069 8.26577"
-              stroke="#283342"
-              stroke-width="2"
-              stroke-linecap="round"></path>
-            <mask id="path-5-inside-1_43_7286" fill="white">
-              <ellipse cx="16.8266" cy="11.0314" rx="0.599999" ry="0.6"
-              ></ellipse>
-            </mask>
-            <ellipse
-              cx="16.8266"
-              cy="11.0314"
-              rx="0.599999"
-              ry="0.6"
-              fill="#D8D8D8"></ellipse>
-            <path
-              d="M17.4266 11.0314H16.4266C16.4266 10.8105 16.6056 10.6314 16.8266 10.6314V11.6314V12.6314C17.7102 12.6314 18.4266 11.9151 18.4266 11.0314H17.4266ZM16.8266 11.6314V10.6314C17.0475 10.6314 17.2266 10.8105 17.2266 11.0314H16.2266H15.2266C15.2266 11.9151 15.9429 12.6314 16.8266 12.6314V11.6314ZM16.2266 11.0314H17.2266C17.2266 11.2523 17.0475 11.4314 16.8266 11.4314V10.4314V9.4314C15.9429 9.4314 15.2266 10.1477 15.2266 11.0314H16.2266ZM16.8266 10.4314V11.4314C16.6056 11.4314 16.4266 11.2523 16.4266 11.0314H17.4266H18.4266C18.4266 10.1477 17.7102 9.4314 16.8266 9.4314V10.4314Z"
-              fill="#283342"
-              mask="url(#path-5-inside-1_43_7286)"></path>
-          </svg>
-          <p>3 Play</p>
+      <div class="cardSlide">
+        <div
+          class="item"
+        >
+          <div class="etiqueta">OFERTA ONLINE</div><div class="antetitulo">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              ><path
+                d="M10.2547 3H6C4.34315 3 3 4.34315 3 6V14.4C3 16.0569 4.34315 17.4 6 17.4H18C19.6569 17.4 21 16.0569 21 14.4V13.521"
+                stroke="#283342"
+                stroke-width="2"></path><path
+                d="M9 20.4C9.22327 20.2593 11.9318 18 11.9318 18L15 20.4"
+                stroke="#283342"
+                stroke-width="2"
+                stroke-linecap="round"></path><path
+                d="M12.0117 5.9743C12.0117 5.9743 13.8145 3.59998 17.0163 3.59998C20.2181 3.59998 21.7352 5.9743 21.7352 5.9743"
+                stroke="#283342"
+                stroke-width="2"
+                stroke-linecap="round"></path><path
+                d="M14.4492 8.30369C14.4492 8.30369 15.6163 7.04309 17.0816 7.04309C18.5468 7.04309 19.5069 8.26577 19.5069 8.26577"
+                stroke="#283342"
+                stroke-width="2"
+                stroke-linecap="round"></path><mask
+                id="path-5-inside-1_43_7286"
+                fill="white"
+                ><ellipse cx="16.8266" cy="11.0314" rx="0.599999" ry="0.6"
+                ></ellipse></mask
+              ><ellipse
+                cx="16.8266"
+                cy="11.0314"
+                rx="0.599999"
+                ry="0.6"
+                fill="#D8D8D8"></ellipse><path
+                d="M17.4266 11.0314H16.4266C16.4266 10.8105 16.6056 10.6314 16.8266 10.6314V11.6314V12.6314C17.7102 12.6314 18.4266 11.9151 18.4266 11.0314H17.4266ZM16.8266 11.6314V10.6314C17.0475 10.6314 17.2266 10.8105 17.2266 11.0314H16.2266H15.2266C15.2266 11.9151 15.9429 12.6314 16.8266 12.6314V11.6314ZM16.2266 11.0314H17.2266C17.2266 11.2523 17.0475 11.4314 16.8266 11.4314V10.4314V9.4314C15.9429 9.4314 15.2266 10.1477 15.2266 11.0314H16.2266ZM16.8266 10.4314V11.4314C16.6056 11.4314 16.4266 11.2523 16.4266 11.0314H17.4266H18.4266C18.4266 10.1477 17.7102 9.4314 16.8266 9.4314V10.4314Z"
+                fill="#283342"
+                mask="url(#path-5-inside-1_43_7286)"></path></svg
+            ><p>3 Play</p>
+          </div><div class="plan">
+            Internet 200Mbps + <br /> TV Superior Pro + Telefonía
+          </div><div class="precio">S/ 97.50</div><div class="bajada">
+            Precio regular: <span>S/ 195</span>
+          </div><button class="btnaction" tabindex="0">Contratar</button>
         </div>
-        <div class="plan">
-          Internet 200Mbps +<br /> TV Superior Pro + Telefonía
-        </div>
-        <div class="precio">S/ 97.50</div>
-        <div class="bajada">Precio regular: <span>S/ 195</span></div>
-        <!-- 
-        <div class="tab">Ver detalle del plan <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
-            viewBox="0 0 14 14" fill="none">
-            <path fill-rule="evenodd" clip-rule="evenodd"
-              d="M7 13.125C10.3827 13.125 13.125 10.3827 13.125 7C13.125 3.61725 10.3827 0.875 7 0.875C3.61725 0.875 0.875 3.61725 0.875 7C0.875 10.3827 3.61725 13.125 7 13.125Z"
-              stroke="#0093A3" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-            <path d="M4.55078 7L7.00078 9.45L9.45078 7" stroke="#0093A3" stroke-width="1.5" stroke-linecap="round"
-              stroke-linejoin="round" />
-            <path d="M6.99961 4.54993V9.44993" stroke="#0093A3" stroke-width="1.5" stroke-linecap="round"
-              stroke-linejoin="round" />
-          </svg>
-        </div>
-        <div class="contentDetalle">
-          <div class="info">
-            <div class="subitem">
-              <div class="part1">Gigas del plan</div>
-              <div class="part2">10 GB</div>
-            </div>
-            <div class="subitem">
-              <div class="part1">Llamadas y SMS</div>
-              <div class="part2">Ilimitadas</div>
-            </div>
-            <div class="subitem">
-              <div class="part1">Redes sociales</div>
-              <div class="part2"></div>
-            </div>
-            <div class="subitem">
-              <div class="part1">Cobertura internacional</div>
-              <div class="part2">Zona Andina y Zona América</div>
-            </div>
-            <div class="subitem">
-              <div class="part1">Suscripción gratuita</div>
-              <div class="part2 img">
-                <img
-                  src="https://www.claro.com.pe/assets/havas/landing-formulario-cac-colaborador/assets/icon-incluye-claroclubv2.png"
-                  alt="">
-                <img
-                  src="https://www.claro.com.pe/assets/havas/landing-formulario-cac-colaborador/assets/icon_claromusica.png"
-                  alt="">
-              </div>
-            </div>
-            <div class="subitem">
-              <div class="part1">Beneficios adicionales</div>
-              <div class="part2 img">
-                <img
-                  src="https://www.claro.com.pe/assets/havas/landing-formulario-cac-colaborador/assets/icon_claroclub.png"
-                  alt="">
-                <img
-                  src="https://www.claro.com.pe/assets/havas/landing-formulario-cac-colaborador/assets/icon_clarodrive.png"
-                  alt="">
-              </div>
-            </div>
-          </div>
-          <div class="pie">*Aplica para planes contratados y activados al 15.08.25</div>
-          <a href="#">Conoce más</a>
-        </div> -->
-        <button class="btnaction">Contratar</button>
       </div>
-      <div class="item">
-        <div class="etiqueta">OFERTA ONLINE</div>
-        <div class="antetitulo">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-          >
-            <path
-              d="M10.2547 3H6C4.34315 3 3 4.34315 3 6V14.4C3 16.0569 4.34315 17.4 6 17.4H18C19.6569 17.4 21 16.0569 21 14.4V13.521"
-              stroke="#283342"
-              stroke-width="2"></path>
-            <path
-              d="M9 20.4C9.22327 20.2593 11.9318 18 11.9318 18L15 20.4"
-              stroke="#283342"
-              stroke-width="2"
-              stroke-linecap="round"></path>
-            <path
-              d="M12.0117 5.9743C12.0117 5.9743 13.8145 3.59998 17.0163 3.59998C20.2181 3.59998 21.7352 5.9743 21.7352 5.9743"
-              stroke="#283342"
-              stroke-width="2"
-              stroke-linecap="round"></path>
-            <path
-              d="M14.4492 8.30369C14.4492 8.30369 15.6163 7.04309 17.0816 7.04309C18.5468 7.04309 19.5069 8.26577 19.5069 8.26577"
-              stroke="#283342"
-              stroke-width="2"
-              stroke-linecap="round"></path>
-            <mask id="path-5-inside-1_43_7286" fill="white">
-              <ellipse cx="16.8266" cy="11.0314" rx="0.599999" ry="0.6"
-              ></ellipse>
-            </mask>
-            <ellipse
-              cx="16.8266"
-              cy="11.0314"
-              rx="0.599999"
-              ry="0.6"
-              fill="#D8D8D8"></ellipse>
-            <path
-              d="M17.4266 11.0314H16.4266C16.4266 10.8105 16.6056 10.6314 16.8266 10.6314V11.6314V12.6314C17.7102 12.6314 18.4266 11.9151 18.4266 11.0314H17.4266ZM16.8266 11.6314V10.6314C17.0475 10.6314 17.2266 10.8105 17.2266 11.0314H16.2266H15.2266C15.2266 11.9151 15.9429 12.6314 16.8266 12.6314V11.6314ZM16.2266 11.0314H17.2266C17.2266 11.2523 17.0475 11.4314 16.8266 11.4314V10.4314V9.4314C15.9429 9.4314 15.2266 10.1477 15.2266 11.0314H16.2266ZM16.8266 10.4314V11.4314C16.6056 11.4314 16.4266 11.2523 16.4266 11.0314H17.4266H18.4266C18.4266 10.1477 17.7102 9.4314 16.8266 9.4314V10.4314Z"
-              fill="#283342"
-              mask="url(#path-5-inside-1_43_7286)"></path>
-          </svg>
-          <p>3 Play</p>
-        </div>
-        <div class="plan">
-          Internet 300Mbps + <br />
-          TV Superior Pro + Telefonía
-        </div>
-        <div class="precio">S/ 102.50</div>
-        <div class="bajada">Precio regular: <span>S/ 205</span></div>
-        <!-- 
-        <div class="tab">Ver detalle del plan <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
-            viewBox="0 0 14 14" fill="none">
-            <path fill-rule="evenodd" clip-rule="evenodd"
-              d="M7 13.125C10.3827 13.125 13.125 10.3827 13.125 7C13.125 3.61725 10.3827 0.875 7 0.875C3.61725 0.875 0.875 3.61725 0.875 7C0.875 10.3827 3.61725 13.125 7 13.125Z"
-              stroke="#0093A3" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-            <path d="M4.55078 7L7.00078 9.45L9.45078 7" stroke="#0093A3" stroke-width="1.5" stroke-linecap="round"
-              stroke-linejoin="round" />
-            <path d="M6.99961 4.54993V9.44993" stroke="#0093A3" stroke-width="1.5" stroke-linecap="round"
-              stroke-linejoin="round" />
-          </svg>
-        </div>
-        <div class="contentDetalle">
-          <div class="info">
-            <div class="subitem">
-              <div class="part1">Gigas del plan</div>
-              <div class="part2">10 GB</div>
-            </div>
-            <div class="subitem">
-              <div class="part1">Llamadas y SMS</div>
-              <div class="part2">Ilimitadas</div>
-            </div>
-            <div class="subitem">
-              <div class="part1">Redes sociales</div>
-              <div class="part2"></div>
-            </div>
-            <div class="subitem">
-              <div class="part1">Cobertura internacional</div>
-              <div class="part2">Zona Andina y Zona América</div>
-            </div>
-            <div class="subitem">
-              <div class="part1">Suscripción gratuita</div>
-              <div class="part2 img">
-                <img
-                  src="https://www.claro.com.pe/assets/havas/landing-formulario-cac-colaborador/assets/icon-incluye-claroclubv2.png"
-                  alt="">
-                <img
-                  src="https://www.claro.com.pe/assets/havas/landing-formulario-cac-colaborador/assets/icon_claromusica.png"
-                  alt="">
-              </div>
-            </div>
-            <div class="subitem">
-              <div class="part1">Beneficios adicionales</div>
-              <div class="part2 img">
-                <img
-                  src="https://www.claro.com.pe/assets/havas/landing-formulario-cac-colaborador/assets/icon_claroclub.png"
-                  alt="">
-                <img
-                  src="https://www.claro.com.pe/assets/havas/landing-formulario-cac-colaborador/assets/icon_clarodrive.png"
-                  alt="">
-              </div>
-            </div>
+      <div class="cardSlide">
+        <div class="item">
+          <div class="etiqueta">OFERTA ONLINE</div>
+          <div class="antetitulo">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+            >
+              <path
+                d="M10.2547 3H6C4.34315 3 3 4.34315 3 6V14.4C3 16.0569 4.34315 17.4 6 17.4H18C19.6569 17.4 21 16.0569 21 14.4V13.521"
+                stroke="#283342"
+                stroke-width="2"></path>
+              <path
+                d="M9 20.4C9.22327 20.2593 11.9318 18 11.9318 18L15 20.4"
+                stroke="#283342"
+                stroke-width="2"
+                stroke-linecap="round"></path>
+              <path
+                d="M12.0117 5.9743C12.0117 5.9743 13.8145 3.59998 17.0163 3.59998C20.2181 3.59998 21.7352 5.9743 21.7352 5.9743"
+                stroke="#283342"
+                stroke-width="2"
+                stroke-linecap="round"></path>
+              <path
+                d="M14.4492 8.30369C14.4492 8.30369 15.6163 7.04309 17.0816 7.04309C18.5468 7.04309 19.5069 8.26577 19.5069 8.26577"
+                stroke="#283342"
+                stroke-width="2"
+                stroke-linecap="round"></path>
+              <mask id="path-5-inside-1_43_7286" fill="white">
+                <ellipse cx="16.8266" cy="11.0314" rx="0.599999" ry="0.6"
+                ></ellipse>
+              </mask>
+              <ellipse
+                cx="16.8266"
+                cy="11.0314"
+                rx="0.599999"
+                ry="0.6"
+                fill="#D8D8D8"></ellipse>
+              <path
+                d="M17.4266 11.0314H16.4266C16.4266 10.8105 16.6056 10.6314 16.8266 10.6314V11.6314V12.6314C17.7102 12.6314 18.4266 11.9151 18.4266 11.0314H17.4266ZM16.8266 11.6314V10.6314C17.0475 10.6314 17.2266 10.8105 17.2266 11.0314H16.2266H15.2266C15.2266 11.9151 15.9429 12.6314 16.8266 12.6314V11.6314ZM16.2266 11.0314H17.2266C17.2266 11.2523 17.0475 11.4314 16.8266 11.4314V10.4314V9.4314C15.9429 9.4314 15.2266 10.1477 15.2266 11.0314H16.2266ZM16.8266 10.4314V11.4314C16.6056 11.4314 16.4266 11.2523 16.4266 11.0314H17.4266H18.4266C18.4266 10.1477 17.7102 9.4314 16.8266 9.4314V10.4314Z"
+                fill="#283342"
+                mask="url(#path-5-inside-1_43_7286)"></path>
+            </svg>
+            <p>3 Play</p>
           </div>
-          <div class="pie">*Aplica para planes contratados y activados al 15.08.25</div>
-          <a href="#">Conoce más</a>
-        </div> -->
-        <button class="btnaction">Contratar</button>
+          <div class="plan">
+            Internet 300Mbps + <br />
+            TV Superior Pro + Telefonía
+          </div>
+          <div class="precio">S/ 102.50</div>
+          <div class="bajada">Precio regular: <span>S/ 205</span></div>
+          <button class="btnaction">Contratar</button>
+        </div>
       </div>
-      <div class="item">
-        <div class="etiqueta">OFERTA ONLINE</div>
-        <div class="antetitulo">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-          >
-            <path
-              d="M10.2547 3H6C4.34315 3 3 4.34315 3 6V14.4C3 16.0569 4.34315 17.4 6 17.4H18C19.6569 17.4 21 16.0569 21 14.4V13.521"
-              stroke="#283342"
-              stroke-width="2"></path>
-            <path
-              d="M9 20.4C9.22327 20.2593 11.9318 18 11.9318 18L15 20.4"
-              stroke="#283342"
-              stroke-width="2"
-              stroke-linecap="round"></path>
-            <path
-              d="M12.0117 5.9743C12.0117 5.9743 13.8145 3.59998 17.0163 3.59998C20.2181 3.59998 21.7352 5.9743 21.7352 5.9743"
-              stroke="#283342"
-              stroke-width="2"
-              stroke-linecap="round"></path>
-            <path
-              d="M14.4492 8.30369C14.4492 8.30369 15.6163 7.04309 17.0816 7.04309C18.5468 7.04309 19.5069 8.26577 19.5069 8.26577"
-              stroke="#283342"
-              stroke-width="2"
-              stroke-linecap="round"></path>
-            <mask id="path-5-inside-1_43_7286" fill="white">
-              <ellipse cx="16.8266" cy="11.0314" rx="0.599999" ry="0.6"
-              ></ellipse>
-            </mask>
-            <ellipse
-              cx="16.8266"
-              cy="11.0314"
-              rx="0.599999"
-              ry="0.6"
-              fill="#D8D8D8"></ellipse>
-            <path
-              d="M17.4266 11.0314H16.4266C16.4266 10.8105 16.6056 10.6314 16.8266 10.6314V11.6314V12.6314C17.7102 12.6314 18.4266 11.9151 18.4266 11.0314H17.4266ZM16.8266 11.6314V10.6314C17.0475 10.6314 17.2266 10.8105 17.2266 11.0314H16.2266H15.2266C15.2266 11.9151 15.9429 12.6314 16.8266 12.6314V11.6314ZM16.2266 11.0314H17.2266C17.2266 11.2523 17.0475 11.4314 16.8266 11.4314V10.4314V9.4314C15.9429 9.4314 15.2266 10.1477 15.2266 11.0314H16.2266ZM16.8266 10.4314V11.4314C16.6056 11.4314 16.4266 11.2523 16.4266 11.0314H17.4266H18.4266C18.4266 10.1477 17.7102 9.4314 16.8266 9.4314V10.4314Z"
-              fill="#283342"
-              mask="url(#path-5-inside-1_43_7286)"></path>
-          </svg>
-          <p>3 Play</p>
-        </div>
-        <div class="plan">
-          Internet 400Mbps + <br />
-          TV Superior Pro + Telefonía
-        </div>
-        <div class="precio">S/ 107.50</div>
-        <div class="bajada">Precio regular: <span>S/ 215</span></div>
-        <!-- 
-        <div class="tab">Ver detalle del plan <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
-            viewBox="0 0 14 14" fill="none">
-            <path fill-rule="evenodd" clip-rule="evenodd"
-              d="M7 13.125C10.3827 13.125 13.125 10.3827 13.125 7C13.125 3.61725 10.3827 0.875 7 0.875C3.61725 0.875 0.875 3.61725 0.875 7C0.875 10.3827 3.61725 13.125 7 13.125Z"
-              stroke="#0093A3" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-            <path d="M4.55078 7L7.00078 9.45L9.45078 7" stroke="#0093A3" stroke-width="1.5" stroke-linecap="round"
-              stroke-linejoin="round" />
-            <path d="M6.99961 4.54993V9.44993" stroke="#0093A3" stroke-width="1.5" stroke-linecap="round"
-              stroke-linejoin="round" />
-          </svg>
-        </div>
-        <div class="contentDetalle">
-          <div class="info">
-            <div class="subitem">
-              <div class="part1">Gigas del plan</div>
-              <div class="part2">10 GB</div>
-            </div>
-            <div class="subitem">
-              <div class="part1">Llamadas y SMS</div>
-              <div class="part2">Ilimitadas</div>
-            </div>
-            <div class="subitem">
-              <div class="part1">Redes sociales</div>
-              <div class="part2"></div>
-            </div>
-            <div class="subitem">
-              <div class="part1">Cobertura internacional</div>
-              <div class="part2">Zona Andina y Zona América</div>
-            </div>
-            <div class="subitem">
-              <div class="part1">Suscripción gratuita</div>
-              <div class="part2 img">
-                <img
-                  src="https://www.claro.com.pe/assets/havas/landing-formulario-cac-colaborador/assets/icon-incluye-claroclubv2.png"
-                  alt="">
-                <img
-                  src="https://www.claro.com.pe/assets/havas/landing-formulario-cac-colaborador/assets/icon_claromusica.png"
-                  alt="">
-              </div>
-            </div>
-            <div class="subitem">
-              <div class="part1">Beneficios adicionales</div>
-              <div class="part2 img">
-                <img
-                  src="https://www.claro.com.pe/assets/havas/landing-formulario-cac-colaborador/assets/icon_claroclub.png"
-                  alt="">
-                <img
-                  src="https://www.claro.com.pe/assets/havas/landing-formulario-cac-colaborador/assets/icon_clarodrive.png"
-                  alt="">
-              </div>
-            </div>
+      <div class="cardSlide">
+        <div class="item">
+          <div class="etiqueta">OFERTA ONLINE</div>
+          <div class="antetitulo">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+            >
+              <path
+                d="M10.2547 3H6C4.34315 3 3 4.34315 3 6V14.4C3 16.0569 4.34315 17.4 6 17.4H18C19.6569 17.4 21 16.0569 21 14.4V13.521"
+                stroke="#283342"
+                stroke-width="2"></path>
+              <path
+                d="M9 20.4C9.22327 20.2593 11.9318 18 11.9318 18L15 20.4"
+                stroke="#283342"
+                stroke-width="2"
+                stroke-linecap="round"></path>
+              <path
+                d="M12.0117 5.9743C12.0117 5.9743 13.8145 3.59998 17.0163 3.59998C20.2181 3.59998 21.7352 5.9743 21.7352 5.9743"
+                stroke="#283342"
+                stroke-width="2"
+                stroke-linecap="round"></path>
+              <path
+                d="M14.4492 8.30369C14.4492 8.30369 15.6163 7.04309 17.0816 7.04309C18.5468 7.04309 19.5069 8.26577 19.5069 8.26577"
+                stroke="#283342"
+                stroke-width="2"
+                stroke-linecap="round"></path>
+              <mask id="path-5-inside-1_43_7286" fill="white">
+                <ellipse cx="16.8266" cy="11.0314" rx="0.599999" ry="0.6"
+                ></ellipse>
+              </mask>
+              <ellipse
+                cx="16.8266"
+                cy="11.0314"
+                rx="0.599999"
+                ry="0.6"
+                fill="#D8D8D8"></ellipse>
+              <path
+                d="M17.4266 11.0314H16.4266C16.4266 10.8105 16.6056 10.6314 16.8266 10.6314V11.6314V12.6314C17.7102 12.6314 18.4266 11.9151 18.4266 11.0314H17.4266ZM16.8266 11.6314V10.6314C17.0475 10.6314 17.2266 10.8105 17.2266 11.0314H16.2266H15.2266C15.2266 11.9151 15.9429 12.6314 16.8266 12.6314V11.6314ZM16.2266 11.0314H17.2266C17.2266 11.2523 17.0475 11.4314 16.8266 11.4314V10.4314V9.4314C15.9429 9.4314 15.2266 10.1477 15.2266 11.0314H16.2266ZM16.8266 10.4314V11.4314C16.6056 11.4314 16.4266 11.2523 16.4266 11.0314H17.4266H18.4266C18.4266 10.1477 17.7102 9.4314 16.8266 9.4314V10.4314Z"
+                fill="#283342"
+                mask="url(#path-5-inside-1_43_7286)"></path>
+            </svg>
+            <p>3 Play</p>
           </div>
-          <div class="pie">*Aplica para planes contratados y activados al 15.08.25</div>
-          <a href="#">Conoce más</a>
+          <div class="plan">
+            Internet 400Mbps + <br />
+            TV Superior Pro + Telefonía
+          </div>
+          <div class="precio">S/ 107.50</div>
+          <div class="bajada">Precio regular: <span>S/ 215</span></div>
+          <button class="btnaction">Contratar</button>
         </div>
-         -->
-        <button class="btnaction">Contratar</button>
       </div>
-      <div class="item">
-        <div class="etiqueta">OFERTA ONLINE</div>
-        <div class="antetitulo">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-          >
-            <path
-              d="M10.2547 3H6C4.34315 3 3 4.34315 3 6V14.4C3 16.0569 4.34315 17.4 6 17.4H18C19.6569 17.4 21 16.0569 21 14.4V13.521"
-              stroke="#283342"
-              stroke-width="2"></path>
-            <path
-              d="M9 20.4C9.22327 20.2593 11.9318 18 11.9318 18L15 20.4"
-              stroke="#283342"
-              stroke-width="2"
-              stroke-linecap="round"></path>
-            <path
-              d="M12.0117 5.9743C12.0117 5.9743 13.8145 3.59998 17.0163 3.59998C20.2181 3.59998 21.7352 5.9743 21.7352 5.9743"
-              stroke="#283342"
-              stroke-width="2"
-              stroke-linecap="round"></path>
-            <path
-              d="M14.4492 8.30369C14.4492 8.30369 15.6163 7.04309 17.0816 7.04309C18.5468 7.04309 19.5069 8.26577 19.5069 8.26577"
-              stroke="#283342"
-              stroke-width="2"
-              stroke-linecap="round"></path>
-            <mask id="path-5-inside-1_43_7286" fill="white">
-              <ellipse cx="16.8266" cy="11.0314" rx="0.599999" ry="0.6"
-              ></ellipse>
-            </mask>
-            <ellipse
-              cx="16.8266"
-              cy="11.0314"
-              rx="0.599999"
-              ry="0.6"
-              fill="#D8D8D8"></ellipse>
-            <path
-              d="M17.4266 11.0314H16.4266C16.4266 10.8105 16.6056 10.6314 16.8266 10.6314V11.6314V12.6314C17.7102 12.6314 18.4266 11.9151 18.4266 11.0314H17.4266ZM16.8266 11.6314V10.6314C17.0475 10.6314 17.2266 10.8105 17.2266 11.0314H16.2266H15.2266C15.2266 11.9151 15.9429 12.6314 16.8266 12.6314V11.6314ZM16.2266 11.0314H17.2266C17.2266 11.2523 17.0475 11.4314 16.8266 11.4314V10.4314V9.4314C15.9429 9.4314 15.2266 10.1477 15.2266 11.0314H16.2266ZM16.8266 10.4314V11.4314C16.6056 11.4314 16.4266 11.2523 16.4266 11.0314H17.4266H18.4266C18.4266 10.1477 17.7102 9.4314 16.8266 9.4314V10.4314Z"
-              fill="#283342"
-              mask="url(#path-5-inside-1_43_7286)"></path>
-          </svg>
-          <p>3 Play</p>
-        </div>
-        <div class="plan">
-          Internet 800Mbps + <br />
-          TV Superior Pro + Telefonía
-        </div>
-        <div class="precio">S/ 115</div>
-        <div class="bajada">Precio regular: <span>S/ 230</span></div>
-        <!-- 
-        <div class="tab">Ver detalle del plan <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
-            viewBox="0 0 14 14" fill="none">
-            <path fill-rule="evenodd" clip-rule="evenodd"
-              d="M7 13.125C10.3827 13.125 13.125 10.3827 13.125 7C13.125 3.61725 10.3827 0.875 7 0.875C3.61725 0.875 0.875 3.61725 0.875 7C0.875 10.3827 3.61725 13.125 7 13.125Z"
-              stroke="#0093A3" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-            <path d="M4.55078 7L7.00078 9.45L9.45078 7" stroke="#0093A3" stroke-width="1.5" stroke-linecap="round"
-              stroke-linejoin="round" />
-            <path d="M6.99961 4.54993V9.44993" stroke="#0093A3" stroke-width="1.5" stroke-linecap="round"
-              stroke-linejoin="round" />
-          </svg>
-        </div>
-        <div class="contentDetalle">
-          <div class="info">
-            <div class="subitem">
-              <div class="part1">Gigas del plan</div>
-              <div class="part2">10 GB</div>
-            </div>
-            <div class="subitem">
-              <div class="part1">Llamadas y SMS</div>
-              <div class="part2">Ilimitadas</div>
-            </div>
-            <div class="subitem">
-              <div class="part1">Redes sociales</div>
-              <div class="part2"></div>
-            </div>
-            <div class="subitem">
-              <div class="part1">Cobertura internacional</div>
-              <div class="part2">Zona Andina y Zona América</div>
-            </div>
-            <div class="subitem">
-              <div class="part1">Suscripción gratuita</div>
-              <div class="part2 img">
-                <img
-                  src="https://www.claro.com.pe/assets/havas/landing-formulario-cac-colaborador/assets/icon-incluye-claroclubv2.png"
-                  alt="">
-                <img
-                  src="https://www.claro.com.pe/assets/havas/landing-formulario-cac-colaborador/assets/icon_claromusica.png"
-                  alt="">
-              </div>
-            </div>
-            <div class="subitem">
-              <div class="part1">Beneficios adicionales</div>
-              <div class="part2 img">
-                <img
-                  src="https://www.claro.com.pe/assets/havas/landing-formulario-cac-colaborador/assets/icon_claroclub.png"
-                  alt="">
-                <img
-                  src="https://www.claro.com.pe/assets/havas/landing-formulario-cac-colaborador/assets/icon_clarodrive.png"
-                  alt="">
-              </div>
-            </div>
+      <div class="cardSlide">
+        <div class="item">
+          <div class="etiqueta">OFERTA ONLINE</div>
+          <div class="antetitulo">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+            >
+              <path
+                d="M10.2547 3H6C4.34315 3 3 4.34315 3 6V14.4C3 16.0569 4.34315 17.4 6 17.4H18C19.6569 17.4 21 16.0569 21 14.4V13.521"
+                stroke="#283342"
+                stroke-width="2"></path>
+              <path
+                d="M9 20.4C9.22327 20.2593 11.9318 18 11.9318 18L15 20.4"
+                stroke="#283342"
+                stroke-width="2"
+                stroke-linecap="round"></path>
+              <path
+                d="M12.0117 5.9743C12.0117 5.9743 13.8145 3.59998 17.0163 3.59998C20.2181 3.59998 21.7352 5.9743 21.7352 5.9743"
+                stroke="#283342"
+                stroke-width="2"
+                stroke-linecap="round"></path>
+              <path
+                d="M14.4492 8.30369C14.4492 8.30369 15.6163 7.04309 17.0816 7.04309C18.5468 7.04309 19.5069 8.26577 19.5069 8.26577"
+                stroke="#283342"
+                stroke-width="2"
+                stroke-linecap="round"></path>
+              <mask id="path-5-inside-1_43_7286" fill="white">
+                <ellipse cx="16.8266" cy="11.0314" rx="0.599999" ry="0.6"
+                ></ellipse>
+              </mask>
+              <ellipse
+                cx="16.8266"
+                cy="11.0314"
+                rx="0.599999"
+                ry="0.6"
+                fill="#D8D8D8"></ellipse>
+              <path
+                d="M17.4266 11.0314H16.4266C16.4266 10.8105 16.6056 10.6314 16.8266 10.6314V11.6314V12.6314C17.7102 12.6314 18.4266 11.9151 18.4266 11.0314H17.4266ZM16.8266 11.6314V10.6314C17.0475 10.6314 17.2266 10.8105 17.2266 11.0314H16.2266H15.2266C15.2266 11.9151 15.9429 12.6314 16.8266 12.6314V11.6314ZM16.2266 11.0314H17.2266C17.2266 11.2523 17.0475 11.4314 16.8266 11.4314V10.4314V9.4314C15.9429 9.4314 15.2266 10.1477 15.2266 11.0314H16.2266ZM16.8266 10.4314V11.4314C16.6056 11.4314 16.4266 11.2523 16.4266 11.0314H17.4266H18.4266C18.4266 10.1477 17.7102 9.4314 16.8266 9.4314V10.4314Z"
+                fill="#283342"
+                mask="url(#path-5-inside-1_43_7286)"></path>
+            </svg>
+            <p>3 Play</p>
           </div>
-          <div class="pie">*Aplica para planes contratados y activados al 15.08.25</div>
-          <a href="#">Conoce más</a>
+          <div class="plan">
+            Internet 800Mbps + <br />
+            TV Superior Pro + Telefonía
+          </div>
+          <div class="precio">S/ 115</div>
+          <div class="bajada">Precio regular: <span>S/ 230</span></div>
+          <!-- 
+          <div class="tab">Ver detalle del plan <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
+              viewBox="0 0 14 14" fill="none">
+              <path fill-rule="evenodd" clip-rule="evenodd"
+                d="M7 13.125C10.3827 13.125 13.125 10.3827 13.125 7C13.125 3.61725 10.3827 0.875 7 0.875C3.61725 0.875 0.875 3.61725 0.875 7C0.875 10.3827 3.61725 13.125 7 13.125Z"
+                stroke="#0093A3" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M4.55078 7L7.00078 9.45L9.45078 7" stroke="#0093A3" stroke-width="1.5" stroke-linecap="round"
+                stroke-linejoin="round" />
+              <path d="M6.99961 4.54993V9.44993" stroke="#0093A3" stroke-width="1.5" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+          </div>
+          <div class="contentDetalle">
+            <div class="info">
+              <div class="subitem">
+                <div class="part1">Gigas del plan</div>
+                <div class="part2">10 GB</div>
+              </div>
+              <div class="subitem">
+                <div class="part1">Llamadas y SMS</div>
+                <div class="part2">Ilimitadas</div>
+              </div>
+              <div class="subitem">
+                <div class="part1">Redes sociales</div>
+                <div class="part2"></div>
+              </div>
+              <div class="subitem">
+                <div class="part1">Cobertura internacional</div>
+                <div class="part2">Zona Andina y Zona América</div>
+              </div>
+              <div class="subitem">
+                <div class="part1">Suscripción gratuita</div>
+                <div class="part2 img">
+                  <img
+                    src="https://www.claro.com.pe/assets/havas/landing-formulario-cac-colaborador/assets/icon-incluye-claroclubv2.png"
+                    alt="">
+                  <img
+                    src="https://www.claro.com.pe/assets/havas/landing-formulario-cac-colaborador/assets/icon_claromusica.png"
+                    alt="">
+                </div>
+              </div>
+              <div class="subitem">
+                <div class="part1">Beneficios adicionales</div>
+                <div class="part2 img">
+                  <img
+                    src="https://www.claro.com.pe/assets/havas/landing-formulario-cac-colaborador/assets/icon_claroclub.png"
+                    alt="">
+                  <img
+                    src="https://www.claro.com.pe/assets/havas/landing-formulario-cac-colaborador/assets/icon_clarodrive.png"
+                    alt="">
+                </div>
+              </div>
+            </div>
+            <div class="pie">*Aplica para planes contratados y activados al 15.08.25</div>
+            <a href="#">Conoce más</a>
+          </div>
+  -->
+          <button class="btnaction">Contratar</button>
         </div>
--->
-        <button class="btnaction">Contratar</button>
       </div>
-      <div class="item">
-        <div class="etiqueta">OFERTA ONLINE</div>
-        <div class="antetitulo">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-          >
-            <path
-              d="M10.2547 3H6C4.34315 3 3 4.34315 3 6V14.4C3 16.0569 4.34315 17.4 6 17.4H18C19.6569 17.4 21 16.0569 21 14.4V13.521"
-              stroke="#283342"
-              stroke-width="2"></path>
-            <path
-              d="M9 20.4C9.22327 20.2593 11.9318 18 11.9318 18L15 20.4"
-              stroke="#283342"
-              stroke-width="2"
-              stroke-linecap="round"></path>
-            <path
-              d="M12.0117 5.9743C12.0117 5.9743 13.8145 3.59998 17.0163 3.59998C20.2181 3.59998 21.7352 5.9743 21.7352 5.9743"
-              stroke="#283342"
-              stroke-width="2"
-              stroke-linecap="round"></path>
-            <path
-              d="M14.4492 8.30369C14.4492 8.30369 15.6163 7.04309 17.0816 7.04309C18.5468 7.04309 19.5069 8.26577 19.5069 8.26577"
-              stroke="#283342"
-              stroke-width="2"
-              stroke-linecap="round"></path>
-            <mask id="path-5-inside-1_43_7286" fill="white">
-              <ellipse cx="16.8266" cy="11.0314" rx="0.599999" ry="0.6"
-              ></ellipse>
-            </mask>
-            <ellipse
-              cx="16.8266"
-              cy="11.0314"
-              rx="0.599999"
-              ry="0.6"
-              fill="#D8D8D8"></ellipse>
-            <path
-              d="M17.4266 11.0314H16.4266C16.4266 10.8105 16.6056 10.6314 16.8266 10.6314V11.6314V12.6314C17.7102 12.6314 18.4266 11.9151 18.4266 11.0314H17.4266ZM16.8266 11.6314V10.6314C17.0475 10.6314 17.2266 10.8105 17.2266 11.0314H16.2266H15.2266C15.2266 11.9151 15.9429 12.6314 16.8266 12.6314V11.6314ZM16.2266 11.0314H17.2266C17.2266 11.2523 17.0475 11.4314 16.8266 11.4314V10.4314V9.4314C15.9429 9.4314 15.2266 10.1477 15.2266 11.0314H16.2266ZM16.8266 10.4314V11.4314C16.6056 11.4314 16.4266 11.2523 16.4266 11.0314H17.4266H18.4266C18.4266 10.1477 17.7102 9.4314 16.8266 9.4314V10.4314Z"
-              fill="#283342"
-              mask="url(#path-5-inside-1_43_7286)"></path>
-          </svg>
-          <p>3 Play</p>
-        </div>
-        <div class="plan">
-          Internet 1000Mbps + <br />
-          TV Superior Pro + Telefonía
-        </div>
-        <div class="precio">S/ 137.50</div>
-        <div class="bajada">Precio regular: <span>S/ 275</span></div>
-        <!-- 
-        <div class="tab">Ver detalle del plan <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
-            viewBox="0 0 14 14" fill="none">
-            <path fill-rule="evenodd" clip-rule="evenodd"
-              d="M7 13.125C10.3827 13.125 13.125 10.3827 13.125 7C13.125 3.61725 10.3827 0.875 7 0.875C3.61725 0.875 0.875 3.61725 0.875 7C0.875 10.3827 3.61725 13.125 7 13.125Z"
-              stroke="#0093A3" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-            <path d="M4.55078 7L7.00078 9.45L9.45078 7" stroke="#0093A3" stroke-width="1.5" stroke-linecap="round"
-              stroke-linejoin="round" />
-            <path d="M6.99961 4.54993V9.44993" stroke="#0093A3" stroke-width="1.5" stroke-linecap="round"
-              stroke-linejoin="round" />
-          </svg>
-        </div>
-        <div class="contentDetalle">
-          <div class="info">
-            <div class="subitem">
-              <div class="part1">Gigas del plan</div>
-              <div class="part2">10 GB</div>
-            </div>
-            <div class="subitem">
-              <div class="part1">Llamadas y SMS</div>
-              <div class="part2">Ilimitadas</div>
-            </div>
-            <div class="subitem">
-              <div class="part1">Redes sociales</div>
-              <div class="part2"></div>
-            </div>
-            <div class="subitem">
-              <div class="part1">Cobertura internacional</div>
-              <div class="part2">Zona Andina y Zona América</div>
-            </div>
-            <div class="subitem">
-              <div class="part1">Suscripción gratuita</div>
-              <div class="part2 img">
-                <img
-                  src="https://www.claro.com.pe/assets/havas/landing-formulario-cac-colaborador/assets/icon-incluye-claroclubv2.png"
-                  alt="">
-                <img
-                  src="https://www.claro.com.pe/assets/havas/landing-formulario-cac-colaborador/assets/icon_claromusica.png"
-                  alt="">
-              </div>
-            </div>
-            <div class="subitem">
-              <div class="part1">Beneficios adicionales</div>
-              <div class="part2 img">
-                <img
-                  src="https://www.claro.com.pe/assets/havas/landing-formulario-cac-colaborador/assets/icon_claroclub.png"
-                  alt="">
-                <img
-                  src="https://www.claro.com.pe/assets/havas/landing-formulario-cac-colaborador/assets/icon_clarodrive.png"
-                  alt="">
-              </div>
-            </div>
+      <div class="cardSlide">
+        <div class="item">
+          <div class="etiqueta">OFERTA ONLINE</div>
+          <div class="antetitulo">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+            >
+              <path
+                d="M10.2547 3H6C4.34315 3 3 4.34315 3 6V14.4C3 16.0569 4.34315 17.4 6 17.4H18C19.6569 17.4 21 16.0569 21 14.4V13.521"
+                stroke="#283342"
+                stroke-width="2"></path>
+              <path
+                d="M9 20.4C9.22327 20.2593 11.9318 18 11.9318 18L15 20.4"
+                stroke="#283342"
+                stroke-width="2"
+                stroke-linecap="round"></path>
+              <path
+                d="M12.0117 5.9743C12.0117 5.9743 13.8145 3.59998 17.0163 3.59998C20.2181 3.59998 21.7352 5.9743 21.7352 5.9743"
+                stroke="#283342"
+                stroke-width="2"
+                stroke-linecap="round"></path>
+              <path
+                d="M14.4492 8.30369C14.4492 8.30369 15.6163 7.04309 17.0816 7.04309C18.5468 7.04309 19.5069 8.26577 19.5069 8.26577"
+                stroke="#283342"
+                stroke-width="2"
+                stroke-linecap="round"></path>
+              <mask id="path-5-inside-1_43_7286" fill="white">
+                <ellipse cx="16.8266" cy="11.0314" rx="0.599999" ry="0.6"
+                ></ellipse>
+              </mask>
+              <ellipse
+                cx="16.8266"
+                cy="11.0314"
+                rx="0.599999"
+                ry="0.6"
+                fill="#D8D8D8"></ellipse>
+              <path
+                d="M17.4266 11.0314H16.4266C16.4266 10.8105 16.6056 10.6314 16.8266 10.6314V11.6314V12.6314C17.7102 12.6314 18.4266 11.9151 18.4266 11.0314H17.4266ZM16.8266 11.6314V10.6314C17.0475 10.6314 17.2266 10.8105 17.2266 11.0314H16.2266H15.2266C15.2266 11.9151 15.9429 12.6314 16.8266 12.6314V11.6314ZM16.2266 11.0314H17.2266C17.2266 11.2523 17.0475 11.4314 16.8266 11.4314V10.4314V9.4314C15.9429 9.4314 15.2266 10.1477 15.2266 11.0314H16.2266ZM16.8266 10.4314V11.4314C16.6056 11.4314 16.4266 11.2523 16.4266 11.0314H17.4266H18.4266C18.4266 10.1477 17.7102 9.4314 16.8266 9.4314V10.4314Z"
+                fill="#283342"
+                mask="url(#path-5-inside-1_43_7286)"></path>
+            </svg>
+            <p>3 Play</p>
           </div>
-          <div class="pie">*Aplica para planes contratados y activados al 15.08.25</div>
-          <a href="#">Conoce más</a>
+          <div class="plan">
+            Internet 1000Mbps + <br />
+            TV Superior Pro + Telefonía
+          </div>
+          <div class="precio">S/ 137.50</div>
+          <div class="bajada">Precio regular: <span>S/ 275</span></div>
+          <!-- 
+          <div class="tab">Ver detalle del plan <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
+              viewBox="0 0 14 14" fill="none">
+              <path fill-rule="evenodd" clip-rule="evenodd"
+                d="M7 13.125C10.3827 13.125 13.125 10.3827 13.125 7C13.125 3.61725 10.3827 0.875 7 0.875C3.61725 0.875 0.875 3.61725 0.875 7C0.875 10.3827 3.61725 13.125 7 13.125Z"
+                stroke="#0093A3" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M4.55078 7L7.00078 9.45L9.45078 7" stroke="#0093A3" stroke-width="1.5" stroke-linecap="round"
+                stroke-linejoin="round" />
+              <path d="M6.99961 4.54993V9.44993" stroke="#0093A3" stroke-width="1.5" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+          </div>
+          <div class="contentDetalle">
+            <div class="info">
+              <div class="subitem">
+                <div class="part1">Gigas del plan</div>
+                <div class="part2">10 GB</div>
+              </div>
+              <div class="subitem">
+                <div class="part1">Llamadas y SMS</div>
+                <div class="part2">Ilimitadas</div>
+              </div>
+              <div class="subitem">
+                <div class="part1">Redes sociales</div>
+                <div class="part2"></div>
+              </div>
+              <div class="subitem">
+                <div class="part1">Cobertura internacional</div>
+                <div class="part2">Zona Andina y Zona América</div>
+              </div>
+              <div class="subitem">
+                <div class="part1">Suscripción gratuita</div>
+                <div class="part2 img">
+                  <img
+                    src="https://www.claro.com.pe/assets/havas/landing-formulario-cac-colaborador/assets/icon-incluye-claroclubv2.png"
+                    alt="">
+                  <img
+                    src="https://www.claro.com.pe/assets/havas/landing-formulario-cac-colaborador/assets/icon_claromusica.png"
+                    alt="">
+                </div>
+              </div>
+              <div class="subitem">
+                <div class="part1">Beneficios adicionales</div>
+                <div class="part2 img">
+                  <img
+                    src="https://www.claro.com.pe/assets/havas/landing-formulario-cac-colaborador/assets/icon_claroclub.png"
+                    alt="">
+                  <img
+                    src="https://www.claro.com.pe/assets/havas/landing-formulario-cac-colaborador/assets/icon_clarodrive.png"
+                    alt="">
+                </div>
+              </div>
+            </div>
+            <div class="pie">*Aplica para planes contratados y activados al 15.08.25</div>
+            <a href="#">Conoce más</a>
+          </div>
+  -->
+          <button class="btnaction">Contratar</button>
         </div>
--->
-        <button class="btnaction">Contratar</button>
       </div>
-      <div class="item">
-        <div class="etiqueta">OFERTA ONLINE</div>
-        <div class="antetitulo">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-          >
-            <path
-              d="M10.2547 3H6C4.34315 3 3 4.34315 3 6V14.4C3 16.0569 4.34315 17.4 6 17.4H18C19.6569 17.4 21 16.0569 21 14.4V13.521"
-              stroke="#283342"
-              stroke-width="2"></path>
-            <path
-              d="M9 20.4C9.22327 20.2593 11.9318 18 11.9318 18L15 20.4"
-              stroke="#283342"
-              stroke-width="2"
-              stroke-linecap="round"></path>
-            <path
-              d="M12.0117 5.9743C12.0117 5.9743 13.8145 3.59998 17.0163 3.59998C20.2181 3.59998 21.7352 5.9743 21.7352 5.9743"
-              stroke="#283342"
-              stroke-width="2"
-              stroke-linecap="round"></path>
-            <path
-              d="M14.4492 8.30369C14.4492 8.30369 15.6163 7.04309 17.0816 7.04309C18.5468 7.04309 19.5069 8.26577 19.5069 8.26577"
-              stroke="#283342"
-              stroke-width="2"
-              stroke-linecap="round"></path>
-            <mask id="path-5-inside-1_43_7286" fill="white">
-              <ellipse cx="16.8266" cy="11.0314" rx="0.599999" ry="0.6"
-              ></ellipse>
-            </mask>
-            <ellipse
-              cx="16.8266"
-              cy="11.0314"
-              rx="0.599999"
-              ry="0.6"
-              fill="#D8D8D8"></ellipse>
-            <path
-              d="M17.4266 11.0314H16.4266C16.4266 10.8105 16.6056 10.6314 16.8266 10.6314V11.6314V12.6314C17.7102 12.6314 18.4266 11.9151 18.4266 11.0314H17.4266ZM16.8266 11.6314V10.6314C17.0475 10.6314 17.2266 10.8105 17.2266 11.0314H16.2266H15.2266C15.2266 11.9151 15.9429 12.6314 16.8266 12.6314V11.6314ZM16.2266 11.0314H17.2266C17.2266 11.2523 17.0475 11.4314 16.8266 11.4314V10.4314V9.4314C15.9429 9.4314 15.2266 10.1477 15.2266 11.0314H16.2266ZM16.8266 10.4314V11.4314C16.6056 11.4314 16.4266 11.2523 16.4266 11.0314H17.4266H18.4266C18.4266 10.1477 17.7102 9.4314 16.8266 9.4314V10.4314Z"
-              fill="#283342"
-              mask="url(#path-5-inside-1_43_7286)"></path>
-          </svg>
-          <p>3 Play</p>
-        </div>
-        <div class="plan">
-          Internet 1500Mbps + <br />
-          TV Superior Pro + Telefonía
-        </div>
-        <div class="precio">S/ 165</div>
-        <div class="bajada">Precio regular: <span>S/ 330</span></div>
-        <!-- 
-        <div class="tab">Ver detalle del plan <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
-            viewBox="0 0 14 14" fill="none">
-            <path fill-rule="evenodd" clip-rule="evenodd"
-              d="M7 13.125C10.3827 13.125 13.125 10.3827 13.125 7C13.125 3.61725 10.3827 0.875 7 0.875C3.61725 0.875 0.875 3.61725 0.875 7C0.875 10.3827 3.61725 13.125 7 13.125Z"
-              stroke="#0093A3" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-            <path d="M4.55078 7L7.00078 9.45L9.45078 7" stroke="#0093A3" stroke-width="1.5" stroke-linecap="round"
-              stroke-linejoin="round" />
-            <path d="M6.99961 4.54993V9.44993" stroke="#0093A3" stroke-width="1.5" stroke-linecap="round"
-              stroke-linejoin="round" />
-          </svg>
-        </div>
-        <div class="contentDetalle">
-          <div class="info">
-            <div class="subitem">
-              <div class="part1">Gigas del plan</div>
-              <div class="part2">10 GB</div>
-            </div>
-            <div class="subitem">
-              <div class="part1">Llamadas y SMS</div>
-              <div class="part2">Ilimitadas</div>
-            </div>
-            <div class="subitem">
-              <div class="part1">Redes sociales</div>
-              <div class="part2"></div>
-            </div>
-            <div class="subitem">
-              <div class="part1">Cobertura internacional</div>
-              <div class="part2">Zona Andina y Zona América</div>
-            </div>
-            <div class="subitem">
-              <div class="part1">Suscripción gratuita</div>
-              <div class="part2 img">
-                <img
-                  src="https://www.claro.com.pe/assets/havas/landing-formulario-cac-colaborador/assets/icon-incluye-claroclubv2.png"
-                  alt="">
-                <img
-                  src="https://www.claro.com.pe/assets/havas/landing-formulario-cac-colaborador/assets/icon_claromusica.png"
-                  alt="">
-              </div>
-            </div>
-            <div class="subitem">
-              <div class="part1">Beneficios adicionales</div>
-              <div class="part2 img">
-                <img
-                  src="https://www.claro.com.pe/assets/havas/landing-formulario-cac-colaborador/assets/icon_claroclub.png"
-                  alt="">
-                <img
-                  src="https://www.claro.com.pe/assets/havas/landing-formulario-cac-colaborador/assets/icon_clarodrive.png"
-                  alt="">
-              </div>
-            </div>
+      <div class="cardSlide">
+        <div class="item">
+          <div class="etiqueta">OFERTA ONLINE</div>
+          <div class="antetitulo">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+            >
+              <path
+                d="M10.2547 3H6C4.34315 3 3 4.34315 3 6V14.4C3 16.0569 4.34315 17.4 6 17.4H18C19.6569 17.4 21 16.0569 21 14.4V13.521"
+                stroke="#283342"
+                stroke-width="2"></path>
+              <path
+                d="M9 20.4C9.22327 20.2593 11.9318 18 11.9318 18L15 20.4"
+                stroke="#283342"
+                stroke-width="2"
+                stroke-linecap="round"></path>
+              <path
+                d="M12.0117 5.9743C12.0117 5.9743 13.8145 3.59998 17.0163 3.59998C20.2181 3.59998 21.7352 5.9743 21.7352 5.9743"
+                stroke="#283342"
+                stroke-width="2"
+                stroke-linecap="round"></path>
+              <path
+                d="M14.4492 8.30369C14.4492 8.30369 15.6163 7.04309 17.0816 7.04309C18.5468 7.04309 19.5069 8.26577 19.5069 8.26577"
+                stroke="#283342"
+                stroke-width="2"
+                stroke-linecap="round"></path>
+              <mask id="path-5-inside-1_43_7286" fill="white">
+                <ellipse cx="16.8266" cy="11.0314" rx="0.599999" ry="0.6"
+                ></ellipse>
+              </mask>
+              <ellipse
+                cx="16.8266"
+                cy="11.0314"
+                rx="0.599999"
+                ry="0.6"
+                fill="#D8D8D8"></ellipse>
+              <path
+                d="M17.4266 11.0314H16.4266C16.4266 10.8105 16.6056 10.6314 16.8266 10.6314V11.6314V12.6314C17.7102 12.6314 18.4266 11.9151 18.4266 11.0314H17.4266ZM16.8266 11.6314V10.6314C17.0475 10.6314 17.2266 10.8105 17.2266 11.0314H16.2266H15.2266C15.2266 11.9151 15.9429 12.6314 16.8266 12.6314V11.6314ZM16.2266 11.0314H17.2266C17.2266 11.2523 17.0475 11.4314 16.8266 11.4314V10.4314V9.4314C15.9429 9.4314 15.2266 10.1477 15.2266 11.0314H16.2266ZM16.8266 10.4314V11.4314C16.6056 11.4314 16.4266 11.2523 16.4266 11.0314H17.4266H18.4266C18.4266 10.1477 17.7102 9.4314 16.8266 9.4314V10.4314Z"
+                fill="#283342"
+                mask="url(#path-5-inside-1_43_7286)"></path>
+            </svg>
+            <p>3 Play</p>
           </div>
-          <div class="pie">*Aplica para planes contratados y activados al 15.08.25</div>
-          <a href="#">Conoce más</a>
+          <div class="plan">
+            Internet 1500Mbps + <br />
+            TV Superior Pro + Telefonía
+          </div>
+          <div class="precio">S/ 165</div>
+          <div class="bajada">Precio regular: <span>S/ 330</span></div>
+          <!-- 
+          <div class="tab">Ver detalle del plan <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
+              viewBox="0 0 14 14" fill="none">
+              <path fill-rule="evenodd" clip-rule="evenodd"
+                d="M7 13.125C10.3827 13.125 13.125 10.3827 13.125 7C13.125 3.61725 10.3827 0.875 7 0.875C3.61725 0.875 0.875 3.61725 0.875 7C0.875 10.3827 3.61725 13.125 7 13.125Z"
+                stroke="#0093A3" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M4.55078 7L7.00078 9.45L9.45078 7" stroke="#0093A3" stroke-width="1.5" stroke-linecap="round"
+                stroke-linejoin="round" />
+              <path d="M6.99961 4.54993V9.44993" stroke="#0093A3" stroke-width="1.5" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+          </div>
+          <div class="contentDetalle">
+            <div class="info">
+              <div class="subitem">
+                <div class="part1">Gigas del plan</div>
+                <div class="part2">10 GB</div>
+              </div>
+              <div class="subitem">
+                <div class="part1">Llamadas y SMS</div>
+                <div class="part2">Ilimitadas</div>
+              </div>
+              <div class="subitem">
+                <div class="part1">Redes sociales</div>
+                <div class="part2"></div>
+              </div>
+              <div class="subitem">
+                <div class="part1">Cobertura internacional</div>
+                <div class="part2">Zona Andina y Zona América</div>
+              </div>
+              <div class="subitem">
+                <div class="part1">Suscripción gratuita</div>
+                <div class="part2 img">
+                  <img
+                    src="https://www.claro.com.pe/assets/havas/landing-formulario-cac-colaborador/assets/icon-incluye-claroclubv2.png"
+                    alt="">
+                  <img
+                    src="https://www.claro.com.pe/assets/havas/landing-formulario-cac-colaborador/assets/icon_claromusica.png"
+                    alt="">
+                </div>
+              </div>
+              <div class="subitem">
+                <div class="part1">Beneficios adicionales</div>
+                <div class="part2 img">
+                  <img
+                    src="https://www.claro.com.pe/assets/havas/landing-formulario-cac-colaborador/assets/icon_claroclub.png"
+                    alt="">
+                  <img
+                    src="https://www.claro.com.pe/assets/havas/landing-formulario-cac-colaborador/assets/icon_clarodrive.png"
+                    alt="">
+                </div>
+              </div>
+            </div>
+            <div class="pie">*Aplica para planes contratados y activados al 15.08.25</div>
+            <a href="#">Conoce más</a>
+          </div>
+  -->
+          <button class="btnaction">Contratar</button>
         </div>
--->
-        <button class="btnaction">Contratar</button>
       </div>
     </div>
   </div>
@@ -2746,80 +2599,87 @@ import MaxTab from './Planes/Max.astro';
   </div>
   <div class="container containerSlider">
     <div class="sliderCards sliderPlanesHogar sliderPlanesHogardos">
-      <div class="item" style="justify-content: center !important;">
-        <div>
-          <div class="plan">
-            Claro Video
-            <!-- 
-            <br />
-            <span>Canales: 05</span> -->
+      <div class="cardSlide">
+        <div
+          class="item"
+          style="justify-content: center !important;"
+        >
+          <div>
+            <div class="plan">Claro Video</div>
           </div>
-          <!-- 
-          <div class="precio">S/ 15</div>
-          <div class="bajada">Precio regular: <span>S/ 30</span></div> -->
-        </div>
 
-        <button class="btnaction">Contratar</button>
-      </div>
-      <div class="item">
-        <div>
-          <div class="plan">
-            Golden Premier
-            <br />
-            <span>Canales: 02</span>
-          </div>
-          <div class="precio">S/ 5</div>
-          <div class="bajada">Precio regular: <span>S/ 10</span></div>
+          <button class="btnaction">Contratar</button>
         </div>
-        <button class="btnaction">Contratar</button>
       </div>
-      <div class="item">
-        <div>
-          <div class="plan">
-            Adrenalina Sports Network
-            <br />
-            <span>Canales: 01</span>
+      <div class="cardSlide">
+        <div class="item">
+          <div>
+            <div class="plan">
+              Golden Premier
+              <br />
+              <span>Canales: 02</span>
+            </div>
+            <div class="precio">S/ 5</div>
+            <div class="bajada">Precio regular: <span>S/ 10</span></div>
           </div>
-          <div class="precio">S/ 8.50</div>
-          <div class="bajada">Precio regular: <span>S/ 17</span></div>
+          <button class="btnaction">Contratar</button>
         </div>
-        <button class="btnaction">Contratar</button>
       </div>
-      <div class="item">
-        <div>
-          <div class="plan">
-            Canal NHK
-            <br />
-            <span>Canales: 01</span>
+      <div class="cardSlide">
+        <div class="item">
+          <div>
+            <div class="plan">
+              Adrenalina Sports Network
+              <br />
+              <span>Canales: 01</span>
+            </div>
+            <div class="precio">S/ 8.50</div>
+            <div class="bajada">Precio regular: <span>S/ 17</span></div>
           </div>
-          <div class="precio">S/ 10</div>
-          <div class="bajada">Precio regular: <span>S/ 20</span></div>
+          <button class="btnaction">Contratar</button>
         </div>
-        <button class="btnaction">Contratar</button>
       </div>
-      <div class="item">
-        <div>
-          <div class="plan">
-            Hotpack HD
-            <br />
-            <span>Canales: 03</span>
+      <div class="cardSlide">
+        <div class="item">
+          <div>
+            <div class="plan">
+              Canal NHK
+              <br />
+              <span>Canales: 01</span>
+            </div>
+            <div class="precio">S/ 10</div>
+            <div class="bajada">Precio regular: <span>S/ 20</span></div>
           </div>
-          <div class="precio">S/ 15</div>
-          <div class="bajada">Precio regular: <span>S/ 30</span></div>
+          <button class="btnaction">Contratar</button>
         </div>
-        <button class="btnaction">Contratar</button>
       </div>
-      <div class="item">
-        <div>
-          <div class="plan">
-            Claro TV
-            <br />
-            <span>Grabación de contenido 100 hrs.</span>
+      <div class="cardSlide">
+        <div class="item">
+          <div>
+            <div class="plan">
+              Hotpack HD
+              <br />
+              <span>Canales: 03</span>
+            </div>
+            <div class="precio">S/ 15</div>
+            <div class="bajada">Precio regular: <span>S/ 30</span></div>
           </div>
-          <div class="precio">S/ 10</div>
-          <div class="bajada">Precio regular: <span>S/ 20</span></div>
+          <button class="btnaction">Contratar</button>
         </div>
-        <button class="btnaction">Contratar</button>
+      </div>
+      <div class="cardSlide">
+        <div class="item">
+          <div>
+            <div class="plan">
+              Claro TV
+              <br />
+              <span>Grabación de contenido 100 hrs.</span>
+            </div>
+            <div class="precio">S/ 10</div>
+            <div class="bajada">Precio regular: <span>S/ 20</span></div>
+          </div>
+          <button class="btnaction">Contratar</button>
+        </div>
       </div>
     </div>
   </div>
@@ -3577,8 +3437,8 @@ import MaxTab from './Planes/Max.astro';
 
 <script is:inline>
   document.addEventListener("DOMContentLoaded", function () {
-    document.querySelectorAll(".cardiPlanActMore").forEach(button => {
-      button.addEventListener("click", function(e) {
+    document.querySelectorAll(".cardiPlanActMore").forEach((button) => {
+      button.addEventListener("click", function (e) {
         e.preventDefault();
         button.nextElementSibling.classList.toggle("visible");
         button.classList.toggle("opened");
